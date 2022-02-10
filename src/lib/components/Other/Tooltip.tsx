@@ -9,6 +9,12 @@ import { BarTask } from "../../types/bar-task";
 import styles from "./Tooltip.module.css";
 
 // *** TYPES ***
+export interface ITooltipContentProps {
+	task: Task;
+	fontSize: string;
+	fontFamily: string;
+}
+
 export type IProps = {
 	task: BarTask;
 	arrowIndent: number;
@@ -23,11 +29,7 @@ export type IProps = {
 	rowHeight: number;
 	fontSize: string;
 	fontFamily: string;
-	TooltipContent: React.FC<{
-		task: Task;
-		fontSize: string;
-		fontFamily: string;
-	}>;
+	TooltipContent: React.FC<ITooltipContentProps>;
 };
 
 const Tooltip = (props: IProps) => {
@@ -129,3 +131,36 @@ const Tooltip = (props: IProps) => {
 };
 
 export default Tooltip;
+
+export const StandardTooltipContent = (props: ITooltipContentProps) => {
+	// *** PROPS ***
+	const { fontFamily, fontSize, task } = props;
+
+	// *** STYLES ***
+	const style = {
+		fontSize,
+		fontFamily,
+	};
+
+	return (
+		<div className={styles.tooltipDefaultContainer} style={style}>
+			<b style={{ fontSize: fontSize + 6 }}>{`${
+				task.name
+			}: ${task.start.getDate()}-${
+				task.start.getMonth() + 1
+			}-${task.start.getFullYear()} - ${task.end.getDate()}-${
+				task.end.getMonth() + 1
+			}-${task.end.getFullYear()}`}</b>
+			{task.end.getTime() - task.start.getTime() !== 0 && (
+				<p className={styles.tooltipDefaultContainerParagraph}>{`Duration: ${~~(
+					(task.end.getTime() - task.start.getTime()) /
+					(1000 * 60 * 60 * 24)
+				)} day(s)`}</p>
+			)}
+
+			<p className={styles.tooltipDefaultContainerParagraph}>
+				{!!task.progress && `Progress: ${task.progress} %`}
+			</p>
+		</div>
+	);
+};
