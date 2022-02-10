@@ -1,5 +1,5 @@
 // *** OTHER ***
-import { Task } from "../lib/types/public-types";
+import { Task } from "../../lib/types/public-types";
 
 export function initTasks() {
 	const currentDate = new Date();

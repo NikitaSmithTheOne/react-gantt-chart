@@ -2,8 +2,8 @@
 import React from "react";
 
 // *** OTHER ***
-import Gantt from "./lib/components/Gantt/Gantt";
-import { Task, ViewMode } from "./lib/types/public-types";
+import Gantt from "../lib/components/Gantt/Gantt";
+import { Task, ViewMode } from "../lib/types/public-types";
 import { getStartEndDateForProject, initTasks } from "./helpers";
 import ViewSwitcher from "./components/ViewSwitcher";
 

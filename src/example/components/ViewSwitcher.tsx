@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import { ViewMode } from "../lib/types/public-types";
+import { ViewMode } from "../../lib/types/public-types";
 
 // *** TYPES ***
 interface IProps {
