@@ -8,7 +8,7 @@ import BarProgressHandle from "./BarProgressHandle";
 import { IProps as TaskItemProps } from "../TaskItem";
 
 // *** STYLES ***
-import styles from "./bar.module.css";
+import styles from "./Bar.module.css";
 
 // *** TYPES ***
 type IProps = TaskItemProps;

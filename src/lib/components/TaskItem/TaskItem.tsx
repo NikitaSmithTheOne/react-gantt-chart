@@ -10,7 +10,7 @@ import Project from "./project/Project";
 import { GanttContentMoveAction } from "../../types/gantt-task-actions";
 
 // *** STYLES ***
-import style from "./task-list.module.css";
+import style from "./TaskItem.module.css";
 
 // *** TYPES ***
 export type IProps = {

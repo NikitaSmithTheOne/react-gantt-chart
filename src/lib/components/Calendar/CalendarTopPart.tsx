@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import styles from "./calendar.module.css";
+import styles from "./Calendar.module.css";
 
 // *** TYPES ***
 type IProps = {

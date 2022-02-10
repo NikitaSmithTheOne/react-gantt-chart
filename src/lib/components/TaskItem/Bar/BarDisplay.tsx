@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** STYLES ***
-import style from "./bar.module.css";
+import style from "./Bar.module.css";
 
 // *** TYPES ***
 type IProps = {
