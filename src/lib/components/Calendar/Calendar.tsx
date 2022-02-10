@@ -27,7 +27,7 @@ export type IProps = {
 	fontSize: string;
 };
 
-export const Calendar = (props: IProps) => {
+const Calendar = (props: IProps) => {
 	// *** PROPS ***
 	const {
 		columnWidth,
@@ -250,3 +250,5 @@ export const Calendar = (props: IProps) => {
 		</g>
 	);
 };
+
+export default Calendar
