@@ -1,0 +1,22 @@
+name: general_test
+on:
+  push:
+
+jobs:
+  general_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: volta-cli/action@v1
+      - run: npm ci --no-audit
+
+      - name: Lint
+        run: npm run lint
+
+      # No test yet
+      # - name: Test Coverage
+      #   run: npm run test:coverage
+
+      - name: Build
+        run: CI=false npm run build
