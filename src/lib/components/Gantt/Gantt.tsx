@@ -23,7 +23,7 @@ import { removeHiddenTasks } from "../../helpers/other-helper";
 // *** STYLES ***
 import styles from "./Gantt.module.css";
 
-export const Gantt: React.FunctionComponent<GanttProps> = ({
+const Gantt: React.FunctionComponent<GanttProps> = ({
 	tasks,
 	headerHeight = 50,
 	columnWidth = 60,
@@ -461,3 +461,6 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
 		</div>
 	);
 };
+
+
+export default Gantt
