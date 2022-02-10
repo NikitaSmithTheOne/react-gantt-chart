@@ -13,7 +13,7 @@ import {
 import { DateSetup } from "../../types/date-setup";
 
 // *** STYLES ***
-import styles from "./calendar.module.css";
+import styles from "./Calendar.module.css";
 
 // *** TYPES ***
 export type IProps = {
