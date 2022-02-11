@@ -129,7 +129,3 @@ export interface StylingOption {
 		onExpanderClick: (task: Task) => void;
 	}>;
 }
-
-export interface GanttProps extends EventOption, DisplayOption, StylingOption {
-	tasks: Task[];
-}

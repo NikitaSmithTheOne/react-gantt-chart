@@ -95,6 +95,7 @@ const GanttTaskContent = (props: IProps) => {
 				}
 			}
 		}
+
 		// Mouse Events
 		else if (action === "mouseenter") {
 			if (!ganttEvent.action) {
@@ -111,6 +112,7 @@ const GanttTaskContent = (props: IProps) => {
 		} else if (action === "dblclick") {
 			!!onDoubleClick && onDoubleClick(task);
 		}
+
 		// Change task event start
 		else if (action === "move") {
 			if (!svg?.current || !point) return;

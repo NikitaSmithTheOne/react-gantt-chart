@@ -3,7 +3,9 @@ import React, { useRef, useEffect } from "react";
 
 // *** OTHER ***
 import Grid, { IProps as GridProps } from "../../containers/Grid/Grid";
-import Calendar, { IProps as CalendarProps } from "../../containers/Calendar/Calendar";
+import Calendar, {
+	IProps as CalendarProps,
+} from "../../containers/Calendar/Calendar";
 import GanttTaskContent, {
 	IProps as GanttTaskContentProps,
 } from "./GanttTaskContent";
@@ -26,11 +28,12 @@ const GanttTask = (props: IProps) => {
 	const { gridProps, calendarProps, barProps, ganttHeight, scrollY, scrollX } =
 		props;
 
+	// *** USE REF ***
 	const ganttSVGRef = useRef<SVGSVGElement>(null);
 	const horizontalContainerRef = useRef<HTMLDivElement>(null);
 	const verticalGanttContainerRef = useRef<HTMLDivElement>(null);
-	const newBarProps = { ...barProps, svg: ganttSVGRef };
 
+	// *** USE EFFECT ***
 	useEffect(() => {
 		if (horizontalContainerRef.current) {
 			horizontalContainerRef.current.scrollTop = scrollY;
@@ -42,6 +45,9 @@ const GanttTask = (props: IProps) => {
 			verticalGanttContainerRef.current.scrollLeft = scrollX;
 		}
 	}, [scrollX]);
+
+	// *** CONDITIONALS ***
+	const newBarProps = { ...barProps, svg: ganttSVGRef };
 
 	return (
 		<div
