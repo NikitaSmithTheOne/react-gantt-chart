@@ -20,6 +20,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
 .taskListNameWrapper {
 	display: flex;
 }
@@ -31,6 +32,7 @@
 	user-select: none;
 	cursor: pointer;
 }
+
 .taskListEmptyExpander {
 	font-size: 0.6rem;
 	padding-left: 1rem;

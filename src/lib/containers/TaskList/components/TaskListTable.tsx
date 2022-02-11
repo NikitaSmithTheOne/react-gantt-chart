@@ -2,7 +2,7 @@
 import React, { useMemo } from "react";
 
 // *** OTHER ***
-import { Task } from "../../types/public-types";
+import { Task } from "../../../types/public-types";
 
 // *** STYLES ***
 import styles from "./TaskListTable.module.css";

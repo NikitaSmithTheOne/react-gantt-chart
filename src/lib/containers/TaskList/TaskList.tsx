@@ -4,8 +4,8 @@ import React, { useEffect, useRef } from "react";
 // *** OTHER ***
 import { BarTask } from "../../types/bar-task";
 import { Task } from "../../types/public-types";
-import { IProps as TaskListHeaderProps } from "./TaskListHeader";
-import { IProps as TaskListTableProps } from "./TaskListTable";
+import { IProps as TaskListHeaderProps } from "./components/TaskListHeader";
+import { IProps as TaskListTableProps } from "./components/TaskListTable";
 
 // *** TYPES ***
 export type IProps = {
