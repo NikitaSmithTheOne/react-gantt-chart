@@ -9,23 +9,23 @@ import {
 	DisplayOption,
 	StylingOption,
 } from "../../types/public-types";
-import { IProps as GridProps } from "../../containers/Grid/Grid";
+import { IProps as GridProps } from "../Grid/Grid";
 import { ganttDateRange, seedDates } from "../../helpers/date-helper";
-import { IProps as CalendarProps } from "../../containers/Calendar/Calendar";
-import { IProps as TaskGanttContentProps } from "./GanttTaskContent";
-import TaskListHeaderDefault from "../../containers/TaskList/components/TaskListHeader";
-import TaskListTableDefault from "../../containers/TaskList/components/TaskListTable";
-import Tooltip, { StandardTooltipContent } from "../Other/Tooltip";
-import VerticalScroll from "../Other/VerticalScroll";
+import { IProps as CalendarProps } from "../Calendar/Calendar";
+import { IProps as TaskGanttContentProps } from "./components/GanttTaskContent";
+import TaskListHeaderDefault from "../TaskList/components/TaskListHeader";
+import TaskListTableDefault from "../TaskList/components/TaskListTable";
+import Tooltip, { StandardTooltipContent } from "../../components/Other/Tooltip";
+import VerticalScroll from "../../components/Other/VerticalScroll";
 import TaskList, {
 	IProps as TaskListProps,
-} from "../../containers/TaskList/TaskList";
-import GanttTask from "./GanttTask";
+} from "../TaskList/TaskList";
+import GanttTask from "./components/GanttTask";
 import { BarTask } from "../../types/bar-task";
 import { convertToBarTasks } from "../../helpers/bar-helper";
 import { GanttEvent } from "../../types/gantt-task-actions";
 import { DateSetup } from "../../types/date-setup";
-import { HorizontalScroll } from "../Other/HorizontalScroll";
+import { HorizontalScroll } from "../../components/Other/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
 
 // *** STYLES ***
