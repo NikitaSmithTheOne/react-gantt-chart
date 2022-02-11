@@ -14,6 +14,7 @@ const Project = (props: IProps) => {
 	// *** PROPS ***
 	const { isSelected, task } = props;
 
+	// *** CONDITIONALS ****
 	const barColor = isSelected
 		? task.styles.backgroundSelectedColor
 		: task.styles.backgroundColor;
@@ -30,6 +31,7 @@ const Project = (props: IProps) => {
 		task.x1 + 15,
 		task.y + task.height / 2 - 1,
 	].join(",");
+
 	const projectRightTriangle = [
 		task.x2,
 		task.y + task.height / 2 - 1,
@@ -84,4 +86,4 @@ const Project = (props: IProps) => {
 	);
 };
 
-export default Project
+export default Project;

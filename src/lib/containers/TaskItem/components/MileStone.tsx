@@ -24,13 +24,16 @@ const MileStone = (props: IProps) => {
 		// taskHeight,
 	} = props;
 
-	const transform = `rotate(45 ${task.x1 + task.height * 0.356} 
-    ${task.y + task.height * 0.85})`;
+	// *** HANDLERS ***
 	const getBarColor = () => {
 		return isSelected
 			? task.styles.backgroundSelectedColor
 			: task.styles.backgroundColor;
 	};
+
+	// *** CONDITIONALS ***
+	const transform = `rotate(45 ${task.x1 + task.height * 0.356} 
+    ${task.y + task.height * 0.85})`;
 
 	return (
 		<g tabIndex={0} className={styles.milestoneWrapper}>

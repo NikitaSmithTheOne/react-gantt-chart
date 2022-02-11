@@ -39,6 +39,7 @@ const BarDisplay = (props: IProps) => {
 		y,
 	} = props;
 
+	// *** HANDLERS ***
 	const getProcessColor = () => {
 		return isSelected ? styles.progressSelectedColor : styles.progressColor;
 	};

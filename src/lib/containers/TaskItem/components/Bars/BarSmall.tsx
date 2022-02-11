@@ -2,10 +2,10 @@
 import React from "react";
 
 // *** OTHER ***
-import { getProgressPoint } from "../../../helpers/bar-helper";
+import { getProgressPoint } from "../../../../helpers/bar-helper";
 import BarDisplay from "./BarDisplay";
 import BarProgressHandle from "./BarProgressHandle";
-import { IProps as TaskItemProps } from "../TaskItem";
+import { IProps as TaskItemProps } from "../../TaskItem";
 
 // *** STYLES ***
 import styles from "./Bar.module.css";
@@ -27,11 +27,13 @@ const BarSmall = (props: IProps) => {
 		// taskHeight,
 	} = props;
 
+	// *** CONDITIONALS ***
 	const progressPoint = getProgressPoint(
 		task.progressWidth + task.x1,
 		task.y,
 		task.height
 	);
+
 	return (
 		<g className={styles.barWrapper} tabIndex={0}>
 			<BarDisplay

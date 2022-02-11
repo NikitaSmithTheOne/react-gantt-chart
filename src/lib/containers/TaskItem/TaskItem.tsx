@@ -2,11 +2,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
 // *** OTHER ***
-import Bar from "./bars/Bar";
-import BarSmall from "./bars/BarSmall";
+import Bar from "./components/Bars/Bar";
+import BarSmall from "./components/Bars/BarSmall";
 import { BarTask } from "../../types/bar-task";
-import MileStone from "./milestone/MileStone";
-import Project from "./project/Project";
+import MileStone from "./components/MileStone";
+import Project from "./components/Project";
 import { GanttContentMoveAction } from "../../types/gantt-task-actions";
 
 // *** STYLES ***
@@ -41,10 +41,33 @@ const TaskItem = (props: IProps) => {
 		onEventStart,
 	} = props;
 
-	const textRef = useRef<SVGTextElement>(null);
+	// *** USE STATE ***
 	const [taskItem, setTaskItem] = useState<JSX.Element>(<div />);
 	const [isTextInside, setIsTextInside] = useState(true);
 
+	// *** USE REF ***
+	const textRef = useRef<SVGTextElement>(null);
+
+	// *** HANDLERS ***
+	const getX = () => {
+		const width = task.x2 - task.x1;
+		const hasChild = task.barChildren.length > 0;
+		if (isTextInside) {
+			return task.x1 + width * 0.5;
+		}
+		if (rtl && textRef.current) {
+			return (
+				task.x1 -
+				textRef.current.getBBox().width -
+				arrowIndent * +hasChild -
+				arrowIndent * 0.2
+			);
+		} else {
+			return task.x1 + width + arrowIndent * +hasChild + arrowIndent * 0.2;
+		}
+	};
+
+	// *** USE EFFECT ***
 	useEffect(() => {
 		switch (task.typeInternal) {
 			case "milestone":
@@ -68,24 +91,6 @@ const TaskItem = (props: IProps) => {
 			setIsTextInside(textRef.current.getBBox().width < task.x2 - task.x1);
 		}
 	}, [textRef, task]);
-
-	const getX = () => {
-		const width = task.x2 - task.x1;
-		const hasChild = task.barChildren.length > 0;
-		if (isTextInside) {
-			return task.x1 + width * 0.5;
-		}
-		if (rtl && textRef.current) {
-			return (
-				task.x1 -
-				textRef.current.getBBox().width -
-				arrowIndent * +hasChild -
-				arrowIndent * 0.2
-			);
-		} else {
-			return task.x1 + width + arrowIndent * +hasChild + arrowIndent * 0.2;
-		}
-	};
 
 	return (
 		<g
