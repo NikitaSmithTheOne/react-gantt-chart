@@ -5,7 +5,7 @@ import React from "react";
 import styles from "./TaskListHeader.module.css";
 
 // *** TYPES ***
-interface IProps {
+export interface IProps {
 	headerHeight: number;
 	rowWidth: string;
 	fontFamily: string;

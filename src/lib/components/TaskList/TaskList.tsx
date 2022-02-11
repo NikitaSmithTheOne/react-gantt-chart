@@ -4,6 +4,8 @@ import React, { useEffect, useRef } from "react";
 // *** OTHER ***
 import { BarTask } from "../../types/bar-task";
 import { Task } from "../../types/public-types";
+import { IProps as TaskListHeaderProps } from "./TaskListHeader";
+import { IProps as TaskListTableProps } from "./TaskListTable";
 
 // *** TYPES ***
 export type IProps = {
@@ -21,23 +23,8 @@ export type IProps = {
 	selectedTask: BarTask | undefined;
 	setSelectedTask: (task: string) => void;
 	onExpanderClick: (task: Task) => void;
-	TaskListHeader: React.FC<{
-		headerHeight: number;
-		rowWidth: string;
-		fontFamily: string;
-		fontSize: string;
-	}>;
-	TaskListTable: React.FC<{
-		rowHeight: number;
-		rowWidth: string;
-		fontFamily: string;
-		fontSize: string;
-		locale: string;
-		tasks: Task[];
-		selectedTaskId: string;
-		setSelectedTask: (taskId: string) => void;
-		onExpanderClick: (task: Task) => void;
-	}>;
+	TaskListHeader: React.FC<TaskListHeaderProps>;
+	TaskListTable: React.FC<TaskListTableProps>;
 };
 
 const TaskList = (props: IProps) => {
@@ -61,39 +48,48 @@ const TaskList = (props: IProps) => {
 		horizontalContainerClass,
 	} = props;
 
+	// *** USE REF ***
 	const horizontalContainerRef = useRef<HTMLDivElement>(null);
+
+	// *** USE EFFECT ***
 	useEffect(() => {
 		if (horizontalContainerRef.current) {
 			horizontalContainerRef.current.scrollTop = scrollY;
 		}
 	}, [scrollY]);
 
-	const headerProps = {
+	// *** CONDITIONALS ***
+	// header
+	const headerProps: TaskListHeaderProps = {
 		headerHeight,
 		fontFamily,
 		fontSize,
 		rowWidth,
 	};
-	const selectedTaskId = selectedTask ? selectedTask.id : "";
-	const tableProps = {
+
+	// table
+	const tableProps: TaskListTableProps = {
 		rowHeight,
 		rowWidth,
 		fontFamily,
 		fontSize,
 		tasks,
 		locale,
-		selectedTaskId: selectedTaskId,
+		selectedTaskId: selectedTask ? selectedTask.id : "",
 		setSelectedTask,
 		onExpanderClick,
 	};
 
 	return (
 		<div ref={taskListRef}>
+			{/* HEADER */}
 			<TaskListHeader {...headerProps} />
+
+			{/* TABLE */}
 			<div
 				ref={horizontalContainerRef}
 				className={horizontalContainerClass}
-				style={ganttHeight ? { height: ganttHeight } : {}}
+				style={{ height: ganttHeight || undefined }}
 			>
 				<TaskListTable {...tableProps} />
 			</div>

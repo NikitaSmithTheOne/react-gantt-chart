@@ -30,7 +30,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 	day: "numeric",
 };
 
-interface IProps {
+export interface IProps {
 	rowHeight: number;
 	rowWidth: string;
 	fontFamily: string;
@@ -41,6 +41,7 @@ interface IProps {
 	setSelectedTask: (taskId: string) => void;
 	onExpanderClick: (task: Task) => void;
 }
+
 const TaskListTable = (props: IProps) => {
 	// *** PROPS ***
 	const {
@@ -55,6 +56,7 @@ const TaskListTable = (props: IProps) => {
 		tasks,
 	} = props;
 
+	// *** HANDLERS ***
 	const toLocaleDateString = useMemo(
 		() => toLocaleDateStringFactory(locale),
 		[locale]
