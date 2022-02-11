@@ -3,7 +3,7 @@ import React, { ReactChild } from "react";
 
 // *** OTHER ***
 import { ViewMode } from "../../types/public-types";
-import CalendarTopPart from "./CalendarTopPart";
+import CalendarTopPart from "./components/CalendarHeader";
 import {
 	getCachedDateTimeFormat,
 	getDaysInMonth,
@@ -40,6 +40,7 @@ const Calendar = (props: IProps) => {
 		viewMode,
 	} = props;
 
+	// *** HANDLERS ***
 	const getCalendarValuesForMonth = () => {
 		const topValues: ReactChild[] = [];
 		const bottomValues: ReactChild[] = [];
@@ -221,6 +222,7 @@ const Calendar = (props: IProps) => {
 		return [topValues, bottomValues];
 	};
 
+	// *** CONDITIONALS ***
 	let topValues: ReactChild[] = [];
 	let bottomValues: ReactChild[] = [];
 	switch (dateSetup.viewMode) {
@@ -237,6 +239,7 @@ const Calendar = (props: IProps) => {
 			[topValues, bottomValues] = getCalendarValuesForOther();
 			break;
 	}
+
 	return (
 		<g className="calendar" fontSize={fontSize} fontFamily={fontFamily}>
 			<rect
@@ -246,9 +249,10 @@ const Calendar = (props: IProps) => {
 				height={headerHeight}
 				className={styles.calendarHeader}
 			/>
-			{bottomValues} {topValues}
+			{bottomValues}
+			{topValues}
 		</g>
 	);
 };
 
-export default Calendar
+export default Calendar;

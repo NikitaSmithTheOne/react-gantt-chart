@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import styles from "./Calendar.module.css";
+import styles from "./CalendarHeader.module.css";
 
 // *** TYPES ***
 type IProps = {
@@ -14,7 +14,7 @@ type IProps = {
 	yText: number;
 };
 
-const CalendarTopPart = (props: IProps) => {
+const CalendarHeader = (props: IProps) => {
 	// *** PROPS ***
 	const { value, x1Line, xText, y1Line, y2Line, yText } = props;
 
@@ -40,4 +40,4 @@ const CalendarTopPart = (props: IProps) => {
 	);
 };
 
-export default CalendarTopPart;
+export default CalendarHeader;

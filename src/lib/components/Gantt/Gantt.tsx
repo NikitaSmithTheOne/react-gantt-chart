@@ -5,7 +5,7 @@ import React, { useState, SyntheticEvent, useRef, useEffect } from "react";
 import { ViewMode, GanttProps, Task } from "../../types/public-types";
 import { IProps as GridProps } from "../../containers/Grid/Grid";
 import { ganttDateRange, seedDates } from "../../helpers/date-helper";
-import { IProps as CalendarProps } from "../Calendar/Calendar";
+import { IProps as CalendarProps } from "../../containers/Calendar/Calendar";
 import { IProps as TaskGanttContentProps } from "./GanttTaskContent";
 import TaskListHeaderDefault from "../TaskList/TaskListHeader";
 import TaskListTableDefault from "../TaskList/TaskListTable";
