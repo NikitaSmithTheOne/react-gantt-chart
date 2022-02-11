@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import GridBody, { IProps as GridBodyProps } from "./GridBody";
+import GridBody, { IProps as GridBodyProps } from "./components/GridBody";
 
 // *** TYPES ***
 export type IProps = GridBodyProps;

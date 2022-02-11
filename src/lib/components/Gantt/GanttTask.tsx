@@ -2,7 +2,7 @@
 import React, { useRef, useEffect } from "react";
 
 // *** OTHER ***
-import Grid, { IProps as GridProps } from "../Grid/Grid";
+import Grid, { IProps as GridProps } from "../../containers/Grid/Grid";
 import Calendar, { IProps as CalendarProps } from "../Calendar/Calendar";
 import GanttTaskContent, {
 	IProps as GanttTaskContentProps,

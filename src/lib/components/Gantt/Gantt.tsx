@@ -3,7 +3,7 @@ import React, { useState, SyntheticEvent, useRef, useEffect } from "react";
 
 // *** OTHER ***
 import { ViewMode, GanttProps, Task } from "../../types/public-types";
-import { IProps as GridProps } from "../Grid/Grid";
+import { IProps as GridProps } from "../../containers/Grid/Grid";
 import { ganttDateRange, seedDates } from "../../helpers/date-helper";
 import { IProps as CalendarProps } from "../Calendar/Calendar";
 import { IProps as TaskGanttContentProps } from "./GanttTaskContent";

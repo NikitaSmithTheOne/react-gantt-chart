@@ -2,8 +2,8 @@
 import React, { ReactChild } from "react";
 
 // *** OTHER ***
-import { Task } from "../../types/public-types";
-import { addToDate } from "../../helpers/date-helper";
+import { Task } from "../../../types/public-types";
+import { addToDate } from "../../../helpers/date-helper";
 
 // *** STYLES ***
 import styles from "./GridBody.module.css";
