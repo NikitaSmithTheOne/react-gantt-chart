@@ -15,17 +15,15 @@ import { IProps as CalendarProps } from "../Calendar/Calendar";
 import { IProps as TaskGanttContentProps } from "./components/GanttTaskContent";
 import TaskListHeaderDefault from "../TaskList/components/TaskListHeader";
 import TaskListTableDefault from "../TaskList/components/TaskListTable";
-import Tooltip, { StandardTooltipContent } from "../../components/Other/Tooltip";
-import VerticalScroll from "../../components/Other/VerticalScroll";
-import TaskList, {
-	IProps as TaskListProps,
-} from "../TaskList/TaskList";
+import Tooltip, { StandardTooltipContent } from "../../components/Tooltip";
+import VerticalScroll from "../../components/VerticalScroll";
+import TaskList, { IProps as TaskListProps } from "../TaskList/TaskList";
 import GanttTask from "./components/GanttTask";
 import { BarTask } from "../../types/bar-task";
 import { convertToBarTasks } from "../../helpers/bar-helper";
 import { GanttEvent } from "../../types/gantt-task-actions";
 import { DateSetup } from "../../types/date-setup";
-import { HorizontalScroll } from "../../components/Other/HorizontalScroll";
+import { HorizontalScroll } from "../../components/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
 
 // *** STYLES ***

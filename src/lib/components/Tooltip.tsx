@@ -2,8 +2,8 @@
 import React, { useRef, useEffect, useState } from "react";
 
 // *** OTHER ***
-import { Task } from "../../types/public-types";
-import { BarTask } from "../../types/bar-task";
+import { Task } from "../types/public-types";
+import { BarTask } from "../types/bar-task";
 
 // *** STYLES ***
 import styles from "./Tooltip.module.css";

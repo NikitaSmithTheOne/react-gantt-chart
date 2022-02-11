@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import { BarTask } from "../../types/bar-task";
+import { BarTask } from "../types/bar-task";
 
 // *** HELPERS ***
 const drownPathAndTriangle = (

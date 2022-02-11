@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 // *** OTHER ***
 import { EventOption } from "../../../types/public-types";
 import { BarTask } from "../../../types/bar-task";
-import Arrow from "../../../components/Other/Arrow";
+import Arrow from "../../../components/Arrow";
 import { handleTaskBySVGMouseEvent } from "../../../helpers/bar-helper";
 import { isKeyboardEvent } from "../../../helpers/other-helper";
 import TaskItem from "../../TaskItem/TaskItem";
