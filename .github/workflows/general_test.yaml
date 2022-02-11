@@ -14,9 +14,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      # No test yet
-      # - name: Test Coverage
-      #   run: npm run test:coverage
+      - name: Test Coverage
+        run: npm run test -- --coverage --watchAll=false
 
       - name: Build
         run: CI=false npm run build
