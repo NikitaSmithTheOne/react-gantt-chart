@@ -102,6 +102,12 @@ const Bar = (props: IProps) => {
 				)}
 				{isProgressChangeable && (
 					<BarProgressHandle
+						style={{
+							fill: "#ddd",
+							cursor: "ew-resize",
+							opacity: isHovered ? 1 : 0,
+							visibility: isHovered ? "visible" : "hidden",
+						}}
 						progressPoint={progressPoint}
 						onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
 							onEventStart("progress", task, e);

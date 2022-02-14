@@ -1,5 +1,5 @@
 // *** NPM ***
-import React from "react";
+import React, { useState } from "react";
 
 // *** OTHER ***
 import { getProgressPoint } from "../../../../helpers/bar-helper";
@@ -27,6 +27,9 @@ const BarSmall = (props: IProps) => {
 		// taskHeight,
 	} = props;
 
+	// *** USE STATE ***
+	const [isHovered, setIsHovered] = useState<boolean>(false);
+
 	// *** CONDITIONALS ***
 	const progressPoint = getProgressPoint(
 		task.progressWidth + task.x1,
@@ -35,7 +38,12 @@ const BarSmall = (props: IProps) => {
 	);
 
 	return (
-		<g className={styles.barWrapper} tabIndex={0}>
+		<g
+			className={styles.barWrapper}
+			tabIndex={0}
+			onMouseEnter={() => setIsHovered(() => true)}
+			onMouseLeave={() => setIsHovered(() => false)}
+		>
 			<BarDisplay
 				x={task.x1}
 				y={task.y}
@@ -53,6 +61,12 @@ const BarSmall = (props: IProps) => {
 			<g>
 				{isProgressChangeable && (
 					<BarProgressHandle
+						style={{
+							fill: "#ddd",
+							cursor: "ew-resize",
+							opacity: isHovered ? 1 : 0,
+							visibility: isHovered ? "visible" : "hidden",
+						}}
 						progressPoint={progressPoint}
 						onMouseDown={(e) => {
 							onEventStart("progress", task, e);

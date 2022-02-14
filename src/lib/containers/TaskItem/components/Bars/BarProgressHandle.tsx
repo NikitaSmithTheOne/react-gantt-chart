@@ -1,26 +1,39 @@
 // *** NPM ***
 import React from "react";
 
-// *** STYLES ***
-import styles from "./Bar.module.css";
+// *** OTHER ***
+import { OptionalKeys } from "../../../../types/custom";
 
 // *** TYPES ***
 type IProps = {
-	progressPoint: string;
-	onMouseDown: (event: React.MouseEvent<SVGPolygonElement, MouseEvent>) => void;
+	style?: React.CSSProperties;
+	progressPoint?: string;
+	onMouseDown?: (
+		event: React.MouseEvent<SVGPolygonElement, MouseEvent>
+	) => void;
+};
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
+
+const defaultProps: TOptionalProps = {
+	style: {
+		fill: "#ddd",
+		cursor: "ew-resize",
+	},
+	progressPoint: "15,10,25,10,20,0",
+	onMouseDown: (e) => console.log(e),
 };
 
-const BarProgressHandle = (props: IProps) => {
+const BarProgressHandle = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
-	const { onMouseDown, progressPoint } = props;
+	const { style, onMouseDown, progressPoint } = props;
 
 	return (
-		<polygon
-			className={styles.barHandle}
-			points={progressPoint}
-			onMouseDown={onMouseDown}
-		/>
+		<svg>
+			<polygon style={style} points={progressPoint} onMouseDown={onMouseDown} />
+		</svg>
 	);
 };
+BarProgressHandle.defaultProps = defaultProps;
 
 export default BarProgressHandle;
