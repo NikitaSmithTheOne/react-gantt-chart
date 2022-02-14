@@ -2,8 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 // *** OTHER ***
-import Bar from "./components/Bars/Bar";
-import BarSmall from "./components/Bars/BarSmall";
+import Bar from "../Bars/Bar";
+import BarSmall from "../Bars/BarSmall";
 import { BarTask } from "../../types/bar-task";
 import MileStone from "./components/MileStone";
 import Project from "./components/Project";

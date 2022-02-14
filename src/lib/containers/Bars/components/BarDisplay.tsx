@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import { OptionalKeys } from "../../../../types/custom";
+import { OptionalKeys } from "../../../types/custom";
 
 // *** TYPES ***
 interface IProps {

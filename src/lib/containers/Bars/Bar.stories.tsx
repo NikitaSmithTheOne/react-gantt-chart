@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 // *** OTHER ***
 import Bar from "./Bar";
-import { BarTask } from "../../../../types/bar-task";
+import { BarTask } from "../../types/bar-task";
 
 export default {
 	title: "TaskItem/Bar",

@@ -1,6 +1,6 @@
 // *** NPM ***
 import React from "react";
-import { OptionalKeys } from "../../../../types/custom";
+import { OptionalKeys } from "../../../types/custom";
 
 // *** TYPES ***
 type IProps = {

@@ -2,14 +2,14 @@
 import React, { useState } from "react";
 
 // *** OTHER ***
-import BarDisplay from "./BarDisplay";
-import BarDateHandle from "./BarDateHandle";
-import BarProgressHandle from "./BarProgressHandle";
-import { getProgressPoint } from "../../../../helpers/bar-helper";
-import { IProps as TaskItemProps } from "../../TaskItem";
+import BarDisplay from "./components/BarDisplay";
+import BarDateHandle from "./components/BarDateHandle";
+import BarProgressHandle from "./components/BarProgressHandle";
+import { getProgressPoint } from "../../helpers/bar-helper";
+import { IProps as TaskItemProps } from "../TaskItem/TaskItem";
 
 // *** STYLES ***
-import { OptionalKeys } from "../../../../types/custom";
+import { OptionalKeys } from "../../types/custom";
 
 // *** TYPES ***
 type IProps = { rootStyle?: React.CSSProperties } & Pick<

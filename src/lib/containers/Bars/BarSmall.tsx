@@ -2,11 +2,11 @@
 import React, { useState } from "react";
 
 // *** OTHER ***
-import { getProgressPoint } from "../../../../helpers/bar-helper";
-import BarDisplay from "./BarDisplay";
-import BarProgressHandle from "./BarProgressHandle";
-import { IProps as TaskItemProps } from "../../TaskItem";
-import { OptionalKeys } from "../../../../types/custom";
+import { getProgressPoint } from "../../helpers/bar-helper";
+import BarDisplay from "./components/BarDisplay";
+import BarProgressHandle from "./components/BarProgressHandle";
+import { IProps as TaskItemProps } from "../TaskItem/TaskItem";
+import { OptionalKeys } from "../../types/custom";
 
 // *** TYPES ***
 type IProps = {
