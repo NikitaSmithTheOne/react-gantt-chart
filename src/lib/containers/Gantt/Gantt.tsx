@@ -371,9 +371,11 @@ const Gantt = (props: IProps) => {
 		viewMode,
 		headerHeight,
 		columnWidth,
-		fontFamily,
-		fontSize,
 		rtl,
+		rootStyle: {
+			fontFamily,
+			fontSize,
+		},
 	};
 
 	const barProps: TaskGanttContentProps = {

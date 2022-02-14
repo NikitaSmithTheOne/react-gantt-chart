@@ -3,7 +3,7 @@ import React, { ReactChild } from "react";
 
 // *** OTHER ***
 import { ViewMode } from "../../types/public-types";
-import CalendarTopPart from "./components/CalendarHeader";
+import CalendarHeader from "./components/CalendarHeader";
 import {
 	getCachedDateTimeFormat,
 	getDaysInMonth,
@@ -11,9 +11,7 @@ import {
 	getWeekNumberISO8601,
 } from "../../helpers/date-helper";
 import { DateSetup } from "../../types/date-setup";
-
-// *** STYLES ***
-import styles from "./Calendar.module.css";
+import { OptionalKeys } from "../../types/custom";
 
 // *** TYPES ***
 export type IProps = {
@@ -23,21 +21,42 @@ export type IProps = {
 	rtl: boolean;
 	headerHeight: number;
 	columnWidth: number;
-	fontFamily: string;
-	fontSize: string;
+	// styles
+	rootStyle?: React.CSSProperties;
+	headerStyle?: React.CSSProperties;
+	bottomTextStyle?: React.CSSProperties;
+};
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
+
+const defaultProps: TOptionalProps = {
+	rootStyle: {},
+	headerStyle: {
+		fill: "#ffffff",
+		stroke: "#e0e0e0",
+		strokeWidth: 1.4,
+	},
+	bottomTextStyle: {
+		textAnchor: "middle",
+		fill: "#333",
+		userSelect: "none",
+		pointerEvents: "none",
+	},
 };
 
-const Calendar = (props: IProps) => {
+const Calendar = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
 		columnWidth,
 		dateSetup,
-		fontFamily,
-		fontSize,
 		headerHeight,
 		locale,
 		rtl,
 		viewMode,
+		// styles
+		rootStyle,
+		headerStyle,
+		bottomTextStyle,
 	} = props;
 
 	// *** HANDLERS ***
@@ -50,10 +69,10 @@ const Calendar = (props: IProps) => {
 			const bottomValue = getLocaleMonth(date, locale);
 			bottomValues.push(
 				<text
+					style={bottomTextStyle}
 					key={bottomValue + date.getFullYear()}
 					y={headerHeight * 0.8}
 					x={columnWidth * i + columnWidth * 0.5}
-					className={styles.calendarBottomText}
 				>
 					{bottomValue}
 				</text>
@@ -70,7 +89,7 @@ const Calendar = (props: IProps) => {
 					xText = (6 + i - date.getMonth()) * columnWidth;
 				}
 				topValues.push(
-					<CalendarTopPart
+					<CalendarHeader
 						key={topValue}
 						value={topValue}
 						x1Line={columnWidth * i}
@@ -103,10 +122,10 @@ const Calendar = (props: IProps) => {
 
 			bottomValues.push(
 				<text
+					style={bottomTextStyle}
 					key={date.getTime()}
 					y={headerHeight * 0.8}
 					x={columnWidth * (i + +rtl)}
-					className={styles.calendarBottomText}
 				>
 					{bottomValue}
 				</text>
@@ -116,7 +135,7 @@ const Calendar = (props: IProps) => {
 				// if last day is new month
 				if (i !== dates.length - 1) {
 					topValues.push(
-						<CalendarTopPart
+						<CalendarHeader
 							key={topValue}
 							value={topValue}
 							x1Line={columnWidth * i + weeksCount * columnWidth}
@@ -145,14 +164,15 @@ const Calendar = (props: IProps) => {
 
 			bottomValues.push(
 				<text
+					style={bottomTextStyle}
 					key={date.getTime()}
 					y={headerHeight * 0.8}
 					x={columnWidth * i + columnWidth * 0.5}
-					className={styles.calendarBottomText}
 				>
 					{bottomValue}
 				</text>
 			);
+
 			if (
 				i + 1 !== dates.length &&
 				date.getMonth() !== dates[i + 1].getMonth()
@@ -160,7 +180,7 @@ const Calendar = (props: IProps) => {
 				const topValue = getLocaleMonth(date, locale);
 
 				topValues.push(
-					<CalendarTopPart
+					<CalendarHeader
 						key={topValue + date.getFullYear()}
 						value={topValue}
 						x1Line={columnWidth * (i + 1)}
@@ -194,11 +214,10 @@ const Calendar = (props: IProps) => {
 
 			bottomValues.push(
 				<text
+					style={bottomTextStyle}
 					key={date.getTime()}
 					y={headerHeight * 0.8}
 					x={columnWidth * (i + +rtl)}
-					className={styles.calendarBottomText}
-					fontFamily={fontFamily}
 				>
 					{bottomValue}
 				</text>
@@ -206,7 +225,7 @@ const Calendar = (props: IProps) => {
 			if (i === 0 || date.getDate() !== dates[i - 1].getDate()) {
 				const topValue = `${date.getDate()} ${getLocaleMonth(date, locale)}`;
 				topValues.push(
-					<CalendarTopPart
+					<CalendarHeader
 						key={topValue + date.getFullYear()}
 						value={topValue}
 						x1Line={columnWidth * i + ticks * columnWidth}
@@ -241,18 +260,26 @@ const Calendar = (props: IProps) => {
 	}
 
 	return (
-		<g className="calendar" fontSize={fontSize} fontFamily={fontFamily}>
-			<rect
-				x={0}
-				y={0}
-				width={columnWidth * dateSetup.dates.length}
-				height={headerHeight}
-				className={styles.calendarHeader}
-			/>
-			{bottomValues}
-			{topValues}
-		</g>
+		<svg style={{ overflow: "visible" }}>
+			{/* ROOT */}
+			<g style={rootStyle}>
+				<rect
+					style={headerStyle}
+					x={0}
+					y={0}
+					width={columnWidth * dateSetup.dates.length}
+					height={headerHeight}
+				/>
+
+				{/* TOP VALUES */}
+				{topValues}
+
+				{/* BOTTOM VALUES */}
+				{bottomValues}
+			</g>
+		</svg>
 	);
 };
+Calendar.defaultProps = defaultProps;
 
 export default Calendar;
