@@ -50,7 +50,7 @@ const BarSmall = (props: IProps) => {
 					isDateChangeable && onEventStart("move", task, e);
 				}}
 			/>
-			<g className="handleGroup">
+			<g>
 				{isProgressChangeable && (
 					<BarProgressHandle
 						progressPoint={progressPoint}

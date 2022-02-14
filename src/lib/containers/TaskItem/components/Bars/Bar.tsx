@@ -61,7 +61,7 @@ const Bar = (props: IProps) => {
 					isDateChangeable && onEventStart("move", task, e);
 				}}
 			/>
-			<g className="handleGroup">
+			<g>
 				{isDateChangeable && (
 					<g>
 						{/* left */}
