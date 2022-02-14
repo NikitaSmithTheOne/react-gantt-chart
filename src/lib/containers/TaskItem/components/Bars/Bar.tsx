@@ -1,5 +1,5 @@
 // *** NPM ***
-import React from "react";
+import React, { useState } from "react";
 
 // *** OTHER ***
 import BarDisplay from "./BarDisplay";
@@ -28,6 +28,9 @@ const Bar = (props: IProps) => {
 		// taskHeight,
 	} = props;
 
+	// *** USE STATE ***
+	const [isHovered, setIsHovered] = useState<boolean>(false);
+
 	// *** CONDITIONALS ***
 	const progressPoint = getProgressPoint(
 		+!rtl * task.progressWidth + task.progressX,
@@ -38,7 +41,12 @@ const Bar = (props: IProps) => {
 	const handleHeight = task.height - 2;
 
 	return (
-		<g className={styles.barWrapper} tabIndex={0}>
+		<g
+			className={styles.barWrapper}
+			tabIndex={0}
+			onMouseEnter={() => setIsHovered(() => true)}
+			onMouseLeave={() => setIsHovered(() => false)}
+		>
 			<BarDisplay
 				x={task.x1}
 				y={task.y}
@@ -66,6 +74,12 @@ const Bar = (props: IProps) => {
 							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
 								onEventStart("start", task, e);
 							}}
+							style={{
+								fill: "#ddd",
+								cursor: "ew-resize",
+								opacity: isHovered ? 1 : 0,
+								visibility: isHovered ? "visible" : "hidden",
+							}}
 						/>
 						{/* right */}
 						<BarDateHandle
@@ -76,6 +90,12 @@ const Bar = (props: IProps) => {
 							barCornerRadius={task.barCornerRadius}
 							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
 								onEventStart("end", task, e);
+							}}
+							style={{
+								fill: "#ddd",
+								cursor: "ew-resize",
+								opacity: isHovered ? 1 : 0,
+								visibility: isHovered ? "visible" : "hidden",
 							}}
 						/>
 					</g>
