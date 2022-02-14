@@ -5,7 +5,7 @@ import React from "react";
 import BarDateHandle from "./BarDateHandle";
 
 export default {
-	title: "TaskItem/BarDateHandle",
+	title: "Bars/BarDateHandle",
 	component: BarDateHandle,
 };
 

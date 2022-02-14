@@ -5,7 +5,7 @@ import React from "react";
 import BarProgressHandle from "./BarProgressHandle";
 
 export default {
-	title: "TaskItem/BarProgressHandle",
+	title: "Bars/BarProgressHandle",
 	component: BarProgressHandle,
 };
 

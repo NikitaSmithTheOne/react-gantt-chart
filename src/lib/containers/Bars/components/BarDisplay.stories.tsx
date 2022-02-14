@@ -5,7 +5,7 @@ import React from "react";
 import BarDisplay from "./BarDisplay";
 
 export default {
-	title: "TaskItem/BarDisplay",
+	title: "Bars/BarDisplay",
 	component: BarDisplay,
 };
 

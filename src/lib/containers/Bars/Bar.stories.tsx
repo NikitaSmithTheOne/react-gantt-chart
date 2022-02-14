@@ -6,7 +6,7 @@ import Bar from "./Bar";
 import { BarTask } from "../../types/bar-task";
 
 export default {
-	title: "TaskItem/Bar",
+	title: "Bars/Bar",
 	component: Bar,
 };
 
