@@ -52,7 +52,7 @@ const BarSmall = (props: IProps) => {
 				progressX={task.progressX}
 				progressWidth={task.progressWidth}
 				barCornerRadius={task.barCornerRadius}
-				styles={task.styles}
+				fillStyle={task.styles}
 				isSelected={isSelected}
 				onMouseDown={(e) => {
 					isDateChangeable && onEventStart("move", task, e);

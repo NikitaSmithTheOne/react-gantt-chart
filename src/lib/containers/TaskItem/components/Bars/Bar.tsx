@@ -55,7 +55,7 @@ const Bar = (props: IProps) => {
 				progressX={task.progressX}
 				progressWidth={task.progressWidth}
 				barCornerRadius={task.barCornerRadius}
-				styles={task.styles}
+				fillStyle={task.styles}
 				isSelected={isSelected}
 				onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
 					isDateChangeable && onEventStart("move", task, e);

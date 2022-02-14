@@ -2,8 +2,3 @@
 	cursor: pointer;
 	outline: none;
 }
-
-.barBackground {
-	user-select: none;
-	stroke-width: 0;
-}

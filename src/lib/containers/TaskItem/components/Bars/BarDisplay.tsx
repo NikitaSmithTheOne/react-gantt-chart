@@ -1,11 +1,8 @@
 // *** NPM ***
 import React from "react";
-import { OptionalKeys } from "../../../../types/custom";
 
 // *** OTHER ***
-
-// *** STYLES ***
-import style from "./Bar.module.css";
+import { OptionalKeys } from "../../../../types/custom";
 
 // *** TYPES ***
 interface IProps {
@@ -14,11 +11,14 @@ interface IProps {
 	width?: number;
 	height?: number;
 	isSelected?: boolean;
+	barStyle?: React.CSSProperties;
+	progressStyle?: React.CSSProperties;
 	/* progress start point */
 	progressX?: number;
 	progressWidth?: number;
 	barCornerRadius?: number;
-	styles?: {
+	// TODO: BETTER TO OUTSOURCE IT...
+	fillStyle?: {
 		backgroundColor: string;
 		backgroundSelectedColor: string;
 		progressColor: string;
@@ -37,11 +37,17 @@ const defaultProps: TOptionalProps = {
 	width: 300,
 	height: 50,
 	isSelected: false,
+	barStyle: {
+		// to be honest idk why it's here =)
+		userSelect: "none",
+		strokeWidth: 0,
+	},
+	progressStyle: {},
 	// progress start point
 	progressX: 50,
 	progressWidth: 100,
 	barCornerRadius: 5,
-	styles: {
+	fillStyle: {
 		backgroundColor: "black",
 		backgroundSelectedColor: "yellow",
 		progressColor: "green",
@@ -58,44 +64,50 @@ const BarDisplay = (props: IProps & typeof defaultProps) => {
 		width,
 		height,
 		isSelected,
+		barStyle,
+		progressStyle,
 		// progress start point
 		progressX,
 		progressWidth,
 		barCornerRadius,
-		styles,
+		fillStyle,
 		onMouseDown,
 	} = props;
 
 	// *** CONDITIONALS ***
-	const processColor = isSelected
-		? styles.progressSelectedColor
-		: styles.progressColor;
+	const progressFillColor = isSelected
+		? fillStyle.progressSelectedColor
+		: fillStyle.progressColor;
 
-	const barColor = isSelected
-		? styles.backgroundSelectedColor
-		: styles.backgroundColor;
+	const barFillColor = isSelected
+		? fillStyle.backgroundSelectedColor
+		: fillStyle.backgroundColor;
 
 	return (
 		<svg style={{ overflow: "visible" }}>
 			<g onMouseDown={onMouseDown}>
+				{/* BAR */}
 				<rect
+					style={barStyle}
 					x={x}
 					width={width}
 					y={y}
 					height={height}
 					ry={barCornerRadius}
 					rx={barCornerRadius}
-					fill={barColor}
-					className={style.barBackground}
+					fill={barFillColor}
 				/>
+
+				{/* PROGRESS */}
 				<rect
+					style={progressStyle}
 					x={progressX}
 					width={progressWidth}
 					y={y}
 					height={height}
 					ry={barCornerRadius}
 					rx={barCornerRadius}
-					fill={processColor}
+					fill={progressFillColor}
 				/>
 			</g>
 		</svg>
