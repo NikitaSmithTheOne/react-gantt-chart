@@ -9,23 +9,38 @@ import { getProgressPoint } from "../../../../helpers/bar-helper";
 import { IProps as TaskItemProps } from "../../TaskItem";
 
 // *** STYLES ***
-import styles from "./Bar.module.css";
+import { OptionalKeys } from "../../../../types/custom";
 
 // *** TYPES ***
-type IProps = TaskItemProps;
+type IProps = { rootStyle?: React.CSSProperties } & Pick<
+	TaskItemProps,
+	| "task"
+	| "rtl"
+	| "isSelected"
+	| "isDateChangeable"
+	| "isProgressChangeable"
+	| "onEventStart"
+>;
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const Bar = (props: IProps) => {
+const defaultProps: TOptionalProps = {
+	rootStyle: {
+		cursor: "pointer",
+		outline: "none",
+	},
+};
+
+const Bar = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
-		// arrowIndent,
-		isDateChangeable,
-		// isDelete,
-		isProgressChangeable,
-		isSelected,
-		onEventStart,
-		rtl,
+		rootStyle,
 		task,
-		// taskHeight,
+		rtl,
+		isSelected,
+		isDateChangeable,
+		isProgressChangeable,
+		onEventStart,
 	} = props;
 
 	// *** USE STATE ***
@@ -41,82 +56,91 @@ const Bar = (props: IProps) => {
 	const handleHeight = task.height - 2;
 
 	return (
-		<g
-			className={styles.barWrapper}
-			tabIndex={0}
-			onMouseEnter={() => setIsHovered(() => true)}
-			onMouseLeave={() => setIsHovered(() => false)}
-		>
-			<BarDisplay
-				x={task.x1}
-				y={task.y}
-				width={task.x2 - task.x1}
-				height={task.height}
-				progressX={task.progressX}
-				progressWidth={task.progressWidth}
-				barCornerRadius={task.barCornerRadius}
-				fillStyle={task.styles}
-				isSelected={isSelected}
-				onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-					isDateChangeable && onEventStart("move", task, e);
-				}}
-			/>
-			<g>
-				{isDateChangeable && (
-					<g>
-						{/* left */}
-						<BarDateHandle
-							x={task.x1 + 1}
-							y={task.y + 1}
-							width={task.handleWidth}
-							height={handleHeight}
-							barCornerRadius={task.barCornerRadius}
-							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-								onEventStart("start", task, e);
-							}}
+		<svg>
+			<g
+				style={rootStyle}
+				tabIndex={0}
+				onMouseEnter={() => setIsHovered(() => true)}
+				onMouseLeave={() => setIsHovered(() => false)}
+			>
+				{/* BAR */}
+				<BarDisplay
+					x={task.x1}
+					y={task.y}
+					width={task.x2 - task.x1}
+					height={task.height}
+					progressX={task.progressX}
+					progressWidth={task.progressWidth}
+					barCornerRadius={task.barCornerRadius}
+					fillStyle={task.styles}
+					isSelected={isSelected}
+					onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
+						isDateChangeable === true && onEventStart("move", task, e);
+					}}
+				/>
+
+				{/* DATE HANDLERS */}
+				<g>
+					{isDateChangeable === true && (
+						<g>
+							{/* LEFT SIDE */}
+							<BarDateHandle
+								x={task.x1 + 1}
+								y={task.y + 1}
+								width={task.handleWidth}
+								height={handleHeight}
+								barCornerRadius={task.barCornerRadius}
+								onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
+									onEventStart("start", task, e);
+								}}
+								style={{
+									fill: "#ddd",
+									cursor: "ew-resize",
+									opacity: isHovered ? 1 : 0,
+									visibility: isHovered ? "visible" : "hidden",
+								}}
+							/>
+
+							{/* RIGHT SIDE */}
+							<BarDateHandle
+								x={task.x2 - task.handleWidth - 1}
+								y={task.y + 1}
+								width={task.handleWidth}
+								height={handleHeight}
+								barCornerRadius={task.barCornerRadius}
+								onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
+									onEventStart("end", task, e);
+								}}
+								style={{
+									fill: "#ddd",
+									cursor: "ew-resize",
+									opacity: isHovered ? 1 : 0,
+									visibility: isHovered ? "visible" : "hidden",
+								}}
+							/>
+						</g>
+					)}
+
+					{/* PROGRESS HANDLERS */}
+					{isProgressChangeable === true && (
+						<BarProgressHandle
 							style={{
 								fill: "#ddd",
 								cursor: "ew-resize",
 								opacity: isHovered ? 1 : 0,
 								visibility: isHovered ? "visible" : "hidden",
 							}}
-						/>
-						{/* right */}
-						<BarDateHandle
-							x={task.x2 - task.handleWidth - 1}
-							y={task.y + 1}
-							width={task.handleWidth}
-							height={handleHeight}
-							barCornerRadius={task.barCornerRadius}
+							progressPoint={progressPoint}
 							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-								onEventStart("end", task, e);
-							}}
-							style={{
-								fill: "#ddd",
-								cursor: "ew-resize",
-								opacity: isHovered ? 1 : 0,
-								visibility: isHovered ? "visible" : "hidden",
+								onEventStart("progress", task, e);
 							}}
 						/>
-					</g>
-				)}
-				{isProgressChangeable && (
-					<BarProgressHandle
-						style={{
-							fill: "#ddd",
-							cursor: "ew-resize",
-							opacity: isHovered ? 1 : 0,
-							visibility: isHovered ? "visible" : "hidden",
-						}}
-						progressPoint={progressPoint}
-						onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-							onEventStart("progress", task, e);
-						}}
-					/>
-				)}
+					)}
+				</g>
 			</g>
-		</g>
+		</svg>
 	);
 };
+Bar.defaultProps = defaultProps;
 
 export default Bar;

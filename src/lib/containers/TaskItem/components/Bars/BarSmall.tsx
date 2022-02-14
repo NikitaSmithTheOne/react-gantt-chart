@@ -8,9 +8,6 @@ import BarProgressHandle from "./BarProgressHandle";
 import { IProps as TaskItemProps } from "../../TaskItem";
 import { OptionalKeys } from "../../../../types/custom";
 
-// *** STYLES ***
-import styles from "./Bar.module.css";
-
 // *** TYPES ***
 type IProps = {
 	rootStyle?: React.CSSProperties;
