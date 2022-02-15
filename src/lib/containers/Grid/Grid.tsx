@@ -9,7 +9,7 @@ export type IProps = GridBodyProps;
 
 const Grid = (props: IProps) => {
 	return (
-		<g className="grid">
+		<g>
 			<GridBody {...props} />
 		</g>
 	);
