@@ -8,9 +8,7 @@ import { BarTask } from "../../types/bar-task";
 import MileStone from "./components/MileStone";
 import Project from "./components/Project";
 import { GanttContentMoveAction } from "../../types/gantt-task-actions";
-
-// *** STYLES ***
-import style from "./TaskItem.module.css";
+import { OptionalKeys } from "../../types/custom";
 
 // *** TYPES ***
 export type IProps = {
@@ -27,9 +25,31 @@ export type IProps = {
 		selectedTask: BarTask,
 		event?: React.MouseEvent | React.KeyboardEvent
 	) => any;
+	// styles
+	taskItemTextStyle?: React.CSSProperties;
+	taskItemTextOutsideStyle?: React.CSSProperties;
+};
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
+
+export const defaultProps: TOptionalProps = {
+	taskItemTextStyle: {
+		fill: "#fff",
+		textAnchor: "middle",
+		fontWeight: "lighter",
+		dominantBaseline: "central",
+		userSelect: "none",
+		pointerEvents: "none",
+	},
+	taskItemTextOutsideStyle: {
+		fill: "#555",
+		textAnchor: "start",
+		userSelect: "none",
+		pointerEvents: "none",
+	},
 };
 
-const TaskItem = (props: IProps) => {
+const TaskItem = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
 		task,
@@ -39,6 +59,9 @@ const TaskItem = (props: IProps) => {
 		isSelected,
 		rtl,
 		onEventStart,
+		// styles
+		taskItemTextStyle,
+		taskItemTextOutsideStyle,
 	} = props;
 
 	// *** USE STATE ***
@@ -93,44 +116,47 @@ const TaskItem = (props: IProps) => {
 	}, [textRef, task]);
 
 	return (
-		<g
-			onKeyDown={(e) => {
-				switch (e.key) {
-					case "Delete": {
-						if (isDelete) onEventStart("delete", task, e);
-						break;
+		<svg>
+			{/* ROOT */}
+			<g
+				onKeyDown={(e) => {
+					switch (e.key) {
+						case "Delete": {
+							if (isDelete) onEventStart("delete", task, e);
+							break;
+						}
 					}
-				}
-				e.stopPropagation();
-			}}
-			onMouseEnter={(e) => {
-				onEventStart("mouseenter", task, e);
-			}}
-			onMouseLeave={(e) => {
-				onEventStart("mouseleave", task, e);
-			}}
-			onDoubleClick={(e) => {
-				onEventStart("dblclick", task, e);
-			}}
-			onFocus={() => {
-				onEventStart("select", task);
-			}}
-		>
-			{taskItem}
-			<text
-				x={getX()}
-				y={task.y + taskHeight * 0.5}
-				className={
-					isTextInside
-						? style.barLabel
-						: style.barLabel && style.barLabelOutside
-				}
-				ref={textRef}
+					e.stopPropagation();
+				}}
+				onMouseEnter={(e) => {
+					onEventStart("mouseenter", task, e);
+				}}
+				onMouseLeave={(e) => {
+					onEventStart("mouseleave", task, e);
+				}}
+				onDoubleClick={(e) => {
+					onEventStart("dblclick", task, e);
+				}}
+				onFocus={() => {
+					onEventStart("select", task);
+				}}
 			>
-				{task.name}
-			</text>
-		</g>
+				{/* TASK ITEM */}
+				{taskItem}
+
+				{/* TASK ITEM TEXT */}
+				<text
+					style={isTextInside ? taskItemTextStyle : taskItemTextOutsideStyle}
+					x={getX()}
+					y={task.y + taskHeight * 0.5}
+					ref={textRef}
+				>
+					{task.name}
+				</text>
+			</g>
+		</svg>
 	);
 };
+TaskItem.defaultProps = defaultProps;
 
 export default TaskItem;
