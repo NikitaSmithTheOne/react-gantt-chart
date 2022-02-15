@@ -8,7 +8,10 @@ import TaskListHeader, {
 	IProps as TaskListHeaderProps,
 	defaultProps as taskListHeaderDefaultProps,
 } from "./components/TaskListHeader";
-import { IProps as TaskListTableProps } from "./components/TaskListTable";
+import TaskListTable, {
+	IProps as TaskListTableProps,
+	defaultProps as taskListTableDefaultProps,
+} from "./components/TaskListTable";
 
 // *** TYPES ***
 export type IProps = {
@@ -27,7 +30,7 @@ export type IProps = {
 	setSelectedTask: (task: string) => void;
 	onExpanderClick: (task: Task) => void;
 	TaskListHeader: typeof TaskListHeader;
-	TaskListTable: React.FC<TaskListTableProps>;
+	TaskListTable: typeof TaskListTable;
 };
 
 const TaskList = (props: IProps) => {
@@ -84,17 +87,28 @@ const TaskList = (props: IProps) => {
 		},
 	};
 
-	// table
-	const tableProps: TaskListTableProps = {
-		rowHeight,
-		rowWidth,
-		fontFamily,
-		fontSize,
+	// table list
+	const tableListProps: TaskListTableProps = {
 		tasks,
 		locale,
 		selectedTaskId: selectedTask ? selectedTask.id : "",
 		setSelectedTask,
 		onExpanderClick,
+		// styles
+		rootStyle: {
+			...taskListTableDefaultProps.rootStyle,
+			fontFamily,
+			fontSize,
+		},
+		tableRowStyle: {
+			...taskListTableDefaultProps.tableRowStyle,
+			height: rowHeight,
+		},
+		tableCellStyle: {
+			...taskListTableDefaultProps.tableCellStyle,
+			minWidth: rowWidth,
+			maxWidth: rowWidth,
+		},
 	};
 
 	return (
@@ -108,7 +122,7 @@ const TaskList = (props: IProps) => {
 				className={horizontalContainerClass}
 				style={{ height: ganttHeight || undefined }}
 			>
-				<TaskListTable {...tableProps} />
+				<TaskListTable {...tableListProps} />
 			</div>
 		</div>
 	);

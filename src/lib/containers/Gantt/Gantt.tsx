@@ -418,7 +418,7 @@ const Gantt = (props: IProps) => {
 		setSelectedTask: handleSelectedTask,
 		onExpanderClick: handleExpanderClick,
 		TaskListHeader: TaskListHeaderDefault,
-		TaskListTable,
+		TaskListTable: TaskListTableDefault,
 	};
 
 	return (

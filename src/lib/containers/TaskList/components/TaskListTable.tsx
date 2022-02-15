@@ -3,9 +3,7 @@ import React, { useMemo } from "react";
 
 // *** OTHER ***
 import { Task } from "../../../types/public-types";
-
-// *** STYLES ***
-import styles from "./TaskListTable.module.css";
+import { OptionalKeys } from "../../../types/custom";
 
 // *** HELPERS ***
 const localeDateStringCache: { [key: string]: string } = {};
@@ -31,29 +29,71 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 };
 
 export interface IProps {
-	rowHeight: number;
-	rowWidth: string;
-	fontFamily: string;
-	fontSize: string;
-	locale: string;
 	tasks: Task[];
+	locale: string;
 	selectedTaskId: string;
 	setSelectedTask: (taskId: string) => void;
 	onExpanderClick: (task: Task) => void;
+	// styles
+	rootStyle?: React.CSSProperties;
+	tableRowStyle?: React.CSSProperties;
+	tableCellStyle?: React.CSSProperties;
+	tableCellWrapperStyle?: React.CSSProperties;
+	expanderStyle?: React.CSSProperties;
+	expanderEmptyStyle?: React.CSSProperties;
 }
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const TaskListTable = (props: IProps) => {
+export const defaultProps: TOptionalProps = {
+	rootStyle: {
+		display: "table",
+		borderBottom: "#e6e4e4 1px solid",
+		borderLeft: "#e6e4e4 1px solid",
+	},
+	tableRowStyle: {
+		display: "table-row",
+		textOverflow: "ellipsis",
+	},
+	tableCellStyle: {
+		display: "table-cell",
+		verticalAlign: "middle",
+		whiteSpace: "nowrap",
+		overflow: "hidden",
+		textOverflow: "ellipsis",
+	},
+	tableCellWrapperStyle: {
+		display: "flex",
+	},
+	expanderStyle: {
+		color: "rgb(86 86 86)",
+		fontSize: "0.6rem",
+		padding: "0.15rem 0.2rem 0rem 0.2rem",
+		userSelect: "none",
+		cursor: "pointer",
+	},
+	expanderEmptyStyle: {
+		fontSize: "0.6rem",
+		paddingLeft: "1rem",
+		userSelect: "none",
+	},
+};
+
+const TaskListTable = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
-		fontFamily,
-		fontSize,
+		tasks,
 		locale,
 		onExpanderClick,
-		rowHeight,
-		rowWidth,
 		// selectedTaskId,
 		// setSelectedTask,
-		tasks,
+		// styles
+		rootStyle,
+		tableRowStyle,
+		tableCellStyle,
+		tableCellWrapperStyle,
+		expanderStyle,
+		expanderEmptyStyle,
 	} = props;
 
 	// *** HANDLERS ***
@@ -63,65 +103,45 @@ const TaskListTable = (props: IProps) => {
 	);
 
 	return (
-		<div
-			className={styles.taskListWrapper}
-			style={{
-				fontFamily: fontFamily,
-				fontSize: fontSize,
-			}}
-		>
+		// ROOT
+		<div style={rootStyle}>
+			{/* TABLE ROWS */}
 			{tasks.map((t) => {
+				// expander
 				let expanderSymbol = "";
-				if (t.hideChildren === false) {
-					expanderSymbol = "▼";
-				} else if (t.hideChildren === true) {
+				if (t.hideChildren === true) {
 					expanderSymbol = "▶";
+				} else if (t.hideChildren === false) {
+					expanderSymbol = "▼";
 				}
 
 				return (
-					<div
-						className={styles.taskListTableRow}
-						style={{ height: rowHeight }}
-						key={`${t.id}row`}
-					>
-						<div
-							className={styles.taskListCell}
-							style={{
-								minWidth: rowWidth,
-								maxWidth: rowWidth,
-							}}
-							title={t.name}
-						>
-							<div className={styles.taskListNameWrapper}>
+					// TABLE ROW
+					<div style={tableRowStyle} key={`${t.id}row`}>
+						{/* TABLE CELL */}
+						<div style={tableCellStyle} title={t.name}>
+							{/* TABLE CELL WRAPPER */}
+							<div style={tableCellWrapperStyle}>
+								{/* EXPANDER */}
 								<div
-									className={
-										expanderSymbol
-											? styles.taskListExpander
-											: styles.taskListEmptyExpander
-									}
+									style={expanderSymbol ? expanderStyle : expanderEmptyStyle}
 									onClick={() => onExpanderClick(t)}
 								>
 									{expanderSymbol}
 								</div>
+
+								{/* TEXT */}
 								<div>{t.name}</div>
 							</div>
 						</div>
-						<div
-							className={styles.taskListCell}
-							style={{
-								minWidth: rowWidth,
-								maxWidth: rowWidth,
-							}}
-						>
+
+						{/* TABLE CELL */}
+						<div style={tableCellStyle}>
 							&nbsp;{toLocaleDateString(t.start, dateTimeOptions)}
 						</div>
-						<div
-							className={styles.taskListCell}
-							style={{
-								minWidth: rowWidth,
-								maxWidth: rowWidth,
-							}}
-						>
+
+						{/* TABLE CELL */}
+						<div style={tableCellStyle}>
 							&nbsp;{toLocaleDateString(t.end, dateTimeOptions)}
 						</div>
 					</div>
@@ -130,5 +150,6 @@ const TaskListTable = (props: IProps) => {
 		</div>
 	);
 };
+TaskListTable.defaultProps = defaultProps;
 
 export default TaskListTable;
