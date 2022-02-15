@@ -2,15 +2,15 @@
 import React from "react";
 
 // *** OTHER ***
-import MileStone, { IProps as IMileStoneProps } from "./MileStone";
+import Project, { IProps as IProjectProps } from "./Project";
 
 export default {
-	title: "TaskItem/MileStone",
-	component: MileStone,
+	title: "TaskItem/Project",
+	component: Project,
 };
 
 // *** CONSTANTS ***
-const TASK: IMileStoneProps["task"] = {
+const TASK: IProjectProps["task"] = {
 	index: 1,
 	typeInternal: "task",
 	x1: 0,
@@ -41,12 +41,5 @@ const TASK: IMileStoneProps["task"] = {
 };
 
 export const Simple = () => {
-	return (
-		<MileStone
-			task={TASK}
-			isDateChangeable={true}
-			isSelected={true}
-			onEventStart={(...args) => console.log(args)}
-		/>
-	);
+	return <Project task={TASK} isSelected={true} />;
 };

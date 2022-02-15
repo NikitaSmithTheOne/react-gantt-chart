@@ -3,16 +3,34 @@ import React from "react";
 
 // *** OTHER ***
 import { IProps as TaskItemProps } from "../TaskItem";
-
-// *** STYLES ***
-import styles from "./Project.module.css";
+import { OptionalKeys } from "../../../types/custom";
 
 // *** TYPES ***
-type IProps = TaskItemProps;
+export type IProps = {
+	rootStyle?: React.CSSProperties;
+	backgroundStyle?: React.CSSProperties;
+	topStyle?: React.CSSProperties;
+} & Pick<TaskItemProps, "task" | "isSelected">;
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
+
+export const defaultProps: TOptionalProps = {
+	rootStyle: {
+		cursor: "pointer",
+		outline: "none",
+	},
+	backgroundStyle: {
+		userSelect: "none",
+		opacity: 0.6,
+	},
+	topStyle: {
+		userSelect: "none",
+	},
+};
 
 const Project = (props: IProps) => {
 	// *** PROPS ***
-	const { isSelected, task } = props;
+	const { task, isSelected, rootStyle, backgroundStyle, topStyle } = props;
 
 	// *** CONDITIONALS ****
 	const barColor = isSelected
@@ -42,47 +60,49 @@ const Project = (props: IProps) => {
 	].join(",");
 
 	return (
-		<g tabIndex={0} className={styles.projectWrapper}>
-			<rect
-				fill={barColor}
-				x={task.x1}
-				width={projectWith}
-				y={task.y}
-				height={task.height}
-				rx={task.barCornerRadius}
-				ry={task.barCornerRadius}
-				className={styles.projectBackground}
-			/>
-			<rect
-				x={task.progressX}
-				width={task.progressWidth}
-				y={task.y}
-				height={task.height}
-				ry={task.barCornerRadius}
-				rx={task.barCornerRadius}
-				fill={processColor}
-			/>
-			<rect
-				fill={barColor}
-				x={task.x1}
-				width={projectWith}
-				y={task.y}
-				height={task.height / 2}
-				rx={task.barCornerRadius}
-				ry={task.barCornerRadius}
-				className={styles.projectTop}
-			/>
-			<polygon
-				className={styles.projectTop}
-				points={projectLeftTriangle}
-				fill={barColor}
-			/>
-			<polygon
-				className={styles.projectTop}
-				points={projectRightTriangle}
-				fill={barColor}
-			/>
-		</g>
+		<svg>
+			<g tabIndex={0} style={rootStyle}>
+				<rect
+					style={backgroundStyle}
+					fill={barColor}
+					x={task.x1}
+					width={projectWith}
+					y={task.y}
+					height={task.height}
+					rx={task.barCornerRadius}
+					ry={task.barCornerRadius}
+				/>
+				<rect
+					fill={processColor}
+					x={task.progressX}
+					width={task.progressWidth}
+					y={task.y}
+					height={task.height}
+					ry={task.barCornerRadius}
+					rx={task.barCornerRadius}
+				/>
+				<rect
+					style={topStyle}
+					fill={barColor}
+					x={task.x1}
+					width={projectWith}
+					y={task.y}
+					height={task.height / 2}
+					rx={task.barCornerRadius}
+					ry={task.barCornerRadius}
+				/>
+				<polygon
+					style={topStyle}
+					fill={barColor}
+					points={projectLeftTriangle}
+				/>
+				<polygon
+					style={topStyle}
+					fill={barColor}
+					points={projectRightTriangle}
+				/>
+			</g>
+		</svg>
 	);
 };
 
