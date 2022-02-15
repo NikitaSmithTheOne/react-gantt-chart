@@ -3,56 +3,75 @@ import React from "react";
 
 // *** OTHER ***
 import { IProps as TaskItemProps } from "../TaskItem";
-
-// *** STYLES ****
-import styles from "./MileStone.module.css";
+import { OptionalKeys } from "../../../types/custom";
 
 // *** TYPES ***
-type IProps = TaskItemProps;
+export type IProps = {
+	rootStyle?: React.CSSProperties;
+	backgroundStyle?: React.CSSProperties;
+} & Pick<
+	TaskItemProps,
+	"task" | "isDateChangeable" | "isSelected" | "onEventStart"
+>;
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const MileStone = (props: IProps) => {
+export const defaultProps: TOptionalProps = {
+	rootStyle: {
+		cursor: "pointer",
+		outline: "none",
+	},
+	backgroundStyle: {
+		userSelect: "none",
+	},
+};
+
+const MileStone = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
-		// arrowIndent,
-		isDateChangeable,
-		// isDelete,
-		// isProgressChangeable,
-		isSelected,
-		onEventStart,
-		// rtl,
+		// general
 		task,
-		// taskHeight,
+		// checkers
+		isDateChangeable,
+		isSelected,
+		// handlers
+		onEventStart,
+		// styles
+		rootStyle,
+		backgroundStyle,
 	} = props;
-
-	// *** HANDLERS ***
-	const getBarColor = () => {
-		return isSelected
-			? task.styles.backgroundSelectedColor
-			: task.styles.backgroundColor;
-	};
 
 	// *** CONDITIONALS ***
 	const transform = `rotate(45 ${task.x1 + task.height * 0.356} 
     ${task.y + task.height * 0.85})`;
 
 	return (
-		<g tabIndex={0} className={styles.milestoneWrapper}>
-			<rect
-				fill={getBarColor()}
-				x={task.x1}
-				width={task.height}
-				y={task.y}
-				height={task.height}
-				rx={task.barCornerRadius}
-				ry={task.barCornerRadius}
-				transform={transform}
-				className={styles.milestoneBackground}
-				onMouseDown={(e) => {
-					isDateChangeable && onEventStart("move", task, e);
-				}}
-			/>
-		</g>
+		<svg>
+			{/* ROOT */}
+			<g tabIndex={0} style={rootStyle}>
+				{/* BACKGROUND */}
+				<rect
+					style={backgroundStyle}
+					fill={
+						isSelected
+							? task.styles.backgroundSelectedColor
+							: task.styles.backgroundColor
+					}
+					x={task.x1}
+					width={task.height}
+					y={task.y}
+					height={task.height}
+					rx={task.barCornerRadius}
+					ry={task.barCornerRadius}
+					transform={transform}
+					onMouseDown={(e) => {
+						isDateChangeable && onEventStart("move", task, e);
+					}}
+				/>
+			</g>
+		</svg>
 	);
 };
+MileStone.defaultProps = defaultProps;
 
 export default MileStone;
