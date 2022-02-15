@@ -4,7 +4,10 @@ import React, { useEffect, useRef } from "react";
 // *** OTHER ***
 import { BarTask } from "../../types/bar-task";
 import { Task } from "../../types/public-types";
-import { IProps as TaskListHeaderProps } from "./components/TaskListHeader";
+import TaskListHeader, {
+	IProps as TaskListHeaderProps,
+	defaultProps as taskListHeaderDefaultProps,
+} from "./components/TaskListHeader";
 import { IProps as TaskListTableProps } from "./components/TaskListTable";
 
 // *** TYPES ***
@@ -23,7 +26,7 @@ export type IProps = {
 	selectedTask: BarTask | undefined;
 	setSelectedTask: (task: string) => void;
 	onExpanderClick: (task: Task) => void;
-	TaskListHeader: React.FC<TaskListHeaderProps>;
+	TaskListHeader: typeof TaskListHeader;
 	TaskListTable: React.FC<TaskListTableProps>;
 };
 
@@ -61,10 +64,24 @@ const TaskList = (props: IProps) => {
 	// *** CONDITIONALS ***
 	// header
 	const headerProps: TaskListHeaderProps = {
-		headerHeight,
-		fontFamily,
-		fontSize,
-		rowWidth,
+		rootStyle: {
+			...taskListHeaderDefaultProps.rootStyle,
+			fontFamily,
+			fontSize,
+		},
+		headerStyle: {
+			...taskListHeaderDefaultProps.headerStyle,
+			height: headerHeight - 2,
+		},
+		columnStyle: {
+			...taskListHeaderDefaultProps.columnStyle,
+			minWidth: rowWidth,
+		},
+		columnSeparatorStyle: {
+			...taskListHeaderDefaultProps.columnSeparatorStyle,
+			height: headerHeight * 0.5,
+			marginTop: headerHeight * 0.2,
+		},
 	};
 
 	// table

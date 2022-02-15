@@ -66,7 +66,7 @@ const Gantt = (props: IProps) => {
 		arrowIndent = 20,
 		todayColor = "rgba(252, 248, 227, 0.5)",
 		TooltipContent = StandardTooltipContent,
-		TaskListHeader = TaskListHeaderDefault,
+		// TaskListHeader = TaskListHeaderDefault,
 		TaskListTable = TaskListTableDefault,
 		onDateChange,
 		onProgressChange,
@@ -417,7 +417,7 @@ const Gantt = (props: IProps) => {
 		taskListRef,
 		setSelectedTask: handleSelectedTask,
 		onExpanderClick: handleExpanderClick,
-		TaskListHeader,
+		TaskListHeader: TaskListHeaderDefault,
 		TaskListTable,
 	};
 
