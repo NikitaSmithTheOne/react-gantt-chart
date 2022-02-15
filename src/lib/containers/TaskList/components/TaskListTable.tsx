@@ -31,8 +31,6 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 export interface IProps {
 	tasks: Task[];
 	locale: string;
-	selectedTaskId: string;
-	setSelectedTask: (taskId: string) => void;
 	onExpanderClick: (task: Task) => void;
 	// styles
 	rootStyle?: React.CSSProperties;
@@ -85,8 +83,6 @@ const TaskListTable = (props: IProps & typeof defaultProps) => {
 		tasks,
 		locale,
 		onExpanderClick,
-		// selectedTaskId,
-		// setSelectedTask,
 		// styles
 		rootStyle,
 		tableRowStyle,

@@ -47,8 +47,6 @@ export const DefaultStyles = () => {
 		tasks: TASKS,
 		locale: "en-GB",
 		onExpanderClick: (e) => console.log(e),
-		selectedTaskId: "ProjectSample",
-		setSelectedTask: (taskId) => console.log(taskId),
 	};
 
 	return <TaskListTable {...props} />;
@@ -65,8 +63,7 @@ export const CustomStyles = () => {
 		tasks: TASKS,
 		locale: "en-GB",
 		onExpanderClick: (e) => console.log(e),
-		selectedTaskId: "ProjectSample",
-		setSelectedTask: (taskId) => console.log(taskId),
+
 		// style
 		rootStyle: {
 			...taskListTableDefaultProps.rootStyle,

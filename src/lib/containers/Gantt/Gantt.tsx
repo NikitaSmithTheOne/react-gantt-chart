@@ -13,8 +13,12 @@ import { IProps as GridProps } from "../Grid/Grid";
 import { ganttDateRange, seedDates } from "../../helpers/date-helper";
 import { IProps as CalendarProps } from "../Calendar/Calendar";
 import { IProps as TaskGanttContentProps } from "./components/GanttTaskContent";
-import TaskListHeaderDefault from "../TaskList/components/TaskListHeader";
-import TaskListTableDefault from "../TaskList/components/TaskListTable";
+import TaskListHeaderDefault, {
+	defaultProps as taskListHeaderDefaultProps,
+} from "../TaskList/components/TaskListHeader";
+import TaskListTableDefault, {
+	defaultProps as taskListTableDefaultProps,
+} from "../TaskList/components/TaskListTable";
 import Tooltip, { StandardTooltipContent } from "../../components/Tooltip";
 import VerticalScroll from "../../components/VerticalScroll";
 import TaskList, { IProps as TaskListProps } from "../TaskList/TaskList";
@@ -25,6 +29,13 @@ import { GanttEvent } from "../../types/gantt-task-actions";
 import { DateSetup } from "../../types/date-setup";
 import { HorizontalScroll } from "../../components/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
+import {
+	FONT_FAMILY,
+	FONT_SIZE,
+	HEADER_HEIGHT,
+	ROW_HEIGHT,
+	ROW_WIDTH,
+} from "./constants";
 
 // *** STYLES ***
 import styles from "./Gantt.module.css";
@@ -42,7 +53,7 @@ const Gantt = (props: IProps) => {
 		columnWidth = 60,
 		listCellWidth = "155px",
 		rowHeight = 50,
-		ganttHeight = 0,
+		ganttHeight = 400,
 		viewMode = ViewMode.Day,
 		locale = "en-GB",
 		barFill = 60,
@@ -67,7 +78,7 @@ const Gantt = (props: IProps) => {
 		todayColor = "rgba(252, 248, 227, 0.5)",
 		TooltipContent = StandardTooltipContent,
 		// TaskListHeader = TaskListHeaderDefault,
-		TaskListTable = TaskListTableDefault,
+		// TaskListTable = TaskListTableDefault,
 		onDateChange,
 		onProgressChange,
 		onDoubleClick,
@@ -403,22 +414,58 @@ const Gantt = (props: IProps) => {
 	};
 
 	const tableProps: TaskListProps = {
-		rowHeight,
-		rowWidth: listCellWidth,
-		fontFamily,
-		fontSize,
-		tasks: barTasks,
-		locale,
-		headerHeight,
-		scrollY,
-		ganttHeight,
-		horizontalContainerClass: styles.horizontalContainer,
-		selectedTask,
-		taskListRef,
-		setSelectedTask: handleSelectedTask,
-		onExpanderClick: handleExpanderClick,
+		// components
 		TaskListHeader: TaskListHeaderDefault,
 		TaskListTable: TaskListTableDefault,
+		// components props
+		taskListHeaderProps: {
+			rootStyle: {
+				...taskListHeaderDefaultProps.rootStyle,
+				fontFamily: "sans-serif",
+				fontSize: "20px",
+			},
+			headerStyle: {
+				...taskListHeaderDefaultProps.headerStyle,
+				height: HEADER_HEIGHT - 2,
+			},
+			columnStyle: {
+				...taskListHeaderDefaultProps.columnStyle,
+				minWidth: ROW_WIDTH,
+				textAlign: "center",
+			},
+			columnSeparatorStyle: {
+				...taskListHeaderDefaultProps.columnSeparatorStyle,
+				height: HEADER_HEIGHT * 0.5,
+				marginTop: HEADER_HEIGHT * 0.2,
+			},
+		},
+		taskListTableProps: {
+			tasks: barTasks,
+			locale: "en-GB",
+			onExpanderClick: handleExpanderClick,
+			// style
+			rootStyle: {
+				...taskListTableDefaultProps.rootStyle,
+				fontFamily: FONT_FAMILY,
+				fontSize: FONT_SIZE,
+			},
+			tableRowStyle: {
+				...taskListTableDefaultProps.tableRowStyle,
+				height: ROW_HEIGHT,
+			},
+			tableCellStyle: {
+				...taskListTableDefaultProps.tableCellStyle,
+				minWidth: ROW_WIDTH,
+				maxWidth: ROW_WIDTH,
+			},
+		},
+		// styles
+		taskListTableWrapperStyles: {
+			height: ganttHeight,
+			overflow: "hidden",
+		},
+		// refs
+		taskListRef,
 	};
 
 	return (
