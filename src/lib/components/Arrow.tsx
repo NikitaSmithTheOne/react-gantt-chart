@@ -66,7 +66,7 @@ const drownPathAndTriangleRTL = (
 };
 
 // *** TYPES ***
-interface IProps {
+export interface IProps {
 	taskFrom: BarTask;
 	taskTo: BarTask;
 	rowHeight: number;
@@ -79,31 +79,35 @@ const Arrow = (props: IProps) => {
 	// *** PROPS ***
 	const { arrowIndent, rowHeight, rtl, taskFrom, taskHeight, taskTo } = props;
 
-	let path: string;
-	let trianglePoints: string;
-	if (rtl) {
-		[path, trianglePoints] = drownPathAndTriangleRTL(
-			taskFrom,
-			taskTo,
-			rowHeight,
-			taskHeight,
-			arrowIndent
-		);
-	} else {
-		[path, trianglePoints] = drownPathAndTriangle(
-			taskFrom,
-			taskTo,
-			rowHeight,
-			taskHeight,
-			arrowIndent
-		);
-	}
+	// *** CONDITIONALS ***
+	const [path, trianglePoints] =
+		rtl === true
+			? drownPathAndTriangleRTL(
+					taskFrom,
+					taskTo,
+					rowHeight,
+					taskHeight,
+					arrowIndent
+			  )
+			: drownPathAndTriangle(
+					taskFrom,
+					taskTo,
+					rowHeight,
+					taskHeight,
+					arrowIndent
+			  );
 
 	return (
-		<g className="arrow">
-			<path strokeWidth="1.5" d={path} fill="none" />
-			<polygon points={trianglePoints} />
-		</g>
+		<svg>
+			{/* ROOT */}
+			<g>
+				{/* ARROW PATH */}
+				<path strokeWidth="1.5" d={path} fill="none" />
+
+				{/* ARROW TRIANGLE */}
+				<polygon points={trianglePoints} />
+			</g>
+		</svg>
 	);
 };
 
