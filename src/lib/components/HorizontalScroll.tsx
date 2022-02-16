@@ -51,8 +51,6 @@ const HorizontalScroll = (props: IProps & typeof defaultProps) => {
 		}
 	}, [scroll]);
 
-	console.log(props);
-
 	return (
 		// ROOT
 		<div
