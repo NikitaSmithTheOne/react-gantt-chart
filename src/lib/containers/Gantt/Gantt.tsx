@@ -27,7 +27,9 @@ import { BarTask } from "../../types/bar-task";
 import { convertToBarTasks } from "../../helpers/bar-helper";
 import { GanttEvent } from "../../types/gantt-task-actions";
 import { DateSetup } from "../../types/date-setup";
-import HorizontalScroll from "../../components/HorizontalScroll";
+import HorizontalScroll, {
+	defaultProps as horizontalScrollDefaultProps,
+} from "../../components/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
 import {
 	FONT_FAMILY,
@@ -513,11 +515,19 @@ const Gantt = (props: IProps) => {
 				/>
 			</div>
 			<HorizontalScroll
-				svgWidth={svgWidth}
-				taskListWidth={taskListWidth}
 				scroll={scrollX}
-				rtl={rtl}
 				onScroll={handleScrollX}
+				// style
+				rootStyle={{
+					...horizontalScrollDefaultProps.rootStyle,
+					margin: rtl
+						? `0px ${taskListWidth}px 0px 0px`
+						: `0px 0px 0px ${taskListWidth}px`,
+				}}
+				bodyStyle={{
+					...horizontalScrollDefaultProps.bodyStyle,
+					width: svgWidth,
+				}}
 			/>
 		</div>
 	);

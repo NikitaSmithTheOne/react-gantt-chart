@@ -7,9 +7,6 @@ import { OptionalKeys } from "../types/custom";
 // *** TYPES ***
 export interface IProps {
 	scroll: number;
-	svgWidth: number;
-	taskListWidth: number;
-	rtl: boolean;
 	onScroll: (event: SyntheticEvent<HTMLDivElement>) => void;
 	// style
 	rootStyle?: React.CSSProperties;
@@ -31,11 +28,8 @@ export const defaultProps: TOptionalProps = {
 const HorizontalScroll = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
-		onScroll,
-		rtl,
 		scroll,
-		svgWidth,
-		taskListWidth,
+		onScroll,
 		// style
 		rootStyle,
 		bodyStyle,
@@ -53,19 +47,9 @@ const HorizontalScroll = (props: IProps & typeof defaultProps) => {
 
 	return (
 		// ROOT
-		<div
-			style={{
-				...rootStyle,
-				margin: rtl
-					? `0px ${taskListWidth}px 0px 0px`
-					: `0px 0px 0px ${taskListWidth}px`,
-			}}
-			dir="ltr"
-			ref={scrollRef}
-			onScroll={onScroll}
-		>
+		<div style={rootStyle} dir="ltr" ref={scrollRef} onScroll={onScroll}>
 			{/* BODY */}
-			<div style={{ ...bodyStyle, width: svgWidth }} />
+			<div style={bodyStyle} />
 		</div>
 	);
 };
