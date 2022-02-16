@@ -38,12 +38,12 @@ export const defaultProps: TOptionalProps = {
 const GridBody = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
-		columnWidth,
-		dates,
-		rowHeight,
-		rtl,
-		svgWidth,
 		tasks,
+		dates,
+		rtl,
+		rowHeight,
+		columnWidth,
+		svgWidth,
 		todayColor,
 		// style
 		gridRowStyle,
@@ -164,7 +164,7 @@ const GridBody = (props: IProps & typeof defaultProps) => {
 	}
 
 	return (
-		<svg>
+		<svg style={{ overflow: "visible" }}>
 			{/* ROOT */}
 			<g>
 				{/* ROWS */}
