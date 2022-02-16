@@ -20,7 +20,9 @@ import TaskListTableDefault, {
 	defaultProps as taskListTableDefaultProps,
 } from "../TaskList/components/TaskListTable";
 import Tooltip, { StandardTooltipContent } from "../../components/Tooltip";
-import VerticalScroll from "../../components/VerticalScroll";
+import VerticalScroll, {
+	defaultProps as verticalScrollDefaultProps,
+} from "../../components/VerticalScroll";
 import TaskList, { IProps as TaskListProps } from "../TaskList/TaskList";
 import GanttTask from "./components/GanttTask";
 import { BarTask } from "../../types/bar-task";
@@ -55,7 +57,7 @@ const Gantt = (props: IProps) => {
 		columnWidth = 60,
 		listCellWidth = "155px",
 		rowHeight = 50,
-		ganttHeight = 400,
+		ganttHeight = 300,
 		viewMode = ViewMode.Day,
 		locale = "en-GB",
 		barFill = 60,
@@ -506,12 +508,19 @@ const Gantt = (props: IProps) => {
 					/>
 				)}
 				<VerticalScroll
-					ganttFullHeight={ganttFullHeight}
-					ganttHeight={ganttHeight}
-					headerHeight={headerHeight}
 					scroll={scrollY}
 					onScroll={handleScrollY}
-					rtl={rtl}
+					// style
+					rootStyle={{
+						...verticalScrollDefaultProps.rootStyle,
+						height: ganttHeight,
+						marginTop: headerHeight,
+						marginLeft: rtl ? "" : "-17px",
+					}}
+					bodyStyle={{
+						...verticalScrollDefaultProps.bodyStyle,
+						height: ganttFullHeight,
+					}}
 				/>
 			</div>
 			<HorizontalScroll

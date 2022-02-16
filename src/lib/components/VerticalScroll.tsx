@@ -1,23 +1,40 @@
 // *** NPM ***
 import React, { SyntheticEvent, useRef, useEffect } from "react";
 
-// *** STYLES ***
-import styles from "./VerticalScroll.module.css";
+// *** OTHER ***
+import { OptionalKeys } from "../types/custom";
 
 // *** TYPES ***
 interface IProps {
 	scroll: number;
-	ganttHeight: number;
-	ganttFullHeight: number;
-	headerHeight: number;
-	rtl: boolean;
 	onScroll: (event: SyntheticEvent<HTMLDivElement>) => void;
+	// style
+	rootStyle?: React.CSSProperties;
+	bodyStyle?: React.CSSProperties;
 }
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const VerticalScroll = (props: IProps) => {
+export const defaultProps: TOptionalProps = {
+	rootStyle: {
+		overflow: "hidden auto",
+		width: "17px",
+		flexShrink: 0,
+	},
+	bodyStyle: {
+		width: 1,
+	},
+};
+
+const VerticalScroll = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
-	const { ganttFullHeight, ganttHeight, headerHeight, onScroll, rtl, scroll } =
-		props;
+	const {
+		scroll,
+		onScroll,
+		// style
+		rootStyle,
+		bodyStyle,
+	} = props;
 
 	// *** USE REF ***
 	const scrollRef = useRef<HTMLDivElement>(null);
@@ -30,19 +47,13 @@ const VerticalScroll = (props: IProps) => {
 	}, [scroll]);
 
 	return (
-		<div
-			style={{
-				height: ganttHeight,
-				marginTop: headerHeight,
-				marginLeft: rtl ? "" : "-17px",
-			}}
-			className={styles.scroll}
-			onScroll={onScroll}
-			ref={scrollRef}
-		>
-			<div style={{ height: ganttFullHeight, width: 1 }} />
+		// ROOT
+		<div style={rootStyle} onScroll={onScroll} ref={scrollRef}>
+			{/* BODY */}
+			<div style={bodyStyle} />
 		</div>
 	);
 };
+VerticalScroll.defaultProps = defaultProps;
 
 export default VerticalScroll;
