@@ -29,9 +29,7 @@ const BarProgressHandle = (props: IProps & typeof defaultProps) => {
 	const { style, onMouseDown, progressPoint } = props;
 
 	return (
-		<svg>
-			<polygon style={style} points={progressPoint} onMouseDown={onMouseDown} />
-		</svg>
+		<polygon style={style} points={progressPoint} onMouseDown={onMouseDown} />
 	);
 };
 BarProgressHandle.defaultProps = defaultProps;

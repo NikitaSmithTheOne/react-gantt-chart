@@ -11,18 +11,30 @@ export default {
 
 // Default
 export const Default = () => {
-	return <BarDisplay />;
+	return (
+		<svg style={{ overflow: "visible" }}>
+			<BarDisplay />
+		</svg>
+	);
 };
 Default.storyName = "Default";
 
 // Selected
 export const Selected = () => {
-	return <BarDisplay isSelected />;
+	return (
+		<svg style={{ overflow: "visible" }}>
+			<BarDisplay isSelected />
+		</svg>
+	);
 };
 Selected.storyName = "Selected";
 
 // Custom Width
 export const CustomWidth = () => {
-	return <BarDisplay width={700} />;
+	return (
+		<svg style={{ overflow: "visible" }}>
+			<BarDisplay width={700} />;
+		</svg>
+	);
 };
 CustomWidth.storyName = "Custom Width";

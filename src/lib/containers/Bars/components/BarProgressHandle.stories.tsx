@@ -11,12 +11,20 @@ export default {
 
 // Default
 export const Default = () => {
-	return <BarProgressHandle />;
+	return (
+		<svg style={{ overflow: "visible" }}>
+			<BarProgressHandle />
+		</svg>
+	);
 };
 Default.storyName = "Default";
 
 // Hidden
 export const Hidden = () => {
-	return <BarProgressHandle style={{ visibility: "hidden", opacity: 0 }} />;
+	return (
+		<svg style={{ overflow: "visible" }}>
+			<BarProgressHandle style={{ visibility: "hidden", opacity: 0 }} />
+		</svg>
+	);
 };
 Hidden.storyName = "Hidden";

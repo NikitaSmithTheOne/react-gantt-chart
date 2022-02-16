@@ -56,89 +56,87 @@ const Bar = (props: IProps & typeof defaultProps) => {
 	const handleHeight = task.height - 2;
 
 	return (
-		<svg>
-			<g
-				style={rootStyle}
-				tabIndex={0}
-				onMouseEnter={() => setIsHovered(() => true)}
-				onMouseLeave={() => setIsHovered(() => false)}
-			>
-				{/* BAR */}
-				<BarDisplay
-					x={task.x1}
-					y={task.y}
-					width={task.x2 - task.x1}
-					height={task.height}
-					progressX={task.progressX}
-					progressWidth={task.progressWidth}
-					barCornerRadius={task.barCornerRadius}
-					fillStyle={task.styles}
-					isSelected={isSelected}
-					onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-						isDateChangeable === true && onEventStart("move", task, e);
-					}}
-				/>
+		<g
+			style={rootStyle}
+			tabIndex={0}
+			onMouseEnter={() => setIsHovered(() => true)}
+			onMouseLeave={() => setIsHovered(() => false)}
+		>
+			{/* BAR */}
+			<BarDisplay
+				x={task.x1}
+				y={task.y}
+				width={task.x2 - task.x1}
+				height={task.height}
+				progressX={task.progressX}
+				progressWidth={task.progressWidth}
+				barCornerRadius={task.barCornerRadius}
+				fillStyle={task.styles}
+				isSelected={isSelected}
+				onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
+					isDateChangeable === true && onEventStart("move", task, e);
+				}}
+			/>
 
-				{/* DATE HANDLERS */}
-				<g>
-					{isDateChangeable === true && (
-						<g>
-							{/* LEFT SIDE */}
-							<BarDateHandle
-								x={task.x1 + 1}
-								y={task.y + 1}
-								width={task.handleWidth}
-								height={handleHeight}
-								barCornerRadius={task.barCornerRadius}
-								onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-									onEventStart("start", task, e);
-								}}
-								style={{
-									fill: "#ddd",
-									cursor: "ew-resize",
-									opacity: isHovered ? 1 : 0,
-									visibility: isHovered ? "visible" : "hidden",
-								}}
-							/>
-
-							{/* RIGHT SIDE */}
-							<BarDateHandle
-								x={task.x2 - task.handleWidth - 1}
-								y={task.y + 1}
-								width={task.handleWidth}
-								height={handleHeight}
-								barCornerRadius={task.barCornerRadius}
-								onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-									onEventStart("end", task, e);
-								}}
-								style={{
-									fill: "#ddd",
-									cursor: "ew-resize",
-									opacity: isHovered ? 1 : 0,
-									visibility: isHovered ? "visible" : "hidden",
-								}}
-							/>
-						</g>
-					)}
-
-					{/* PROGRESS HANDLERS */}
-					{isProgressChangeable === true && (
-						<BarProgressHandle
+			{/* DATE HANDLERS */}
+			<g>
+				{isDateChangeable === true && (
+					<g>
+						{/* LEFT SIDE */}
+						<BarDateHandle
+							x={task.x1 + 1}
+							y={task.y + 1}
+							width={task.handleWidth}
+							height={handleHeight}
+							barCornerRadius={task.barCornerRadius}
+							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
+								onEventStart("start", task, e);
+							}}
 							style={{
 								fill: "#ddd",
 								cursor: "ew-resize",
 								opacity: isHovered ? 1 : 0,
 								visibility: isHovered ? "visible" : "hidden",
 							}}
-							progressPoint={progressPoint}
+						/>
+
+						{/* RIGHT SIDE */}
+						<BarDateHandle
+							x={task.x2 - task.handleWidth - 1}
+							y={task.y + 1}
+							width={task.handleWidth}
+							height={handleHeight}
+							barCornerRadius={task.barCornerRadius}
 							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-								onEventStart("progress", task, e);
+								onEventStart("end", task, e);
+							}}
+							style={{
+								fill: "#ddd",
+								cursor: "ew-resize",
+								opacity: isHovered ? 1 : 0,
+								visibility: isHovered ? "visible" : "hidden",
 							}}
 						/>
-					)}
-				</g>
+					</g>
+				)}
+
+				{/* PROGRESS HANDLERS */}
+				{isProgressChangeable === true && (
+					<BarProgressHandle
+						style={{
+							fill: "#ddd",
+							cursor: "ew-resize",
+							opacity: isHovered ? 1 : 0,
+							visibility: isHovered ? "visible" : "hidden",
+						}}
+						progressPoint={progressPoint}
+						onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
+							onEventStart("progress", task, e);
+						}}
+					/>
+				)}
 			</g>
-		</svg>
+		</g>
 	);
 };
 Bar.defaultProps = defaultProps;

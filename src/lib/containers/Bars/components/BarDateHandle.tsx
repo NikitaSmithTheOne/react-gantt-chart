@@ -33,18 +33,16 @@ const BarDateHandle = (props: IProps & typeof defaultProps) => {
 	const { x, y, width, height, barCornerRadius, onMouseDown, style } = props;
 
 	return (
-		<svg>
-			<rect
-				x={x}
-				y={y}
-				width={width}
-				height={height}
-				ry={barCornerRadius}
-				rx={barCornerRadius}
-				onMouseDown={onMouseDown}
-				style={style}
-			/>
-		</svg>
+		<rect
+			x={x}
+			y={y}
+			width={width}
+			height={height}
+			ry={barCornerRadius}
+			rx={barCornerRadius}
+			onMouseDown={onMouseDown}
+			style={style}
+		/>
 	);
 };
 BarDateHandle.defaultProps = defaultProps;

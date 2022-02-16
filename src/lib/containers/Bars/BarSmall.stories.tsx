@@ -44,12 +44,14 @@ export const Simple = () => {
 	});
 
 	return (
-		<BarSmall
-			task={task}
-			isSelected={false}
-			isDateChangeable={true}
-			isProgressChangeable={true}
-			onEventStart={(...args) => console.log(args)}
-		></BarSmall>
+		<svg style={{ overflow: "visible" }}>
+			<BarSmall
+				task={task}
+				isSelected={false}
+				isDateChangeable={true}
+				isProgressChangeable={true}
+				onEventStart={(...args) => console.log(args)}
+			></BarSmall>
+		</svg>
 	);
 };

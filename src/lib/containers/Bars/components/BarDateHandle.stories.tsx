@@ -11,12 +11,20 @@ export default {
 
 // Default
 export const Default = () => {
-	return <BarDateHandle />;
+	return (
+		<svg style={{ overflow: "visible" }}>
+			<BarDateHandle />
+		</svg>
+	);
 };
 Default.storyName = "Default";
 
 // Hidden
 export const Hidden = () => {
-	return <BarDateHandle style={{ visibility: "hidden", opacity: 0 }} />;
+	return (
+		<svg style={{ overflow: "visible" }}>
+			<BarDateHandle style={{ visibility: "hidden", opacity: 0 }} />
+		</svg>
+	);
 };
 Hidden.storyName = "Hidden";

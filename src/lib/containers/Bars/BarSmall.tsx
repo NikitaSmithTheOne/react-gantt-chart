@@ -51,48 +51,46 @@ const BarSmall = (props: IProps & typeof defaultProps) => {
 	);
 
 	return (
-		<svg>
-			<g
-				style={rootStyle}
-				tabIndex={0}
-				onMouseEnter={() => setIsHovered(() => true)}
-				onMouseLeave={() => setIsHovered(() => false)}
-			>
-				{/* BAR */}
-				<BarDisplay
-					x={task.x1}
-					y={task.y}
-					width={task.x2 - task.x1}
-					height={task.height}
-					progressX={task.progressX}
-					progressWidth={task.progressWidth}
-					barCornerRadius={task.barCornerRadius}
-					fillStyle={task.styles}
-					isSelected={isSelected}
-					onMouseDown={(e) => {
-						isDateChangeable === true && onEventStart("move", task, e);
-					}}
-				/>
+		<g
+			style={rootStyle}
+			tabIndex={0}
+			onMouseEnter={() => setIsHovered(() => true)}
+			onMouseLeave={() => setIsHovered(() => false)}
+		>
+			{/* BAR */}
+			<BarDisplay
+				x={task.x1}
+				y={task.y}
+				width={task.x2 - task.x1}
+				height={task.height}
+				progressX={task.progressX}
+				progressWidth={task.progressWidth}
+				barCornerRadius={task.barCornerRadius}
+				fillStyle={task.styles}
+				isSelected={isSelected}
+				onMouseDown={(e) => {
+					isDateChangeable === true && onEventStart("move", task, e);
+				}}
+			/>
 
-				{/* PROGRESS HANDLE */}
-				<g>
-					{isProgressChangeable === true && (
-						<BarProgressHandle
-							style={{
-								fill: "#ddd",
-								cursor: "ew-resize",
-								opacity: isHovered ? 1 : 0,
-								visibility: isHovered ? "visible" : "hidden",
-							}}
-							progressPoint={progressPoint}
-							onMouseDown={(e) => {
-								onEventStart("progress", task, e);
-							}}
-						/>
-					)}
-				</g>
+			{/* PROGRESS HANDLE */}
+			<g>
+				{isProgressChangeable === true && (
+					<BarProgressHandle
+						style={{
+							fill: "#ddd",
+							cursor: "ew-resize",
+							opacity: isHovered ? 1 : 0,
+							visibility: isHovered ? "visible" : "hidden",
+						}}
+						progressPoint={progressPoint}
+						onMouseDown={(e) => {
+							onEventStart("progress", task, e);
+						}}
+					/>
+				)}
 			</g>
-		</svg>
+		</g>
 	);
 };
 BarSmall.defaultProps = defaultProps;

@@ -84,33 +84,31 @@ const BarDisplay = (props: IProps & typeof defaultProps) => {
 		: fillStyle.backgroundColor;
 
 	return (
-		<svg style={{ overflow: "visible" }}>
-			<g onMouseDown={onMouseDown}>
-				{/* BAR */}
-				<rect
-					style={barStyle}
-					x={x}
-					width={width}
-					y={y}
-					height={height}
-					ry={barCornerRadius}
-					rx={barCornerRadius}
-					fill={barFillColor}
-				/>
+		<g onMouseDown={onMouseDown}>
+			{/* BAR */}
+			<rect
+				style={barStyle}
+				x={x}
+				width={width}
+				y={y}
+				height={height}
+				ry={barCornerRadius}
+				rx={barCornerRadius}
+				fill={barFillColor}
+			/>
 
-				{/* PROGRESS */}
-				<rect
-					style={progressStyle}
-					x={progressX}
-					width={progressWidth}
-					y={y}
-					height={height}
-					ry={barCornerRadius}
-					rx={barCornerRadius}
-					fill={progressFillColor}
-				/>
-			</g>
-		</svg>
+			{/* PROGRESS */}
+			<rect
+				style={progressStyle}
+				x={progressX}
+				width={progressWidth}
+				y={y}
+				height={height}
+				ry={barCornerRadius}
+				rx={barCornerRadius}
+				fill={progressFillColor}
+			/>
+		</g>
 	);
 };
 
