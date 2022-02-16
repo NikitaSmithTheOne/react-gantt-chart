@@ -7,11 +7,16 @@ import GridBody, { IProps as GridBodyProps } from "./components/GridBody";
 // *** TYPES ***
 export type IProps = GridBodyProps;
 
+// WHICH KIND OF JOKE IS THIS? =)
 const Grid = (props: IProps) => {
 	return (
-		<g>
-			<GridBody {...props} />
-		</g>
+		<svg style={{ overflow: "visible" }}>
+			{/* ROOT */}
+			<g>
+				{/* GRID BODY */}
+				<GridBody {...props} />
+			</g>
+		</svg>
 	);
 };
 
