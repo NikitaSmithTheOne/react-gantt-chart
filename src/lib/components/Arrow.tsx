@@ -3,6 +3,7 @@ import React from "react";
 
 // *** OTHER ***
 import { BarTask } from "../types/bar-task";
+import { OptionalKeys } from "../types/custom";
 
 // *** HELPERS ***
 const drownPathAndTriangle = (
@@ -73,11 +74,31 @@ export interface IProps {
 	taskHeight: number;
 	arrowIndent: number;
 	rtl: boolean;
+	// style
+	rootStyle?: React.CSSProperties;
 }
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const Arrow = (props: IProps) => {
+export const defaultProps: TOptionalProps = {
+	rootStyle: {
+		fill: "green",
+		stroke: "green",
+	},
+};
+
+const Arrow = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
-	const { arrowIndent, rowHeight, rtl, taskFrom, taskHeight, taskTo } = props;
+	const {
+		arrowIndent,
+		rowHeight,
+		rtl,
+		taskFrom,
+		taskHeight,
+		taskTo,
+		// style
+		rootStyle,
+	} = props;
 
 	// *** CONDITIONALS ***
 	const [path, trianglePoints] =
@@ -98,17 +119,15 @@ const Arrow = (props: IProps) => {
 			  );
 
 	return (
-		<svg>
-			{/* ROOT */}
-			<g>
-				{/* ARROW PATH */}
-				<path strokeWidth="1.5" d={path} fill="none" />
+		<g style={rootStyle}>
+			{/* ARROW PATH */}
+			<path strokeWidth="1.5" d={path} fill="none" />
 
-				{/* ARROW TRIANGLE */}
-				<polygon points={trianglePoints} />
-			</g>
-		</svg>
+			{/* ARROW TRIANGLE */}
+			<polygon points={trianglePoints} />
+		</g>
 	);
 };
+Arrow.defaultProps = defaultProps;
 
 export default Arrow;

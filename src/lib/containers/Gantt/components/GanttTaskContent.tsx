@@ -277,6 +277,8 @@ const GanttTaskContent = (props: IProps) => {
 								taskHeight={taskHeight}
 								arrowIndent={arrowIndent}
 								rtl={rtl}
+								// style
+								rootStyle={{ fill: arrowColor, stroke: arrowColor }}
 							/>
 						);
 					});
