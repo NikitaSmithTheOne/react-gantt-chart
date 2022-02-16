@@ -495,17 +495,20 @@ const Gantt = (props: IProps) => {
 						rowHeight={rowHeight}
 						svgContainerHeight={svgContainerHeight}
 						svgContainerWidth={svgContainerWidth}
-						fontFamily={fontFamily}
-						fontSize={fontSize}
 						scrollX={scrollX}
 						scrollY={scrollY}
 						task={ganttEvent.changedTask}
 						headerHeight={headerHeight}
 						taskListWidth={taskListWidth}
-						TooltipContent={TooltipContent}
 						rtl={rtl}
 						svgWidth={svgWidth}
-					/>
+					>
+						<TooltipContent
+							task={ganttEvent.changedTask}
+							fontSize={"15px"}
+							fontFamily={"Arial"}
+						/>
+					</Tooltip>
 				)}
 				<VerticalScroll
 					scroll={scrollY}
