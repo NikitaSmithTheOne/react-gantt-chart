@@ -27,7 +27,7 @@ import { BarTask } from "../../types/bar-task";
 import { convertToBarTasks } from "../../helpers/bar-helper";
 import { GanttEvent } from "../../types/gantt-task-actions";
 import { DateSetup } from "../../types/date-setup";
-import { HorizontalScroll } from "../../components/HorizontalScroll";
+import HorizontalScroll from "../../components/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
 import {
 	FONT_FAMILY,

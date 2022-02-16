@@ -1,9 +1,9 @@
 // *** NPM ***
 import React from "react";
-import Bar from "../containers/Bars/Bar";
 
 // *** OTHER ***
 import Arrow, { IProps as IArrowProps } from "./Arrow";
+import Bar from "../containers/Bars/Bar";
 
 export default {
 	title: "Arrow",

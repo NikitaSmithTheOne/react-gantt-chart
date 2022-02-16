@@ -1,21 +1,45 @@
 // *** NPM ***
 import React, { SyntheticEvent, useRef, useEffect } from "react";
 
-// *** STYLES ***
-import styles from "./HorizontalScroll.module.css";
+// *** OTHER ***
+import { OptionalKeys } from "../types/custom";
 
 // *** TYPES ***
-interface IProps {
+export interface IProps {
 	scroll: number;
 	svgWidth: number;
 	taskListWidth: number;
 	rtl: boolean;
 	onScroll: (event: SyntheticEvent<HTMLDivElement>) => void;
+	// style
+	rootStyle?: React.CSSProperties;
+	bodyStyle?: React.CSSProperties;
 }
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-export const HorizontalScroll = (props: IProps) => {
+export const defaultProps: TOptionalProps = {
+	rootStyle: {
+		overflow: "auto",
+		maxWidth: "100%",
+	},
+	bodyStyle: {
+		height: 1,
+	},
+};
+
+const HorizontalScroll = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
-	const { onScroll, rtl, scroll, svgWidth, taskListWidth } = props;
+	const {
+		onScroll,
+		rtl,
+		scroll,
+		svgWidth,
+		taskListWidth,
+		// style
+		rootStyle,
+		bodyStyle,
+	} = props;
 
 	// *** USE REF ***
 	const scrollRef = useRef<HTMLDivElement>(null);
@@ -27,19 +51,26 @@ export const HorizontalScroll = (props: IProps) => {
 		}
 	}, [scroll]);
 
+	console.log(props);
+
 	return (
+		// ROOT
 		<div
-			dir="ltr"
 			style={{
+				...rootStyle,
 				margin: rtl
 					? `0px ${taskListWidth}px 0px 0px`
 					: `0px 0px 0px ${taskListWidth}px`,
 			}}
-			className={styles.scroll}
-			onScroll={onScroll}
+			dir="ltr"
 			ref={scrollRef}
+			onScroll={onScroll}
 		>
-			<div style={{ width: svgWidth, height: 1 }} />
+			{/* BODY */}
+			<div style={{ ...bodyStyle, width: svgWidth }} />
 		</div>
 	);
 };
+HorizontalScroll.defaultProps = defaultProps;
+
+export default HorizontalScroll;
