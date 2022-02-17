@@ -75,15 +75,16 @@ const BarSmall = (props: IProps & typeof defaultProps) => {
 			<g>
 				{isProgressChangeable === true && (
 					<BarProgressHandle
-						style={{
+						progressPoint={progressPoint}
+						onMouseDown={(e) => {
+							onEventStart("progress", task, e);
+						}}
+						// style
+						rootStyle={{
 							fill: "#ddd",
 							cursor: "ew-resize",
 							opacity: isHovered ? 1 : 0,
 							visibility: isHovered ? "visible" : "hidden",
-						}}
-						progressPoint={progressPoint}
-						onMouseDown={(e) => {
-							onEventStart("progress", task, e);
 						}}
 					/>
 				)}

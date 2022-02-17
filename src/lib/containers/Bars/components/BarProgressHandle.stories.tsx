@@ -2,29 +2,35 @@
 import React from "react";
 
 // *** OTHER ***
-import BarProgressHandle from "./BarProgressHandle";
+import BarProgressHandle, {
+	defaultProps as barProgressHandleDefaultProps,
+} from "./BarProgressHandle";
 
 export default {
 	title: "Bars/BarProgressHandle",
 	component: BarProgressHandle,
 };
 
-// Default
-export const Default = () => {
+export const Original = () => {
 	return (
 		<svg style={{ overflow: "visible" }}>
 			<BarProgressHandle />
 		</svg>
 	);
 };
-Default.storyName = "Default";
+Original.storyName = "Original";
 
-// Hidden
-export const Hidden = () => {
+export const OriginalHidden = () => {
 	return (
 		<svg style={{ overflow: "visible" }}>
-			<BarProgressHandle style={{ visibility: "hidden", opacity: 0 }} />
+			<BarProgressHandle
+				rootStyle={{
+					...barProgressHandleDefaultProps,
+					visibility: "hidden",
+					opacity: 0,
+				}}
+			/>
 		</svg>
 	);
 };
-Hidden.storyName = "Hidden";
+OriginalHidden.storyName = "Original Hidden";
