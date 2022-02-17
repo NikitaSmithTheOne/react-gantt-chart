@@ -9,21 +9,21 @@ import {
 	DisplayOption,
 	StylingOption,
 } from "../../types/public-types";
-import { IProps as GridProps } from "../Grid/Grid";
+import { IProps as GridProps } from "../../containers/Grid/Grid";
 import { ganttDateRange, seedDates } from "../../helpers/date-helper";
-import { IProps as CalendarProps } from "../Calendar/Calendar";
+import { IProps as CalendarProps } from "../../containers/Calendar/Calendar";
 import { IProps as TaskGanttContentProps } from "./components/GanttTaskContent";
 import TaskListHeaderDefault, {
 	defaultProps as taskListHeaderDefaultProps,
-} from "../TaskList/components/TaskListHeader";
+} from "../../containers/TaskList/components/TaskListHeader";
 import TaskListTableDefault, {
 	defaultProps as taskListTableDefaultProps,
-} from "../TaskList/components/TaskListTable";
+} from "../../containers/TaskList/components/TaskListTable";
 import Tooltip, { StandardTooltipContent } from "../../components/Tooltip";
 import VerticalScroll, {
 	defaultProps as verticalScrollDefaultProps,
 } from "../../components/VerticalScroll";
-import TaskList, { IProps as TaskListProps } from "../TaskList/TaskList";
+import TaskList, { IProps as TaskListProps } from "../../containers/TaskList/TaskList";
 import GanttTask from "./components/GanttTask";
 import { BarTask } from "../../types/bar-task";
 import { convertToBarTasks } from "../../helpers/bar-helper";

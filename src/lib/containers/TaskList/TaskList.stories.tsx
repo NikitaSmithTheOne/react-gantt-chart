@@ -16,7 +16,7 @@ import {
 	HEADER_HEIGHT,
 	ROW_HEIGHT,
 	ROW_WIDTH,
-} from "../Gantt/constants";
+} from "../../examples/GanttOriginal/constants";
 
 export default {
 	title: "TaskList/TaskList",

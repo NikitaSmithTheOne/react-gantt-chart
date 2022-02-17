@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import Gantt from "../lib/containers/Gantt/Gantt";
+import GanttOriginal from "../lib/examples/GanttOriginal/Gantt";
 import { Task, ViewMode } from "../lib/types/public-types";
 import { getStartEndDateForProject, initTasks } from "./helpers";
 import ViewSwitcher from "./components/ViewSwitcher";
@@ -72,7 +72,7 @@ function App() {
 				isChecked={isChecked}
 			/>
 			<h3>Gantt - Original</h3>
-			<Gantt
+			<GanttOriginal
 				tasks={tasks}
 				viewMode={view}
 				onDateChange={handleTaskChange}
