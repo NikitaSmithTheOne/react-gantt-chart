@@ -1,8 +1,11 @@
 // *** NPM ***
-import React, { useState } from "react";
+import React from "react";
 
 // *** OTHER ***
-import Bar, { IProps as IBarProps } from "./Bar";
+import Bar from "./Bar";
+import BarOriginal, {
+	IProps as IBarOriginalProps,
+} from "./examples/BarOriginal";
 
 export default {
 	title: "Bars/Bar",
@@ -10,7 +13,7 @@ export default {
 };
 
 // *** CONSTANTS ***
-const TASK: IBarProps["task"] = {
+const TASK: IBarOriginalProps["task"] = {
 	index: 1,
 	typeInternal: "task",
 	x1: 0,
@@ -40,17 +43,13 @@ const TASK: IBarProps["task"] = {
 	project: undefined,
 };
 
-export const Simple = () => {
+export const Original = () => {
 	return (
-		<svg style={{ overflow: "visible" }}>
-			<Bar
-				task={TASK}
-				rtl={false}
-				isSelected={false}
-				isDateChangeable={true}
-				isProgressChangeable={true}
-				onEventStart={(...args) => console.log(args)}
-			></Bar>
-		</svg>
+		<BarOriginal
+			task={TASK}
+			rtl={false}
+			onEventStart={() => console.warn("not implemented")}
+			isDateChangeable={true}
+		/>
 	);
 };

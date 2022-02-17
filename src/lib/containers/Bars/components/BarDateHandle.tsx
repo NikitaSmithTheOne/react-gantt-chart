@@ -3,7 +3,7 @@ import React from "react";
 import { OptionalKeys } from "../../../types/custom";
 
 // *** TYPES ***
-type IProps = {
+export type IProps = {
 	x?: number;
 	y?: number;
 	width?: number;
@@ -16,7 +16,7 @@ type IProps = {
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const defaultProps: TOptionalProps = {
+export const defaultProps: TOptionalProps = {
 	x: 0,
 	y: 0,
 	width: 10,

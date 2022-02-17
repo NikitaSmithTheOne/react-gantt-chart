@@ -1,69 +1,76 @@
 // *** NPM ***
-import React, { useState } from "react";
+import React from "react";
 
 // *** OTHER ***
 import BarDisplay from "./components/BarDisplay";
-import BarDateHandle from "./components/BarDateHandle";
-import BarProgressHandle from "./components/BarProgressHandle";
-import { getProgressPoint } from "../../helpers/bar-helper";
 import { IProps as TaskItemProps } from "../TaskItem/TaskItem";
 
 // *** STYLES ***
 import { OptionalKeys } from "../../types/custom";
 
 // *** TYPES ***
-export type IProps = { rootStyle?: React.CSSProperties } & Pick<
+export type IProps = Pick<
 	TaskItemProps,
-	| "task"
-	| "rtl"
-	| "isSelected"
-	| "isDateChangeable"
-	| "isProgressChangeable"
-	| "onEventStart"
->;
+	"rtl" | "isDateChangeable" | "isProgressChangeable"
+> & {
+	// style
+	rootStyle?: React.CSSProperties;
+	// components
+	barDisplay?: JSX.Element;
+	leftBarDateHandle?: JSX.Element;
+	rightBarDateHandle?: JSX.Element;
+	barProgressHandle?: JSX.Element;
+	// handlers
+	onMouseEnter?: React.MouseEventHandler<SVGGElement>;
+	onMouseLeave?: React.MouseEventHandler<SVGGElement>;
+};
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
 export const defaultProps: TOptionalProps = {
+	// style
 	rootStyle: {
 		cursor: "pointer",
 		outline: "none",
 	},
+	// components
+	barDisplay: <></>,
+	leftBarDateHandle: <></>,
+	rightBarDateHandle: <></>,
+	barProgressHandle: <></>,
+	// handlers
+	onMouseEnter: () => null,
+	onMouseLeave: () => null,
 };
 
 const Bar = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
-		rootStyle,
-		task,
-		rtl,
-		isSelected,
 		isDateChangeable,
 		isProgressChangeable,
-		onEventStart,
+		// style
+		rootStyle,
+		// components
+		barDisplay,
+		leftBarDateHandle,
+		rightBarDateHandle,
+		barProgressHandle,
+		// handlers
+		onMouseEnter,
+		onMouseLeave,
 	} = props;
-
-	// *** USE STATE ***
-	const [isHovered, setIsHovered] = useState<boolean>(false);
-
-	// *** CONDITIONALS ***
-	const progressPoint = getProgressPoint(
-		+!rtl * task.progressWidth + task.progressX,
-		task.y,
-		task.height
-	);
-
-	const handleHeight = task.height - 2;
 
 	return (
 		<g
 			style={rootStyle}
 			tabIndex={0}
-			onMouseEnter={() => setIsHovered(() => true)}
-			onMouseLeave={() => setIsHovered(() => false)}
+			onMouseEnter={onMouseEnter}
+			onMouseLeave={onMouseLeave}
 		>
-			{/* BAR */}
-			<BarDisplay
+			{/* BAR DISPLAY */}
+			{barDisplay}
+
+			{/* <BarDisplay
 				x={task.x1}
 				y={task.y}
 				width={task.x2 - task.x1}
@@ -74,72 +81,26 @@ const Bar = (props: IProps & typeof defaultProps) => {
 				onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
 					isDateChangeable === true && onEventStart("move", task, e);
 				}}
-			/>
+			/> */}
 
-			{/* DATE HANDLERS */}
+			{/* DATE/PROGRESS HANDLES */}
 			<g>
 				{isDateChangeable === true && (
+					// DATE HANDLES
 					<g>
 						{/* LEFT SIDE */}
-						<BarDateHandle
-							x={task.x1 + 1}
-							y={task.y + 1}
-							width={task.handleWidth}
-							height={handleHeight}
-							barCornerRadius={task.barCornerRadius}
-							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-								onEventStart("start", task, e);
-							}}
-							// style
-							rootStyle={{
-								fill: "#ddd",
-								cursor: "ew-resize",
-								opacity: isHovered ? 1 : 0,
-								visibility: isHovered ? "visible" : "hidden",
-							}}
-						/>
+						{leftBarDateHandle}
 
 						{/* RIGHT SIDE */}
-						<BarDateHandle
-							x={task.x2 - task.handleWidth - 1}
-							y={task.y + 1}
-							width={task.handleWidth}
-							height={handleHeight}
-							barCornerRadius={task.barCornerRadius}
-							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-								onEventStart("end", task, e);
-							}}
-							// style
-							rootStyle={{
-								fill: "#ddd",
-								cursor: "ew-resize",
-								opacity: isHovered ? 1 : 0,
-								visibility: isHovered ? "visible" : "hidden",
-							}}
-						/>
+						{rightBarDateHandle}
 					</g>
 				)}
 
-				{/* PROGRESS HANDLERS */}
-				{isProgressChangeable === true && (
-					<BarProgressHandle
-						progressPoint={progressPoint}
-						onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-							onEventStart("progress", task, e);
-						}}
-						// style
-						rootStyle={{
-							fill: "#ddd",
-							cursor: "ew-resize",
-							opacity: isHovered ? 1 : 0,
-							visibility: isHovered ? "visible" : "hidden",
-						}}
-					/>
-				)}
+				{/* PROGRESS HANDLES */}
+				{isProgressChangeable === true && barProgressHandle}
 			</g>
 		</g>
 	);
 };
 Bar.defaultProps = defaultProps;
-
 export default Bar;

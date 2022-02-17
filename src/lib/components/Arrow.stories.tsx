@@ -4,6 +4,7 @@ import React from "react";
 // *** OTHER ***
 import Arrow, { IProps as IArrowProps } from "./Arrow";
 import Bar from "../containers/Bars/Bar";
+import BarDisplay from "../containers/Bars/components/BarDisplay";
 
 export default {
 	title: "Arrow",
@@ -76,22 +77,16 @@ export const Original = () => {
 		<svg style={{ overflow: "visible" }}>
 			{/* FIRST TASK BAR */}
 			<Bar
-				task={TASK_FROM}
 				rtl={false}
-				isSelected={false}
 				isDateChangeable={true}
 				isProgressChangeable={true}
-				onEventStart={(...args) => console.log(args)}
 			></Bar>
 
 			{/* SECOND TASK BAR */}
 			<Bar
-				task={TASK_TO}
 				rtl={false}
-				isSelected={false}
 				isDateChangeable={true}
 				isProgressChangeable={true}
-				onEventStart={(...args) => console.log(args)}
 			></Bar>
 
 			{/* ARROW */}
@@ -112,22 +107,16 @@ export const CustomColor = () => {
 		<svg style={{ overflow: "visible" }}>
 			{/* FIRST TASK BAR */}
 			<Bar
-				task={TASK_FROM}
 				rtl={false}
-				isSelected={false}
 				isDateChangeable={true}
 				isProgressChangeable={true}
-				onEventStart={(...args) => console.log(args)}
 			></Bar>
 
 			{/* SECOND TASK BAR */}
 			<Bar
-				task={TASK_TO}
 				rtl={false}
-				isSelected={false}
 				isDateChangeable={true}
 				isProgressChangeable={true}
-				onEventStart={(...args) => console.log(args)}
 			></Bar>
 
 			{/* ARROW */}

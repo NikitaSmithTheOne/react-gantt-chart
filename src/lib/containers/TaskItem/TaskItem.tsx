@@ -2,13 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 
 // *** OTHER ***
-import Bar from "../Bars/Bar";
 import BarSmall from "../Bars/BarSmall";
 import { BarTask } from "../../types/bar-task";
 import MileStone from "./components/MileStone";
 import Project from "./components/Project";
 import { GanttContentMoveAction } from "../../types/gantt-task-actions";
 import { OptionalKeys } from "../../types/custom";
+import BarOriginal from "../Bars/examples/BarOriginal";
 
 // *** TYPES ***
 export type IProps = {
@@ -103,7 +103,14 @@ const TaskItem = (props: IProps & typeof defaultProps) => {
 				setTaskItem(<BarSmall {...props} />);
 				break;
 			default:
-				setTaskItem(<Bar {...props} />);
+				setTaskItem(() => (
+					<BarOriginal
+						task={props.task}
+						rtl={props.rtl}
+						onEventStart={props.onEventStart}
+						isDateChangeable={props.isDateChangeable}
+					/>
+				));
 				break;
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
