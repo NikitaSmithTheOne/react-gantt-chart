@@ -14,7 +14,7 @@ import BarDisplay, {
 const BAR_HEIGHT = 48;
 const BAR_DATE_HEIGHT = 10;
 const BAR_DATE_PADDING = 8;
-const BAR_DATE_STROKE_WIDTH = 2;
+const BAR_DATE_STROKE_WIDTH = 1;
 
 // *** TYPES ***
 export interface IProps {
