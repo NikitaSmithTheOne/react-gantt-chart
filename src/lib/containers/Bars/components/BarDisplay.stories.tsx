@@ -9,32 +9,22 @@ export default {
 	component: BarDisplay,
 };
 
-// Default
-export const Default = () => {
+// Original
+export const Original = () => {
 	return (
 		<svg style={{ overflow: "visible" }}>
 			<BarDisplay />
 		</svg>
 	);
 };
-Default.storyName = "Default";
-
-// Selected
-export const Selected = () => {
-	return (
-		<svg style={{ overflow: "visible" }}>
-			<BarDisplay isSelected />
-		</svg>
-	);
-};
-Selected.storyName = "Selected";
+Original.storyName = "Original";
 
 // Custom Width
-export const CustomWidth = () => {
+export const OriginalCustomWidth = () => {
 	return (
 		<svg style={{ overflow: "visible" }}>
 			<BarDisplay width={700} />;
 		</svg>
 	);
 };
-CustomWidth.storyName = "Custom Width";
+OriginalCustomWidth.storyName = "Original Custom Width";

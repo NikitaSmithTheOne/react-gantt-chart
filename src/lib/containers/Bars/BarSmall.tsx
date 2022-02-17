@@ -61,13 +61,11 @@ const BarSmall = (props: IProps & typeof defaultProps) => {
 			<BarDisplay
 				x={task.x1}
 				y={task.y}
-				width={task.x2 - task.x1}
 				height={task.height}
+				width={task.x2 - task.x1}
 				progressX={task.progressX}
 				progressWidth={task.progressWidth}
 				barCornerRadius={task.barCornerRadius}
-				fillStyle={task.styles}
-				isSelected={isSelected}
 				onMouseDown={(e) => {
 					isDateChangeable === true && onEventStart("move", task, e);
 				}}

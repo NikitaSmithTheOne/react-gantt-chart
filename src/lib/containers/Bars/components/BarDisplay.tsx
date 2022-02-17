@@ -5,54 +5,44 @@ import React from "react";
 import { OptionalKeys } from "../../../types/custom";
 
 // *** TYPES ***
-interface IProps {
+export interface IProps {
 	x?: number;
 	y?: number;
 	width?: number;
 	height?: number;
-	isSelected?: boolean;
-	barStyle?: React.CSSProperties;
-	progressStyle?: React.CSSProperties;
-	/* progress start point */
 	progressX?: number;
 	progressWidth?: number;
 	barCornerRadius?: number;
-	// TODO: BETTER TO OUTSOURCE IT...
-	fillStyle?: {
-		backgroundColor: string;
-		backgroundSelectedColor: string;
-		progressColor: string;
-		progressSelectedColor: string;
-	};
 	onMouseDown?: (
 		event: React.MouseEvent<SVGPolygonElement, MouseEvent>
 	) => void;
+	// style
+	rootStyle?: React.CSSProperties;
+	barStyle?: React.CSSProperties;
+	progressStyle?: React.CSSProperties;
 }
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const defaultProps: TOptionalProps = {
+export const defaultProps: TOptionalProps = {
 	x: 0,
 	y: 0,
 	width: 300,
 	height: 50,
-	isSelected: false,
+	// style
+	rootStyle: {},
 	barStyle: {
-		// to be honest idk why it's here =)
 		userSelect: "none",
 		strokeWidth: 0,
+		fill: "#B8C2CC",
 	},
-	progressStyle: {},
+	progressStyle: {
+		fill: "#A3A3FF",
+	},
 	// progress start point
 	progressX: 50,
 	progressWidth: 100,
 	barCornerRadius: 5,
-	fillStyle: {
-		backgroundColor: "black",
-		backgroundSelectedColor: "yellow",
-		progressColor: "green",
-		progressSelectedColor: "orange",
-	},
 	onMouseDown: (event) => console.log("BarDisplay click"),
 };
 
@@ -63,55 +53,42 @@ const BarDisplay = (props: IProps & typeof defaultProps) => {
 		y,
 		width,
 		height,
-		isSelected,
-		barStyle,
-		progressStyle,
-		// progress start point
 		progressX,
 		progressWidth,
 		barCornerRadius,
-		fillStyle,
 		onMouseDown,
+		// style
+		rootStyle,
+		barStyle,
+		progressStyle,
 	} = props;
 
-	// *** CONDITIONALS ***
-	const progressFillColor = isSelected
-		? fillStyle.progressSelectedColor
-		: fillStyle.progressColor;
-
-	const barFillColor = isSelected
-		? fillStyle.backgroundSelectedColor
-		: fillStyle.backgroundColor;
-
 	return (
-		<g onMouseDown={onMouseDown}>
+		<g style={rootStyle} onMouseDown={onMouseDown}>
 			{/* BAR */}
 			<rect
 				style={barStyle}
 				x={x}
-				width={width}
 				y={y}
 				height={height}
-				ry={barCornerRadius}
+				width={width}
 				rx={barCornerRadius}
-				fill={barFillColor}
+				ry={barCornerRadius}
 			/>
 
 			{/* PROGRESS */}
 			<rect
 				style={progressStyle}
 				x={progressX}
-				width={progressWidth}
 				y={y}
 				height={height}
-				ry={barCornerRadius}
+				width={progressWidth}
 				rx={barCornerRadius}
-				fill={progressFillColor}
+				ry={barCornerRadius}
 			/>
 		</g>
 	);
 };
-
 BarDisplay.defaultProps = defaultProps;
 
 export default BarDisplay;
