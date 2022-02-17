@@ -8,8 +8,6 @@ import { OptionalKeys } from "../../../types/custom";
 export interface IProps {
 	x?: number;
 	y?: number;
-	width?: number;
-	height?: number;
 	progressX?: number;
 	progressWidth?: number;
 	barCornerRadius?: number;
@@ -27,16 +25,19 @@ type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 export const defaultProps: TOptionalProps = {
 	x: 0,
 	y: 0,
-	width: 300,
-	height: 50,
 	// style
-	rootStyle: {},
+	rootStyle: {
+		height: "50px",
+	},
 	barStyle: {
+		height: "50px",
+		width: "200px",
 		userSelect: "none",
 		strokeWidth: 0,
 		fill: "#B8C2CC",
 	},
 	progressStyle: {
+		height: "50px",
 		fill: "#A3A3FF",
 	},
 	// progress start point
@@ -51,8 +52,6 @@ const BarDisplay = (props: IProps & typeof defaultProps) => {
 	const {
 		x,
 		y,
-		width,
-		height,
 		progressX,
 		progressWidth,
 		barCornerRadius,
@@ -70,8 +69,6 @@ const BarDisplay = (props: IProps & typeof defaultProps) => {
 				style={barStyle}
 				x={x}
 				y={y}
-				height={height}
-				width={width}
 				rx={barCornerRadius}
 				ry={barCornerRadius}
 			/>
@@ -81,7 +78,6 @@ const BarDisplay = (props: IProps & typeof defaultProps) => {
 				style={progressStyle}
 				x={progressX}
 				y={y}
-				height={height}
 				width={progressWidth}
 				rx={barCornerRadius}
 				ry={barCornerRadius}

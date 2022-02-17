@@ -6,6 +6,7 @@ import Bar from "./Bar";
 import BarOriginal, {
 	IProps as IBarOriginalProps,
 } from "./examples/BarOriginal";
+import BarNationalResources from "./examples/BarNationalResources";
 
 export default {
 	title: "Bars/Bar",
@@ -46,6 +47,17 @@ const TASK: IBarOriginalProps["task"] = {
 export const Original = () => {
 	return (
 		<BarOriginal
+			task={TASK}
+			rtl={false}
+			onEventStart={() => console.warn("not implemented")}
+			isDateChangeable={true}
+		/>
+	);
+};
+
+export const NationalResources = () => {
+	return (
+		<BarNationalResources
 			task={TASK}
 			rtl={false}
 			onEventStart={() => console.warn("not implemented")}

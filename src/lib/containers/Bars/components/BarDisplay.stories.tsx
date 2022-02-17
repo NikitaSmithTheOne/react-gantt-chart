@@ -2,7 +2,9 @@
 import React from "react";
 
 // *** OTHER ***
-import BarDisplay from "./BarDisplay";
+import BarDisplay, {
+	defaultProps as barDisplayDefaultProps,
+} from "./BarDisplay";
 
 export default {
 	title: "Bars/BarDisplay",
@@ -23,7 +25,11 @@ Original.storyName = "Original";
 export const OriginalCustomWidth = () => {
 	return (
 		<svg style={{ overflow: "visible" }}>
-			<BarDisplay width={700} />;
+			<BarDisplay
+				// style
+				barStyle={{ ...barDisplayDefaultProps.barStyle, width: "700px" }}
+			/>
+			;
 		</svg>
 	);
 };

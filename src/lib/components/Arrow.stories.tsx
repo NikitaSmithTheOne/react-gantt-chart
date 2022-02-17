@@ -4,7 +4,6 @@ import React from "react";
 // *** OTHER ***
 import Arrow, { IProps as IArrowProps } from "./Arrow";
 import Bar from "../containers/Bars/Bar";
-import BarDisplay from "../containers/Bars/components/BarDisplay";
 
 export default {
 	title: "Arrow",

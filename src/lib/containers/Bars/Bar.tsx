@@ -2,7 +2,6 @@
 import React from "react";
 
 // *** OTHER ***
-import BarDisplay from "./components/BarDisplay";
 import { IProps as TaskItemProps } from "../TaskItem/TaskItem";
 
 // *** STYLES ***
@@ -70,19 +69,6 @@ const Bar = (props: IProps & typeof defaultProps) => {
 			{/* BAR DISPLAY */}
 			{barDisplay}
 
-			{/* <BarDisplay
-				x={task.x1}
-				y={task.y}
-				width={task.x2 - task.x1}
-				height={task.height}
-				progressX={task.progressX}
-				progressWidth={task.progressWidth}
-				barCornerRadius={task.barCornerRadius}
-				onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-					isDateChangeable === true && onEventStart("move", task, e);
-				}}
-			/> */}
-
 			{/* DATE/PROGRESS HANDLES */}
 			<g>
 				{isDateChangeable === true && (
@@ -103,4 +89,5 @@ const Bar = (props: IProps & typeof defaultProps) => {
 	);
 };
 Bar.defaultProps = defaultProps;
+
 export default Bar;

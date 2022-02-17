@@ -3,7 +3,9 @@ import React, { useState } from "react";
 
 // *** OTHER ***
 import { getProgressPoint } from "../../helpers/bar-helper";
-import BarDisplay from "./components/BarDisplay";
+import BarDisplay, {
+	defaultProps as barDisplayDefaultProps,
+} from "./components/BarDisplay";
 import BarProgressHandle from "./components/BarProgressHandle";
 import { IProps as TaskItemProps } from "../TaskItem/TaskItem";
 import { OptionalKeys } from "../../types/custom";
@@ -13,11 +15,7 @@ type IProps = {
 	rootStyle?: React.CSSProperties;
 } & Pick<
 	TaskItemProps,
-	| "task"
-	| "isSelected"
-	| "isDateChangeable"
-	| "isProgressChangeable"
-	| "onEventStart"
+	"task" | "isDateChangeable" | "isProgressChangeable" | "onEventStart"
 >;
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
@@ -34,7 +32,6 @@ const BarSmall = (props: IProps & typeof defaultProps) => {
 	const {
 		rootStyle,
 		task,
-		isSelected,
 		isDateChangeable,
 		isProgressChangeable,
 		onEventStart,
@@ -61,13 +58,16 @@ const BarSmall = (props: IProps & typeof defaultProps) => {
 			<BarDisplay
 				x={task.x1}
 				y={task.y}
-				height={task.height}
-				width={task.x2 - task.x1}
 				progressX={task.progressX}
 				progressWidth={task.progressWidth}
 				barCornerRadius={task.barCornerRadius}
 				onMouseDown={(e) => {
 					isDateChangeable === true && onEventStart("move", task, e);
+				}}
+				// style
+				rootStyle={{
+					...barDisplayDefaultProps,
+					height: task.height,
 				}}
 			/>
 

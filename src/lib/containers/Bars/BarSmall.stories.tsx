@@ -10,8 +10,7 @@ export default {
 	component: BarSmall,
 };
 
-// Simple
-export const Simple = () => {
+export const Original = () => {
 	// *** USE STATE ***
 	const [task] = useState<BarTask>({
 		index: 1,
@@ -47,7 +46,6 @@ export const Simple = () => {
 		<svg style={{ overflow: "visible" }}>
 			<BarSmall
 				task={task}
-				isSelected={false}
 				isDateChangeable={true}
 				isProgressChangeable={true}
 				onEventStart={(...args) => console.log(args)}

@@ -1,16 +1,20 @@
 // *** NPM ***
-import React, { useState } from "react";
+import React from "react";
 
 // *** OTHER ***
 import Bar from "../Bar";
 import BarDateHandle from "../components/BarDateHandle";
-import BarProgressHandle from "../components/BarProgressHandle";
-import { getProgressPoint } from "../../../helpers/bar-helper";
 import { BarTask } from "../../../types/bar-task";
 import { GanttContentMoveAction } from "../../../types/gantt-task-actions";
 import BarDisplay, {
 	defaultProps as barDisplayDefaultProps,
 } from "../components/BarDisplay";
+
+// *** CONSTANTS ***
+const BAR_HEIGHT = 48;
+const BAR_DATE_HEIGHT = 10;
+const BAR_DATE_PADDING = 8;
+const BAR_DATE_STROKE_WIDTH = 2;
 
 // *** TYPES ***
 export interface IProps {
@@ -24,12 +28,9 @@ export interface IProps {
 	isDateChangeable: boolean;
 }
 
-const BarOriginal = (props: IProps) => {
+const BarNationalResources = (props: IProps) => {
 	// *** PROPS ***
-	const { task, rtl, onEventStart, isDateChangeable } = props;
-
-	// *** USE STATE ***
-	const [isHovered, setIsHovered] = useState<boolean>(false);
+	const { task, onEventStart, isDateChangeable } = props;
 
 	// *** CONDITIONALS ***
 	// bar display
@@ -39,23 +40,26 @@ const BarOriginal = (props: IProps) => {
 			y={task.y}
 			progressX={task.progressX}
 			progressWidth={task.progressWidth}
-			barCornerRadius={task.barCornerRadius}
+			barCornerRadius={BAR_DATE_HEIGHT / 2}
 			onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
 				isDateChangeable === true && onEventStart("move", task, e);
 			}}
 			// style
 			rootStyle={{
 				...barDisplayDefaultProps.rootStyle,
-				height: task.height,
+				height: `${BAR_HEIGHT}px`,
 			}}
 			barStyle={{
 				...barDisplayDefaultProps.barStyle,
-				height: task.height,
-				width: task.x2 - task.x1,
+				height: `${BAR_HEIGHT}px`,
+				fill: "#E0E3E7",
+				stroke: "green",
+				strokeWidth: "1px",
 			}}
 			progressStyle={{
 				...barDisplayDefaultProps.progressStyle,
-				height: task.height,
+				height: `${BAR_HEIGHT}px`,
+				fill: "transparent",
 			}}
 		/>
 	);
@@ -63,18 +67,20 @@ const BarOriginal = (props: IProps) => {
 	// left bar date handle
 	const leftBarDateHandle = (
 		<BarDateHandle
-			x={task.x1 + 1}
-			y={task.y + 1}
+			x={task.x1 + BAR_DATE_PADDING + BAR_DATE_STROKE_WIDTH}
+			y={task.y + BAR_HEIGHT / 2 - BAR_DATE_HEIGHT / 2}
+			height={BAR_DATE_HEIGHT}
 			width={task.handleWidth}
-			height={task.height - 2}
-			barCornerRadius={task.barCornerRadius}
+			barCornerRadius={BAR_DATE_HEIGHT / 2}
 			onMouseDown={(e) => onEventStart("start", task, e)}
 			// style
 			rootStyle={{
-				fill: "#ddd",
-				cursor: "ew-resize",
-				opacity: isHovered ? 1 : 0,
-				visibility: isHovered ? "visible" : "hidden",
+				fill: "#A9ADB2",
+				stroke: "white",
+				strokeWidth: `${BAR_DATE_STROKE_WIDTH}px`,
+				// cursor: "ew-resize",
+				opacity: 1,
+				visibility: "visible",
 			}}
 		/>
 	);
@@ -82,39 +88,20 @@ const BarOriginal = (props: IProps) => {
 	// right bar date handle
 	const rightBarDateHandle = (
 		<BarDateHandle
-			x={task.x2 - task.handleWidth - 1}
-			y={task.y + 1}
-			height={task.height - 2}
+			x={task.x2 - task.handleWidth - BAR_DATE_PADDING - BAR_DATE_STROKE_WIDTH}
+			y={task.y + BAR_HEIGHT / 2 - BAR_DATE_HEIGHT / 2}
+			height={BAR_DATE_HEIGHT}
 			width={task.handleWidth}
-			barCornerRadius={task.barCornerRadius}
+			barCornerRadius={BAR_DATE_HEIGHT / 2}
 			onMouseDown={(e) => onEventStart("end", task, e)}
 			// style
 			rootStyle={{
-				fill: "#ddd",
-				cursor: "ew-resize",
-				opacity: isHovered ? 1 : 0,
-				visibility: isHovered ? "visible" : "hidden",
-			}}
-		/>
-	);
-
-	// bar progress handle
-	const barProgressPoint = getProgressPoint(
-		+!rtl * task.progressWidth + task.progressX,
-		task.y,
-		task.height
-	);
-
-	const barProgressHandle = (
-		<BarProgressHandle
-			progressPoint={barProgressPoint}
-			onMouseDown={(e) => onEventStart("progress", task, e)}
-			// style
-			rootStyle={{
-				fill: "#ddd",
-				cursor: "ew-resize",
-				opacity: isHovered ? 1 : 0,
-				visibility: isHovered ? "visible" : "hidden",
+				fill: "#A9ADB2",
+				stroke: "white",
+				strokeWidth: `${BAR_DATE_STROKE_WIDTH}px`,
+				// cursor: "ew-resize",
+				opacity: 1,
+				visibility: "visible",
 			}}
 		/>
 	);
@@ -129,13 +116,9 @@ const BarOriginal = (props: IProps) => {
 				barDisplay={barDisplay}
 				leftBarDateHandle={leftBarDateHandle}
 				rightBarDateHandle={rightBarDateHandle}
-				barProgressHandle={barProgressHandle}
-				// handlers
-				onMouseEnter={() => setIsHovered(() => true)}
-				onMouseLeave={() => setIsHovered(() => false)}
 			/>
 		</svg>
 	);
 };
 
-export default BarOriginal;
+export default BarNationalResources;
