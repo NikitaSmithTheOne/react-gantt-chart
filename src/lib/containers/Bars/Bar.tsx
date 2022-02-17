@@ -12,7 +12,7 @@ import { IProps as TaskItemProps } from "../TaskItem/TaskItem";
 import { OptionalKeys } from "../../types/custom";
 
 // *** TYPES ***
-type IProps = { rootStyle?: React.CSSProperties } & Pick<
+export type IProps = { rootStyle?: React.CSSProperties } & Pick<
 	TaskItemProps,
 	| "task"
 	| "rtl"
@@ -24,7 +24,7 @@ type IProps = { rootStyle?: React.CSSProperties } & Pick<
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const defaultProps: TOptionalProps = {
+export const defaultProps: TOptionalProps = {
 	rootStyle: {
 		cursor: "pointer",
 		outline: "none",
