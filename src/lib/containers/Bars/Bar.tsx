@@ -92,7 +92,8 @@ const Bar = (props: IProps & typeof defaultProps) => {
 							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
 								onEventStart("start", task, e);
 							}}
-							style={{
+							// style
+							rootStyle={{
 								fill: "#ddd",
 								cursor: "ew-resize",
 								opacity: isHovered ? 1 : 0,
@@ -110,7 +111,8 @@ const Bar = (props: IProps & typeof defaultProps) => {
 							onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
 								onEventStart("end", task, e);
 							}}
-							style={{
+							// style
+							rootStyle={{
 								fill: "#ddd",
 								cursor: "ew-resize",
 								opacity: isHovered ? 1 : 0,

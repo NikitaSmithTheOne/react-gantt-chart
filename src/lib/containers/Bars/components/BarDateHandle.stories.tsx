@@ -9,22 +9,20 @@ export default {
 	component: BarDateHandle,
 };
 
-// Default
-export const Default = () => {
+export const Original = () => {
 	return (
 		<svg style={{ overflow: "visible" }}>
 			<BarDateHandle />
 		</svg>
 	);
 };
-Default.storyName = "Default";
+Original.storyName = "Original";
 
-// Hidden
-export const Hidden = () => {
+export const OriginalHidden = () => {
 	return (
 		<svg style={{ overflow: "visible" }}>
-			<BarDateHandle style={{ visibility: "hidden", opacity: 0 }} />
+			<BarDateHandle rootStyle={{ visibility: "hidden", opacity: 0 }} />
 		</svg>
 	);
 };
-Hidden.storyName = "Hidden";
+OriginalHidden.storyName = "Original Hidden";

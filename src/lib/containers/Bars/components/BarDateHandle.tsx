@@ -10,7 +10,8 @@ type IProps = {
 	height?: number;
 	barCornerRadius?: number;
 	onMouseDown?: (event: React.MouseEvent<SVGRectElement, MouseEvent>) => void;
-	style?: React.CSSProperties;
+	// style
+	rootStyle?: React.CSSProperties;
 };
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
@@ -22,7 +23,8 @@ const defaultProps: TOptionalProps = {
 	height: 30,
 	barCornerRadius: 5,
 	onMouseDown: (e) => console.log(e),
-	style: {
+	// style
+	rootStyle: {
 		fill: "#ddd",
 		cursor: "ew-resize",
 	},
@@ -30,10 +32,20 @@ const defaultProps: TOptionalProps = {
 
 const BarDateHandle = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
-	const { x, y, width, height, barCornerRadius, onMouseDown, style } = props;
+	const {
+		x,
+		y,
+		width,
+		height,
+		barCornerRadius,
+		onMouseDown,
+		// style
+		rootStyle,
+	} = props;
 
 	return (
 		<rect
+			style={rootStyle}
 			x={x}
 			y={y}
 			width={width}
@@ -41,7 +53,6 @@ const BarDateHandle = (props: IProps & typeof defaultProps) => {
 			ry={barCornerRadius}
 			rx={barCornerRadius}
 			onMouseDown={onMouseDown}
-			style={style}
 		/>
 	);
 };
