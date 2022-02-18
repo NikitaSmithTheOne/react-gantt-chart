@@ -393,6 +393,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	};
 
 	const taskListProps: TaskListProps = {
+		scrollY,
 		// components
 		TaskListHeader: TaskListHeaderDefault,
 		TaskListTable: TaskListTableDefault,

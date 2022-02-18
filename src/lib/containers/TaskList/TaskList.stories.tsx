@@ -58,6 +58,7 @@ export const Simple = () => {
 	const taskListRef = useRef(null);
 
 	const props: ITaskListProps = {
+		scrollY: 0,
 		// components
 		TaskListHeader: TaskListHeader,
 		TaskListTable: TaskListTable,

@@ -1,5 +1,5 @@
 // *** NPM ***
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 // *** OTHER ***
 import TaskListHeader, {
@@ -11,6 +11,7 @@ import TaskListTable, {
 
 // *** TYPES ***
 export type IProps = {
+	scrollY: number;
 	// components
 	TaskListHeader: typeof TaskListHeader;
 	TaskListTable: typeof TaskListTable;
@@ -26,6 +27,7 @@ export type IProps = {
 const TaskList = (props: IProps) => {
 	// *** PROPS ***
 	const {
+		scrollY,
 		// components
 		TaskListHeader,
 		TaskListTable,
@@ -38,12 +40,22 @@ const TaskList = (props: IProps) => {
 		taskListRef,
 	} = props;
 
+	// *** USE REF ***
+	const horizontalContainerRef = useRef<HTMLDivElement>(null);
+
+	// *** USE EFFECT ***
+	useEffect(() => {
+		if (horizontalContainerRef.current) {
+			horizontalContainerRef.current.scrollTop = scrollY;
+		}
+	}, [scrollY]);
+
 	return (
 		<div ref={taskListRef}>
 			{/* HEADER */}
 			<TaskListHeader {...taskListHeaderProps} />
 
-			<div style={taskListTableWrapperStyles}>
+			<div style={taskListTableWrapperStyles} ref={horizontalContainerRef}>
 				{/* TABLE */}
 				<TaskListTable {...taskListTableProps} />
 			</div>
