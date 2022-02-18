@@ -23,7 +23,9 @@ import Tooltip, { StandardTooltipContent } from "../../components/Tooltip";
 import VerticalScroll, {
 	defaultProps as verticalScrollDefaultProps,
 } from "../../components/VerticalScroll";
-import TaskList, { IProps as TaskListProps } from "../../containers/TaskList/TaskList";
+import TaskList, {
+	IProps as TaskListProps,
+} from "../../containers/TaskList/TaskList";
 import GanttTask from "./components/GanttTask";
 import { BarTask } from "../../types/bar-task";
 import { convertToBarTasks } from "../../helpers/bar-helper";
@@ -41,15 +43,25 @@ import {
 	ROW_WIDTH,
 } from "./constants";
 
-// *** STYLES ***
-import styles from "./Gantt.module.css";
-
 // *** TYPES ***
 export interface IProps extends EventOption, DisplayOption, StylingOption {
 	tasks: Task[];
+	// style
+	bodyStyle?: React.CSSProperties;
 }
+export const defaultProps = {
+	// style
+	bodyStyle: {
+		display: "flex",
+		padding: "0",
+		margin: "0",
+		listStyle: "none",
+		outline: "none",
+		position: "relative",
+	},
+};
 
-const Gantt = (props: IProps) => {
+const GanttOriginal = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
 		tasks,
@@ -89,6 +101,8 @@ const Gantt = (props: IProps) => {
 		onDelete,
 		onSelect,
 		onExpanderClick,
+		// style
+		bodyStyle,
 	} = props;
 
 	// *** USE STATE ***
@@ -125,13 +139,16 @@ const Gantt = (props: IProps) => {
 
 		const [startDate, endDate] = ganttDateRange(filteredTasks, viewMode);
 		let newDates = seedDates(startDate, endDate, viewMode);
+
 		if (rtl) {
 			newDates = newDates.reverse();
 			if (scrollX === -1) {
 				setScrollX(newDates.length * columnWidth);
 			}
 		}
+
 		setDateSetup({ dates: newDates, viewMode });
+
 		setBarTasks(
 			convertToBarTasks(
 				filteredTasks,
@@ -179,6 +196,7 @@ const Gantt = (props: IProps) => {
 
 	useEffect(() => {
 		const { changedTask, action } = ganttEvent;
+
 		if (changedTask) {
 			if (action === "delete") {
 				setGanttEvent({ action: "" });
@@ -190,6 +208,7 @@ const Gantt = (props: IProps) => {
 				action === "progress"
 			) {
 				const prevStateTask = barTasks.find((t) => t.id === changedTask.id);
+
 				if (
 					prevStateTask &&
 					(prevStateTask.start.getTime() !== changedTask.start.getTime() ||
@@ -200,6 +219,7 @@ const Gantt = (props: IProps) => {
 					const newTaskList = barTasks.map((t) =>
 						t.id === changedTask.id ? changedTask : t
 					);
+
 					setBarTasks(newTaskList);
 				}
 			}
@@ -207,44 +227,10 @@ const Gantt = (props: IProps) => {
 	}, [ganttEvent, barTasks]);
 
 	useEffect(() => {
-		if (failedTask) {
-			setBarTasks(
-				barTasks.map((t) => (t.id !== failedTask.id ? t : failedTask))
-			);
-			setFailedTask(null);
-		}
-	}, [failedTask, barTasks]);
-
-	useEffect(() => {
-		const newTaskHeight = (rowHeight * barFill) / 100;
-		if (newTaskHeight !== taskHeight) {
-			setTaskHeight(newTaskHeight);
-		}
-	}, [rowHeight, barFill, taskHeight]);
-
-	useEffect(() => {
-		if (!listCellWidth) {
-			setTaskListWidth(0);
-		}
-		if (taskListRef.current) {
-			setTaskListWidth(taskListRef.current.offsetWidth);
-		}
-	}, [taskListRef, listCellWidth]);
-
-	useEffect(() => {
 		if (wrapperRef.current) {
 			setSvgContainerWidth(wrapperRef.current.offsetWidth - taskListWidth);
 		}
 	}, [wrapperRef, taskListWidth]);
-
-	useEffect(() => {
-		if (ganttHeight) {
-			setSvgContainerHeight(ganttHeight + headerHeight);
-		} else {
-			setSvgContainerHeight(tasks.length * rowHeight + headerHeight);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ganttHeight, tasks]);
 
 	useEffect(() => {
 		const handleWheel = (event: WheelEvent) => {
@@ -289,6 +275,39 @@ const Gantt = (props: IProps) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [wrapperRef.current, scrollY, scrollX, ganttHeight, svgWidth, rtl]);
 
+	useEffect(() => {
+		if (failedTask) {
+			setBarTasks(
+				barTasks.map((t) => (t.id !== failedTask.id ? t : failedTask))
+			);
+			setFailedTask(null);
+		}
+	}, [failedTask, barTasks]);
+
+	useEffect(() => {
+		const newTaskHeight = (rowHeight * barFill) / 100;
+		if (newTaskHeight !== taskHeight) {
+			setTaskHeight(newTaskHeight);
+		}
+	}, [rowHeight, barFill, taskHeight]);
+
+	useEffect(() => {
+		if (!listCellWidth) {
+			setTaskListWidth(0);
+		}
+		if (taskListRef.current) {
+			setTaskListWidth(taskListRef.current.offsetWidth);
+		}
+	}, [taskListRef, listCellWidth]);
+
+	useEffect(() => {
+		if (ganttHeight) {
+			setSvgContainerHeight(ganttHeight + headerHeight);
+		} else {
+			setSvgContainerHeight(tasks.length * rowHeight + headerHeight);
+		}
+	}, [ganttHeight, headerHeight, rowHeight, tasks]);
+
 	// *** HANDLERS ***
 	const handleScrollY = (event: SyntheticEvent<HTMLDivElement>) => {
 		if (scrollY !== event.currentTarget.scrollTop && !ignoreScrollEvent) {
@@ -304,54 +323,12 @@ const Gantt = (props: IProps) => {
 		setIgnoreScrollEvent(false);
 	};
 
-	const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-		event.preventDefault();
-		let newScrollY = scrollY;
-		let newScrollX = scrollX;
-		let isX = true;
-		switch (event.key) {
-			case "Down": // IE/Edge specific value
-			case "ArrowDown":
-				newScrollY += rowHeight;
-				isX = false;
-				break;
-			case "Up": // IE/Edge specific value
-			case "ArrowUp":
-				newScrollY -= rowHeight;
-				isX = false;
-				break;
-			case "Left":
-			case "ArrowLeft":
-				newScrollX -= columnWidth;
-				break;
-			case "Right": // IE/Edge specific value
-			case "ArrowRight":
-				newScrollX += columnWidth;
-				break;
-		}
-		if (isX) {
-			if (newScrollX < 0) {
-				newScrollX = 0;
-			} else if (newScrollX > svgWidth) {
-				newScrollX = svgWidth;
-			}
-			setScrollX(newScrollX);
-		} else {
-			if (newScrollY < 0) {
-				newScrollY = 0;
-			} else if (newScrollY > ganttFullHeight - ganttHeight) {
-				newScrollY = ganttFullHeight - ganttHeight;
-			}
-			setScrollY(newScrollY);
-		}
-		setIgnoreScrollEvent(true);
-	};
-
 	const handleSelectedTask = (taskId: string) => {
 		const newSelectedTask = barTasks.find((t) => t.id === taskId);
 		const oldSelectedTask = barTasks.find(
 			(t) => !!selectedTask && t.id === selectedTask.id
 		);
+
 		if (onSelect) {
 			if (oldSelectedTask) {
 				onSelect(oldSelectedTask, false);
@@ -360,6 +337,7 @@ const Gantt = (props: IProps) => {
 				onSelect(newSelectedTask, true);
 			}
 		}
+
 		setSelectedTask(newSelectedTask);
 	};
 
@@ -417,7 +395,7 @@ const Gantt = (props: IProps) => {
 		onDelete,
 	};
 
-	const tableProps: TaskListProps = {
+	const taskListProps: TaskListProps = {
 		// components
 		TaskListHeader: TaskListHeaderDefault,
 		TaskListTable: TaskListTableDefault,
@@ -473,22 +451,24 @@ const Gantt = (props: IProps) => {
 	};
 
 	return (
+		// ROOT
 		<div>
-			<div
-				className={styles.wrapper}
-				onKeyDown={handleKeyDown}
-				tabIndex={0}
-				ref={wrapperRef}
-			>
-				{listCellWidth && <TaskList {...tableProps} />}
+			{/* BODY */}
+			<div style={bodyStyle} tabIndex={0} ref={wrapperRef}>
+				{/* TASK LIST */}
+				{listCellWidth && <TaskList {...taskListProps} />}
+
+				{/* GANTT TASK */}
 				<GanttTask
+					barProps={barProps}
 					gridProps={gridProps}
 					calendarProps={calendarProps}
-					barProps={barProps}
 					ganttHeight={ganttHeight}
-					scrollY={scrollY}
 					scrollX={scrollX}
+					scrollY={scrollY}
 				/>
+
+				{/* TOOLTIP */}
 				{ganttEvent.changedTask && (
 					<Tooltip
 						arrowIndent={arrowIndent}
@@ -510,6 +490,8 @@ const Gantt = (props: IProps) => {
 						/>
 					</Tooltip>
 				)}
+
+				{/* VERTICAL SCROLL */}
 				<VerticalScroll
 					scroll={scrollY}
 					onScroll={handleScrollY}
@@ -526,6 +508,8 @@ const Gantt = (props: IProps) => {
 					}}
 				/>
 			</div>
+
+			{/* HORIZONTAL SCROLL */}
 			<HorizontalScroll
 				scroll={scrollX}
 				onScroll={handleScrollX}
@@ -544,5 +528,6 @@ const Gantt = (props: IProps) => {
 		</div>
 	);
 };
+GanttOriginal.defaultProps = defaultProps;
 
-export default Gantt;
+export default GanttOriginal;

@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import GanttOriginal from "../lib/examples/GanttOriginal/Gantt";
+import GanttOriginal from "../lib/examples/GanttOriginal/GanttOriginal";
 import { Task, ViewMode } from "../lib/types/public-types";
 import { getStartEndDateForProject, initTasks } from "./helpers";
 import ViewSwitcher from "./components/ViewSwitcher";
