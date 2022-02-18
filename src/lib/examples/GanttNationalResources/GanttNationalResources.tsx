@@ -356,6 +356,9 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		dates: dateSetup.dates,
 		todayColor,
 		rtl,
+		// style
+		gridRowLineStyle: { stroke: "transparent" },
+		gridTickStyle: { stroke: "transparent" },
 	};
 
 	const calendarProps: CalendarProps = {
