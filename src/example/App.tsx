@@ -11,7 +11,7 @@ import ViewSwitcher from "./components/ViewSwitcher";
 const App = () => {
 	// *** USE STATE ***
 	const [tasks, setTasks] = React.useState<Task[]>(initTasks());
-	const [view, setView] = React.useState<ViewMode>(ViewMode.Day);
+	const [view, setView] = React.useState<ViewMode>(ViewMode.Month);
 	const [isChecked, setIsChecked] = React.useState(true);
 
 	// *** CONSTANTS ***
@@ -102,7 +102,7 @@ const App = () => {
 				onProgressChange={handleProgressChange}
 				onDoubleClick={handleDblClick}
 				onSelect={handleSelect}
-				ganttHeight={450}
+				ganttHeight={550}
 				onExpanderClick={handleExpanderClick}
 				listCellWidth={isChecked ? "155px" : ""}
 				columnWidth={columnWidth}

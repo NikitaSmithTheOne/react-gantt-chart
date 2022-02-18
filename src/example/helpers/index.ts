@@ -1,98 +1,106 @@
 // *** OTHER ***
 import { Task } from "../../lib/types/public-types";
 
-export function initTasks() {
-	const currentDate = new Date();
+export const initTasks = (): Task[] => {
 	const tasks: Task[] = [
+		// Project 1
 		{
-			start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 1),
-			end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 15),
-			name: "Some Project",
-			id: "ProjectSample",
-			progress: 25,
 			type: "project",
-
+			id: "ProjectSample",
+			name: "1.Project",
+			start: new Date(2021, 6, 1),
+			end: new Date(2021, 9, 30),
+			progress: 25,
 			hideChildren: false,
 		},
 		{
-			start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 1),
-			end: new Date(
-				currentDate.getFullYear(),
-				currentDate.getMonth(),
-				2,
-				12,
-				28
-			),
-			name: "Idea",
-			id: "Task 0",
-			progress: 45,
 			type: "task",
+			id: "Task 0",
+			name: "1.1 Task",
+			start: new Date(2021, 6, 1),
+			end: new Date(2021, 6, 30),
+			progress: 45,
 			project: "ProjectSample",
 		},
 		{
-			start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 2),
-			end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 4, 0, 0),
-			name: "Research",
+			type: "task",
 			id: "Task 1",
+			name: "1.2 Task",
+			start: new Date(2021, 7, 1),
+			end: new Date(2021, 7, 30),
 			progress: 25,
 			dependencies: ["Task 0"],
-			type: "task",
 			project: "ProjectSample",
 		},
 		{
-			start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 4),
-			end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 8, 0, 0),
-			name: "Discussion with team",
+			type: "task",
 			id: "Task 2",
+			name: "1.3 Task",
+			start: new Date(2021, 6, 1),
+			end: new Date(2021, 7, 30),
 			progress: 10,
 			dependencies: ["Task 1"],
-			type: "task",
 			project: "ProjectSample",
 		},
 		{
-			start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 8),
-			end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 9, 0, 0),
-			name: "Developing",
+			type: "milestone",
+			id: "Task 6",
+			name: "1.3.1 MileStone (KT)",
+			start: new Date(2021, 6, 15),
+			end: new Date(2021, 6, 15),
+			progress: 100,
+			dependencies: ["Task 2"],
+			project: "ProjectSample",
+		},
+		{
+			type: "milestone",
+			id: "Task 7",
+			name: "1.3.2 MileStone (KT)",
+			start: new Date(2021, 7, 15),
+			end: new Date(2021, 7, 15),
+			progress: 100,
+			dependencies: ["Task 2"],
+			project: "ProjectSample",
+		},
+
+		{
+			type: "task",
 			id: "Task 3",
+			name: "1.4 Task",
+			start: new Date(2021, 8, 1),
+			end: new Date(2021, 8, 30),
 			progress: 2,
 			dependencies: ["Task 2"],
-			type: "task",
 			project: "ProjectSample",
 		},
 		{
-			start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 8),
-			end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 10),
-			name: "Review",
-			id: "Task 4",
 			type: "task",
+			id: "Task 4",
+			name: "1.5 Task",
+			start: new Date(2021, 9, 1),
+			end: new Date(2021, 9, 30),
 			progress: 70,
 			dependencies: ["Task 2"],
 			project: "ProjectSample",
 		},
 		{
-			start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 15),
-			end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 15),
-			name: "Release",
-			id: "Task 6",
-			progress: currentDate.getMonth(),
 			type: "milestone",
+			id: "Task 5",
+			name: "1.5.1 MileStone (KT)",
+			start: new Date(2021, 9, 15),
+			end: new Date(2021, 9, 15),
+			progress: 100,
 			dependencies: ["Task 4"],
 			project: "ProjectSample",
 		},
-		{
-			start: new Date(currentDate.getFullYear(), currentDate.getMonth(), 18),
-			end: new Date(currentDate.getFullYear(), currentDate.getMonth(), 19),
-			name: "Party Time",
-			id: "Task 9",
-			progress: 0,
-			isDisabled: true,
-			type: "task",
-		},
 	];
 	return tasks;
-}
+};
 
-export function getStartEndDateForProject(tasks: Task[], projectId: string) {
+export const getStartEndDateForProject = (
+	tasks: Task[],
+	projectId: string
+): [Date, Date] => {
 	const projectTasks = tasks.filter((t) => t.project === projectId);
 	let start = projectTasks[0].start;
 	let end = projectTasks[0].end;
@@ -107,4 +115,4 @@ export function getStartEndDateForProject(tasks: Task[], projectId: string) {
 		}
 	}
 	return [start, end];
-}
+};
