@@ -34,7 +34,7 @@ type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
 export const defaultProps: TOptionalProps = {
 	taskItemTextStyle: {
-		fill: "#fff",
+		fill: "#1B2026",
 		textAnchor: "middle",
 		fontWeight: "lighter",
 		dominantBaseline: "central",
@@ -42,7 +42,7 @@ export const defaultProps: TOptionalProps = {
 		pointerEvents: "none",
 	},
 	taskItemTextOutsideStyle: {
-		fill: "#555",
+		fill: "#1B2026",
 		textAnchor: "start",
 		userSelect: "none",
 		pointerEvents: "none",
@@ -75,9 +75,11 @@ const TaskItemNationalResources = (props: IProps & typeof defaultProps) => {
 	const getX = () => {
 		const width = task.x2 - task.x1;
 		const hasChild = task.barChildren.length > 0;
+
 		if (isTextInside) {
 			return task.x1 + width * 0.5;
 		}
+
 		if (rtl && textRef.current) {
 			return (
 				task.x1 -

@@ -52,6 +52,7 @@ const BarNationalResources = (props: IProps) => {
 			barStyle={{
 				...barDisplayDefaultProps.barStyle,
 				height: `${BAR_HEIGHT}px`,
+				width: `${task.x2 - task.x1}px`,
 				fill: "#E0E3E7",
 				stroke: "green",
 				strokeWidth: "1px",
@@ -69,7 +70,7 @@ const BarNationalResources = (props: IProps) => {
 		<BarDateHandle
 			x={task.x1 + BAR_DATE_PADDING + BAR_DATE_STROKE_WIDTH}
 			y={task.y + BAR_HEIGHT / 2 - BAR_DATE_HEIGHT / 2}
-			height={BAR_DATE_HEIGHT}
+			height={task.handleWidth}
 			width={task.handleWidth}
 			barCornerRadius={BAR_DATE_HEIGHT / 2}
 			onMouseDown={(e) => onEventStart("start", task, e)}
@@ -90,7 +91,7 @@ const BarNationalResources = (props: IProps) => {
 		<BarDateHandle
 			x={task.x2 - task.handleWidth - BAR_DATE_PADDING - BAR_DATE_STROKE_WIDTH}
 			y={task.y + BAR_HEIGHT / 2 - BAR_DATE_HEIGHT / 2}
-			height={BAR_DATE_HEIGHT}
+			height={task.handleWidth}
 			width={task.handleWidth}
 			barCornerRadius={BAR_DATE_HEIGHT / 2}
 			onMouseDown={(e) => onEventStart("end", task, e)}
