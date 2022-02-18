@@ -36,7 +36,7 @@ export type IProps = {
 	setSelectedTask: (taskId: string) => void;
 } & EventOption;
 
-const GanttTaskContent = (props: IProps) => {
+const GanttTaskContentOriginal = (props: IProps) => {
 	// *** PROPS ***
 	const {
 		tasks,
@@ -306,4 +306,4 @@ const GanttTaskContent = (props: IProps) => {
 	);
 };
 
-export default GanttTaskContent;
+export default GanttTaskContentOriginal;

@@ -26,7 +26,7 @@ import VerticalScroll, {
 import TaskList, {
 	IProps as TaskListProps,
 } from "../../containers/TaskList/TaskList";
-import GanttTask from "./components/GanttTask";
+import GanttTaskOriginal from "./components/GanttTaskOriginal";
 import { BarTask } from "../../types/bar-task";
 import { convertToBarTasks } from "../../helpers/bar-helper";
 import { GanttEvent } from "../../types/gantt-task-actions";
@@ -459,7 +459,7 @@ const GanttOriginal = (props: IProps & typeof defaultProps) => {
 				{listCellWidth && <TaskList {...taskListProps} />}
 
 				{/* GANTT TASK */}
-				<GanttTask
+				<GanttTaskOriginal
 					barProps={barProps}
 					gridProps={gridProps}
 					calendarProps={calendarProps}
