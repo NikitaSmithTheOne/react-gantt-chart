@@ -7,7 +7,7 @@ import BarDisplay, {
 	defaultProps as barDisplayDefaultProps,
 } from "./components/BarDisplay";
 import BarProgressHandle from "./components/BarProgressHandle";
-import { IProps as TaskItemProps } from "../TaskItem/TaskItem";
+import { IProps as TaskItemProps } from "../TaskItem/examples/TaskItemOriginal";
 import { OptionalKeys } from "../../types/custom";
 
 // *** TYPES ***

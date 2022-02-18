@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import { IProps as TaskItemProps } from "../TaskItem/TaskItem";
+import { IProps as TaskItemProps } from "../TaskItem/examples/TaskItemOriginal";
 
 // *** STYLES ***
 import { OptionalKeys } from "../../types/custom";

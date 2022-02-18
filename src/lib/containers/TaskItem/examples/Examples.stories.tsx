@@ -2,15 +2,18 @@
 import React from "react";
 
 // *** OTHER ***
-import TaskItem, { IProps as ITaskItemProps } from "./TaskItem";
+import TaskItemOriginal, {
+	IProps as ITaskItemOriginalProps,
+} from "./TaskItemOriginal";
+import TaskItemNationalResources from "./TaskItemNationalResources";
 
 export default {
-	title: "TaskItem/TaskItem",
-	component: TaskItem,
+	title: "Examples/TaskItem",
+	component: TaskItemOriginal,
 };
 
 // *** CONSTANTS ***
-const TASK: ITaskItemProps["task"] = {
+const TASK: ITaskItemOriginalProps["task"] = {
 	index: 1,
 	typeInternal: "task",
 	x1: 0,
@@ -40,9 +43,25 @@ const TASK: ITaskItemProps["task"] = {
 	project: undefined,
 };
 
-export const Simple = () => {
+export const Original = () => {
 	return (
-		<TaskItem
+		<TaskItemOriginal
+			task={TASK}
+			isSelected={false}
+			isProgressChangeable={true}
+			isDateChangeable={true}
+			arrowIndent={5}
+			taskHeight={50}
+			isDelete={false}
+			rtl={false}
+			onEventStart={(...args) => console.log(args)}
+		/>
+	);
+};
+
+export const NationalResources = () => {
+	return (
+		<TaskItemNationalResources
 			task={TASK}
 			isSelected={false}
 			isProgressChangeable={true}

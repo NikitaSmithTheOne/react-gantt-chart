@@ -7,7 +7,7 @@ import { BarTask } from "../../../types/bar-task";
 import Arrow from "../../../components/Arrow";
 import { handleTaskBySVGMouseEvent } from "../../../helpers/bar-helper";
 import { isKeyboardEvent } from "../../../helpers/other-helper";
-import TaskItem from "../../../containers/TaskItem/TaskItem";
+import TaskItem from "../../../containers/TaskItem/examples/TaskItemOriginal";
 import {
 	BarMoveAction,
 	GanttContentMoveAction,

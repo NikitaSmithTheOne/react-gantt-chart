@@ -2,13 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 
 // *** OTHER ***
-import BarSmall from "../Bars/BarSmall";
-import { BarTask } from "../../types/bar-task";
-import MileStone from "./components/MileStone";
-import Project from "./components/Project";
-import { GanttContentMoveAction } from "../../types/gantt-task-actions";
-import { OptionalKeys } from "../../types/custom";
-import BarOriginal from "../Bars/examples/BarOriginal";
+import BarSmall from "../../Bars/BarSmall";
+import { BarTask } from "../../../types/bar-task";
+import MileStone from "../components/MileStone";
+import Project from "../components/Project";
+import { GanttContentMoveAction } from "../../../types/gantt-task-actions";
+import { OptionalKeys } from "../../../types/custom";
+import BarNationalResources from "../../Bars/examples/BarNationalResources";
 
 // *** TYPES ***
 export type IProps = {
@@ -49,7 +49,7 @@ export const defaultProps: TOptionalProps = {
 	},
 };
 
-const TaskItem = (props: IProps & typeof defaultProps) => {
+const TaskItemNationalResources = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
 		task,
@@ -71,7 +71,7 @@ const TaskItem = (props: IProps & typeof defaultProps) => {
 	// *** USE REF ***
 	const textRef = useRef<SVGTextElement>(null);
 
-	// *** HANDLERS ***
+	// *** HELPERS ***
 	const getX = () => {
 		const width = task.x2 - task.x1;
 		const hasChild = task.barChildren.length > 0;
@@ -90,6 +90,17 @@ const TaskItem = (props: IProps & typeof defaultProps) => {
 		}
 	};
 
+	// *** HANDLERS ***
+	const onRootKeyDownHandler = (e: React.KeyboardEvent<SVGGElement>): void => {
+		switch (e.key) {
+			case "Delete": {
+				if (isDelete) onEventStart("delete", task, e);
+				break;
+			}
+		}
+		e.stopPropagation();
+	};
+
 	// *** USE EFFECT ***
 	useEffect(() => {
 		switch (task.typeInternal) {
@@ -104,7 +115,7 @@ const TaskItem = (props: IProps & typeof defaultProps) => {
 				break;
 			default:
 				setTaskItem(() => (
-					<BarOriginal
+					<BarNationalResources
 						task={props.task}
 						rtl={props.rtl}
 						onEventStart={props.onEventStart}
@@ -126,15 +137,7 @@ const TaskItem = (props: IProps & typeof defaultProps) => {
 		<svg>
 			{/* ROOT */}
 			<g
-				onKeyDown={(e) => {
-					switch (e.key) {
-						case "Delete": {
-							if (isDelete) onEventStart("delete", task, e);
-							break;
-						}
-					}
-					e.stopPropagation();
-				}}
+				onKeyDown={(e) => onRootKeyDownHandler(e)}
 				onMouseEnter={(e) => {
 					onEventStart("mouseenter", task, e);
 				}}
@@ -164,6 +167,6 @@ const TaskItem = (props: IProps & typeof defaultProps) => {
 		</svg>
 	);
 };
-TaskItem.defaultProps = defaultProps;
+TaskItemNationalResources.defaultProps = defaultProps;
 
-export default TaskItem;
+export default TaskItemNationalResources;
