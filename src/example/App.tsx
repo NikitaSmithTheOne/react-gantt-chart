@@ -102,6 +102,7 @@ const App = () => {
 				onProgressChange={handleProgressChange}
 				onDoubleClick={handleDblClick}
 				onSelect={handleSelect}
+				ganttHeight={450}
 				onExpanderClick={handleExpanderClick}
 				listCellWidth={isChecked ? "155px" : ""}
 				columnWidth={columnWidth}

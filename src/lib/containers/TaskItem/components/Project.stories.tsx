@@ -41,5 +41,5 @@ const TASK: IProjectProps["task"] = {
 };
 
 export const Simple = () => {
-	return <Project task={TASK} isSelected={true} />;
+	return <Project task={TASK} />;
 };

@@ -6,15 +6,16 @@ import { IProps as TaskItemProps } from "../examples/TaskItemOriginal";
 import { OptionalKeys } from "../../../types/custom";
 
 // *** TYPES ***
-export type IProps = {
+export type IProps = Pick<TaskItemProps, "task"> & {
 	rootStyle?: React.CSSProperties;
 	backgroundStyle?: React.CSSProperties;
-	topStyle?: React.CSSProperties;
-} & Pick<TaskItemProps, "task" | "isSelected">;
+	progressStyle?: React.CSSProperties;
+};
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
 export const defaultProps: TOptionalProps = {
+	// style
 	rootStyle: {
 		cursor: "pointer",
 		outline: "none",
@@ -22,88 +23,51 @@ export const defaultProps: TOptionalProps = {
 	backgroundStyle: {
 		userSelect: "none",
 		opacity: 0.6,
+		fill: "orange",
 	},
-	topStyle: {
-		userSelect: "none",
+	progressStyle: {
+		fill: "green",
 	},
 };
 
-const Project = (props: IProps) => {
+const Project = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
-	const { task, isSelected, rootStyle, backgroundStyle, topStyle } = props;
-
-	// *** CONDITIONALS ****
-	const barColor = isSelected
-		? task.styles.backgroundSelectedColor
-		: task.styles.backgroundColor;
-	const processColor = isSelected
-		? task.styles.progressSelectedColor
-		: task.styles.progressColor;
-	const projectWith = task.x2 - task.x1;
-
-	const projectLeftTriangle = [
-		task.x1,
-		task.y + task.height / 2 - 1,
-		task.x1,
-		task.y + task.height,
-		task.x1 + 15,
-		task.y + task.height / 2 - 1,
-	].join(",");
-
-	const projectRightTriangle = [
-		task.x2,
-		task.y + task.height / 2 - 1,
-		task.x2,
-		task.y + task.height,
-		task.x2 - 15,
-		task.y + task.height / 2 - 1,
-	].join(",");
+	const {
+		task,
+		// style
+		rootStyle,
+		backgroundStyle,
+		progressStyle,
+	} = props;
 
 	return (
 		<svg>
 			<g tabIndex={0} style={rootStyle}>
+				{/* BACKGROUND */}
 				<rect
 					style={backgroundStyle}
-					fill={barColor}
 					x={task.x1}
-					width={projectWith}
 					y={task.y}
 					height={task.height}
+					width={task.x2 - task.x1}
 					rx={task.barCornerRadius}
 					ry={task.barCornerRadius}
 				/>
+
+				{/* PROGRESS */}
 				<rect
-					fill={processColor}
+					style={progressStyle}
 					x={task.progressX}
-					width={task.progressWidth}
 					y={task.y}
 					height={task.height}
-					ry={task.barCornerRadius}
-					rx={task.barCornerRadius}
-				/>
-				<rect
-					style={topStyle}
-					fill={barColor}
-					x={task.x1}
-					width={projectWith}
-					y={task.y}
-					height={task.height / 2}
+					width={task.progressWidth}
 					rx={task.barCornerRadius}
 					ry={task.barCornerRadius}
-				/>
-				<polygon
-					style={topStyle}
-					fill={barColor}
-					points={projectLeftTriangle}
-				/>
-				<polygon
-					style={topStyle}
-					fill={barColor}
-					points={projectRightTriangle}
 				/>
 			</g>
 		</svg>
 	);
 };
+Project.defaultProps = defaultProps;
 
 export default Project;

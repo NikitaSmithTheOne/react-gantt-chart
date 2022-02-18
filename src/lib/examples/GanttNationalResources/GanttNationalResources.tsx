@@ -35,13 +35,7 @@ import HorizontalScroll, {
 	defaultProps as horizontalScrollDefaultProps,
 } from "../../components/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
-import {
-	FONT_FAMILY,
-	FONT_SIZE,
-	HEADER_HEIGHT,
-	ROW_HEIGHT,
-	ROW_WIDTH,
-} from "./constants";
+import { FONT_FAMILY, FONT_SIZE, HEADER_HEIGHT, ROW_WIDTH } from "./constants";
 
 // *** TYPES ***
 export interface IProps extends EventOption, DisplayOption, StylingOption {
@@ -78,10 +72,10 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		barProgressSelectedColor = "#8282f5",
 		barBackgroundColor = "#b8c2cc",
 		barBackgroundSelectedColor = "#aeb8c2",
-		projectProgressColor = "#7db59a",
-		projectProgressSelectedColor = "#59a985",
-		projectBackgroundColor = "#fac465",
-		projectBackgroundSelectedColor = "#f7bb53",
+		projectProgressColor = "transparent",
+		projectProgressSelectedColor = "transparent",
+		projectBackgroundColor = "#338BFF",
+		projectBackgroundSelectedColor = "##338BFF",
 		milestoneBackgroundColor = "#f1c453",
 		milestoneBackgroundSelectedColor = "#f29e4c",
 		rtl = false,

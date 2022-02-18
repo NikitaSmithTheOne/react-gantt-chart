@@ -5,7 +5,9 @@ import React, { useEffect, useRef, useState } from "react";
 import BarSmall from "../../Bars/BarSmall";
 import { BarTask } from "../../../types/bar-task";
 import MileStone from "../components/MileStone";
-import Project from "../components/Project";
+import Project, {
+	defaultProps as projectDefaultProps,
+} from "../components/Project";
 import { GanttContentMoveAction } from "../../../types/gantt-task-actions";
 import { OptionalKeys } from "../../../types/custom";
 import BarNationalResources from "../../Bars/examples/BarNationalResources";
@@ -110,7 +112,21 @@ const TaskItemNationalResources = (props: IProps & typeof defaultProps) => {
 				setTaskItem(<MileStone {...props} />);
 				break;
 			case "project":
-				setTaskItem(<Project {...props} />);
+				setTaskItem(
+					<Project
+						task={props.task}
+						// style
+						backgroundStyle={{
+							...projectDefaultProps.backgroundStyle,
+							fill: task.styles.backgroundColor,
+							opacity: 0.1,
+						}}
+						progressStyle={{
+							...projectDefaultProps.progressStyle,
+							fill: task.styles.progressSelectedColor,
+						}}
+					/>
+				);
 				break;
 			case "smalltask":
 				setTaskItem(<BarSmall {...props} />);
