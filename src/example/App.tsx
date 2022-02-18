@@ -3,14 +3,18 @@ import React from "react";
 
 // *** OTHER ***
 import GanttOriginal from "../lib/examples/GanttOriginal/GanttOriginal";
+import GanttNationalResources from "../lib/examples/GanttNationalResources/GanttNationalResources";
 import { Task, ViewMode } from "../lib/types/public-types";
 import { getStartEndDateForProject, initTasks } from "./helpers";
 import ViewSwitcher from "./components/ViewSwitcher";
 
-function App() {
-	const [view, setView] = React.useState<ViewMode>(ViewMode.Day);
+const App = () => {
+	// *** USE STATE ***
 	const [tasks, setTasks] = React.useState<Task[]>(initTasks());
+	const [view, setView] = React.useState<ViewMode>(ViewMode.Day);
 	const [isChecked, setIsChecked] = React.useState(true);
+
+	// *** CONSTANTS ***
 	let columnWidth = 60;
 	if (view === ViewMode.Month) {
 		columnWidth = 300;
@@ -18,6 +22,7 @@ function App() {
 		columnWidth = 250;
 	}
 
+	// *** HANDLERS ***
 	const handleTaskChange = (task: Task) => {
 		console.log("On date change Id:" + task.id);
 		let newTasks = tasks.map((t) => (t.id === task.id ? task : t));
@@ -71,6 +76,8 @@ function App() {
 				onViewListChange={setIsChecked}
 				isChecked={isChecked}
 			/>
+
+			{/* ORIGINAL */}
 			<h3>Gantt - Original</h3>
 			<GanttOriginal
 				tasks={tasks}
@@ -84,8 +91,23 @@ function App() {
 				listCellWidth={isChecked ? "155px" : ""}
 				columnWidth={columnWidth}
 			/>
+
+			{/* NATIONAL RESOURCES */}
+			<h3>Gantt - National Resources</h3>
+			<GanttNationalResources
+				tasks={tasks}
+				viewMode={view}
+				onDateChange={handleTaskChange}
+				onDelete={handleTaskDelete}
+				onProgressChange={handleProgressChange}
+				onDoubleClick={handleDblClick}
+				onSelect={handleSelect}
+				onExpanderClick={handleExpanderClick}
+				listCellWidth={isChecked ? "155px" : ""}
+				columnWidth={columnWidth}
+			/>
 		</div>
 	);
-}
+};
 
 export default App;
