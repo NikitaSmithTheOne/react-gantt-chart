@@ -12,7 +12,7 @@ import {
 import { IProps as GridProps } from "../../containers/Grid/Grid";
 import { ganttDateRange, seedDates } from "../../helpers/date-helper";
 import { IProps as CalendarProps } from "../../containers/Calendar/Calendar";
-import { IProps as TaskGanttContentProps } from "./components/GanttTaskContent";
+import { IProps as TaskGanttContentProps } from "./components/GanttTaskContentOriginal";
 import TaskListHeaderDefault, {
 	defaultProps as taskListHeaderDefaultProps,
 } from "../../containers/TaskList/components/TaskListHeader";

@@ -8,7 +8,7 @@ import Calendar, {
 } from "../../../containers/Calendar/Calendar";
 import GanttTaskContent, {
 	IProps as GanttTaskContentProps,
-} from "./GanttTaskContent";
+} from "./GanttTaskContentOriginal";
 
 // *** STYLES ***
 import styles from "./GanttTask.module.css";
