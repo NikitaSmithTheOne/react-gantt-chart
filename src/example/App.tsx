@@ -1,12 +1,12 @@
 // *** NPM ***
 import React from "react";
+import GanttOriginal from "react-gantt-chart/library/examples/GanttOriginal/GanttOriginal";
+import GanttNationalResources from "react-gantt-chart/library/examples/GanttNationalResources/GanttNationalResources";
+import { Task, ViewMode } from "react-gantt-chart/library/types/public-types";
 
 // *** OTHER ***
-import GanttOriginal from "../lib/examples/GanttOriginal/GanttOriginal";
-import GanttNationalResources from "../lib/examples/GanttNationalResources/GanttNationalResources";
-import { Task, ViewMode } from "../lib/types/public-types";
-import { getStartEndDateForProject, initTasks } from "./helpers";
 import ViewSwitcher from "./components/ViewSwitcher";
+import { getStartEndDateForProject, initTasks } from "./helpers";
 
 const App = () => {
 	// *** USE STATE ***
