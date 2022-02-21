@@ -20,7 +20,7 @@
     "commit": "git-cz",
     "lint": "eslint . --ext .ts,.tsx",
     "//LIBRARY": "-----------------------------------------------------------------",
-    "lib:build": "npx typescript -p tsconfig.lib.json",
+    "lib:build": "npx tsc -p tsconfig.lib.json",
     "lib:link": "npm link && npm link react-gantt-chart",
     "//RELEASE": "-----------------------------------------------------------------",
     "release": "standard-version",
@@ -31,8 +31,7 @@
     "build-storybook": "build-storybook -s public",
     "//PUBLISH": "-----------------------------------------------------------------",
     "publish:dry": "npm publish --dry-run",
-    "prepare": "npx tsc -p tsconfig.lib.json",
-    "prepublishOnly": "npm test -- --watchAll=false && npm run lint"
+    "prepublishOnly": "npm test -- --watchAll=false && npm run lint && npm run lib:build"
   },
   "eslintConfig": {
     "extends": [
@@ -84,7 +83,6 @@
     "web-vitals": "^2.1.4",
     "git-cz": "^4.8.0",
     "standard-version": "^9.3.2",
-    "tsc": "^2.0.4",
     "typescript": "^4.5.5",
     "webpack": "^5.68.0"
   },
