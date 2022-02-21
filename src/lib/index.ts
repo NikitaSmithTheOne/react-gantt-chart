@@ -1,9 +1,8 @@
 // components
-// export {
-// 	default as Arrow,
-// 	defaultProps as arrowDefaultProps,
-// 	type IProps as IArrowProps,
-// } from "./components/Arrow";
+export * as components from "./components";
+
+// containers
+export * as containers from "./containers";
 
 // types
 export * as types from "./types";

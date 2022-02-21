@@ -5,7 +5,7 @@ import React, { SyntheticEvent, useRef, useEffect } from "react";
 import { OptionalKeys } from "../types/custom";
 
 // *** TYPES ***
-interface IProps {
+export interface IProps {
 	scroll: number;
 	onScroll: (event: SyntheticEvent<HTMLDivElement>) => void;
 	// style
