@@ -29,7 +29,7 @@
     "commit": "git-cz",
     "lint": "eslint . --ext .ts,.tsx",
     "//LIBRARY": "-----------------------------------------------------------------",
-    "lib:build": "tsc -p tsconfig.lib.json",
+    "lib:build": "npx typescript -p tsconfig.lib.json",
     "//RELEASE": "-----------------------------------------------------------------",
     "release": "standard-version",
     "release:patch": "standard-version --release-as patch",

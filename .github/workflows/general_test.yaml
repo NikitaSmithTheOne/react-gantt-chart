@@ -17,8 +17,8 @@ jobs:
       - name: Test Coverage
         run: npm run test -- --coverage --watchAll=false
 
-      - name: Build
-        run: npm run build
-
       - name: Library Build
         run: npm run lib:build
+
+      - name: Build
+        run: npm run build
