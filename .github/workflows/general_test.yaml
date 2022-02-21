@@ -18,7 +18,7 @@ jobs:
         run: npm run test -- --coverage --watchAll=false
 
       - name: Library Build
-        run: npm run lib:build
+        run: CI=false npm run lib:build
 
       - name: Build
-        run: npm run build
+        run: CI=false npm run build
