@@ -28,7 +28,11 @@
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "//PUBLISH": "-----------------------------------------------------------------",
+    "publish:dry": "npm publish --dry-run",
+    "prepare": "npx tsc -p tsconfig.lib.json",
+    "prepublishOnly": "npm test -- --watchAll=false && npm run lint"
   },
   "eslintConfig": {
     "extends": [
