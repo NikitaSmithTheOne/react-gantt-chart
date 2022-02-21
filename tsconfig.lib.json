@@ -28,5 +28,9 @@
     },
     "include": [
         "./src/lib/**/*",
+    ],
+    "exclude": [
+        "./src/lib/**/*.stories.*",
+        "./src/lib/**/*.test.*"
     ]
 }
