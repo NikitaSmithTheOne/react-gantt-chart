@@ -53,14 +53,14 @@ const TaskListHeader = (props: IProps & typeof defaultProps) => {
 
 	// *** CONDITIONALS ***
 	const headerBody: JSX.Element[] = [];
-	columns.forEach((column) => {
+	columns.forEach((column, index) => {
 		const columnElement = (
 			<>
 				{/* COLUMN */}
 				<div style={columnStyle}>{column}</div>
 
 				{/* SEPARATOR */}
-				<div style={columnSeparatorStyle} />
+				{index !== columns.length - 1 && <div style={columnSeparatorStyle} />}
 			</>
 		);
 
