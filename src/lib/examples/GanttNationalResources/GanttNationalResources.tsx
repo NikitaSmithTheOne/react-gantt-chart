@@ -35,7 +35,7 @@ import HorizontalScroll, {
 	defaultProps as horizontalScrollDefaultProps,
 } from "../../components/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
-import { FONT_FAMILY, FONT_SIZE, ROW_WIDTH } from "./constants";
+import { ROW_WIDTH } from "./constants";
 
 // *** TYPES ***
 export interface IProps extends EventOption, DisplayOption, StylingOption {
@@ -82,7 +82,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		handleWidth = 10,
 		timeStep = 300000,
 		arrowColor = "grey",
-		fontFamily = "Arial, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue",
+		fontFamily = "'Abhaya Libre', Helvetica Neue, serif",
 		fontSize = "14px",
 		arrowIndent = 20,
 		todayColor = "rgba(252, 248, 227, 0.5)",
@@ -403,7 +403,6 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			// styles
 			rootStyle: {
 				...taskListHeaderDefaultProps.rootStyle,
-				fontFamily: "sans-serif",
 				border: "none",
 			},
 			headerStyle: {
@@ -416,9 +415,11 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 				textAlign: "left",
 				paddingLeft: "12px",
 				color: "#6A6F77",
+				fontFamily: fontFamily,
 				fontSize: "18px",
 				fontWeight: "500",
 				lineHeight: "24px",
+				boxSizing: "border-box",
 			},
 			columnSeparatorStyle: {
 				...taskListHeaderDefaultProps.columnSeparatorStyle,
@@ -428,7 +429,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		},
 		taskListTableProps: {
 			tasks: barTasks,
-			locale: "en-GB",
+			locale: "ru",
 			onExpanderClick: handleExpanderClick,
 			// conditionals
 			showStartDateColumn: false,
@@ -436,17 +437,33 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			// style
 			rootStyle: {
 				...taskListTableDefaultProps.rootStyle,
-				fontFamily: FONT_FAMILY,
-				fontSize: FONT_SIZE,
 			},
 			tableRowStyle: {
 				...taskListTableDefaultProps.tableRowStyle,
 				height: rowHeight,
 			},
+			tableRowStyleProject: {
+				backgroundColor: "#338BFF1A",
+			},
 			tableCellStyle: {
 				...taskListTableDefaultProps.tableCellStyle,
 				minWidth: ROW_WIDTH,
 				maxWidth: ROW_WIDTH,
+				color: "#6A6F77",
+				fontFamily: fontFamily,
+				fontSize: "14px",
+				fontWeight: "500",
+				lineHeight: "20px",
+				boxSizing: "border-box",
+			},
+			tableCellStyleProject: {
+				paddingLeft: "48px",
+			},
+			tableCellStyleTask: {
+				paddingLeft: "64px",
+			},
+			tableCellStyleMileStone: {
+				paddingLeft: "76px",
 			},
 		},
 		// styles
