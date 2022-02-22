@@ -32,6 +32,10 @@ export interface IProps {
 	tasks: Task[];
 	locale: string;
 	onExpanderClick: (task: Task) => void;
+	// conditionals
+	// TODO: MAKE MORE FLEXIBLE RENDERING (TILL NOW LEAVE IT LIKE SO)
+	showStartDateColumn?: boolean;
+	showEndDateColumn?: boolean;
 	// styles
 	rootStyle?: React.CSSProperties;
 	tableRowStyle?: React.CSSProperties;
@@ -44,6 +48,10 @@ type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
 export const defaultProps: TOptionalProps = {
+	// conditionals
+	showStartDateColumn: true,
+	showEndDateColumn: true,
+	// styles
 	rootStyle: {
 		display: "table",
 		borderBottom: "#e6e4e4 1px solid",
@@ -83,6 +91,9 @@ const TaskListTable = (props: IProps & typeof defaultProps) => {
 		tasks,
 		locale,
 		onExpanderClick,
+		// conditionals
+		showStartDateColumn,
+		showEndDateColumn,
 		// styles
 		rootStyle,
 		tableRowStyle,
@@ -114,7 +125,7 @@ const TaskListTable = (props: IProps & typeof defaultProps) => {
 				return (
 					// TABLE ROW
 					<div style={tableRowStyle} key={`${t.id}row`}>
-						{/* TABLE CELL */}
+						{/* PRIMARY CELL */}
 						<div style={tableCellStyle} title={t.name}>
 							{/* TABLE CELL WRAPPER */}
 							<div style={tableCellWrapperStyle}>
@@ -131,15 +142,19 @@ const TaskListTable = (props: IProps & typeof defaultProps) => {
 							</div>
 						</div>
 
-						{/* TABLE CELL */}
-						<div style={tableCellStyle}>
-							&nbsp;{toLocaleDateString(t.start, dateTimeOptions)}
-						</div>
+						{/* START DATE CELL */}
+						{showStartDateColumn === true && (
+							<div style={tableCellStyle}>
+								&nbsp;{toLocaleDateString(t.start, dateTimeOptions)}
+							</div>
+						)}
 
-						{/* TABLE CELL */}
-						<div style={tableCellStyle}>
-							&nbsp;{toLocaleDateString(t.end, dateTimeOptions)}
-						</div>
+						{/* END DATE CELL */}
+						{showEndDateColumn === true && (
+							<div style={tableCellStyle}>
+								&nbsp;{toLocaleDateString(t.end, dateTimeOptions)}
+							</div>
+						)}
 					</div>
 				);
 			})}
