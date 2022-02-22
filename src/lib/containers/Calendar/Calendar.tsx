@@ -3,7 +3,9 @@ import React, { ReactChild } from "react";
 
 // *** OTHER ***
 import { ViewMode } from "../../types/public-types";
-import CalendarHeader from "./components/CalendarHeader";
+import CalendarHeader, {
+	defaultProps as calendarHeaderDefaultProps,
+} from "./components/CalendarHeader";
 import {
 	getCachedDateTimeFormat,
 	getDaysInMonth,
@@ -25,11 +27,16 @@ export type IProps = {
 	rootStyle?: React.CSSProperties;
 	headerStyle?: React.CSSProperties;
 	bottomTextStyle?: React.CSSProperties;
+	// calendar header styles
+	calenderHeaderRootStyle?: typeof calendarHeaderDefaultProps.rootStyle;
+	calenderHeaderLineStyle?: typeof calendarHeaderDefaultProps.lineStyle;
+	calenderHeaderTextStyle?: typeof calendarHeaderDefaultProps.textStyle;
 };
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
 export const defaultProps: TOptionalProps = {
+	// styles
 	rootStyle: {},
 	headerStyle: {
 		fill: "#ffffff",
@@ -42,6 +49,10 @@ export const defaultProps: TOptionalProps = {
 		userSelect: "none",
 		pointerEvents: "none",
 	},
+	// calendar header styles
+	calenderHeaderRootStyle: calendarHeaderDefaultProps.rootStyle,
+	calenderHeaderLineStyle: calendarHeaderDefaultProps.lineStyle,
+	calenderHeaderTextStyle: calendarHeaderDefaultProps.textStyle,
 };
 
 const Calendar = (props: IProps & typeof defaultProps) => {
@@ -57,6 +68,10 @@ const Calendar = (props: IProps & typeof defaultProps) => {
 		rootStyle,
 		headerStyle,
 		bottomTextStyle,
+		// calendar header
+		calenderHeaderRootStyle,
+		calenderHeaderLineStyle,
+		calenderHeaderTextStyle,
 	} = props;
 
 	// *** HANDLERS ***
@@ -94,9 +109,13 @@ const Calendar = (props: IProps & typeof defaultProps) => {
 						value={topValue}
 						x1Line={columnWidth * i}
 						y1Line={0}
-						y2Line={topDefaultHeight}
+						y2Line={headerHeight}
 						xText={xText}
 						yText={topDefaultHeight * 0.9}
+						// styles
+						rootStyle={calenderHeaderRootStyle}
+						lineStyle={calenderHeaderLineStyle}
+						textStyle={calenderHeaderTextStyle}
 					/>
 				);
 			}
@@ -140,9 +159,13 @@ const Calendar = (props: IProps & typeof defaultProps) => {
 							value={topValue}
 							x1Line={columnWidth * i + weeksCount * columnWidth}
 							y1Line={0}
-							y2Line={topDefaultHeight}
+							y2Line={headerHeight}
 							xText={columnWidth * i + columnWidth * weeksCount * 0.5}
 							yText={topDefaultHeight * 0.9}
+							// styles
+							rootStyle={calenderHeaderRootStyle}
+							lineStyle={calenderHeaderLineStyle}
+							textStyle={calenderHeaderTextStyle}
 						/>
 					);
 				}
@@ -185,7 +208,7 @@ const Calendar = (props: IProps & typeof defaultProps) => {
 						value={topValue}
 						x1Line={columnWidth * (i + 1)}
 						y1Line={0}
-						y2Line={topDefaultHeight}
+						y2Line={headerHeight}
 						xText={
 							columnWidth * (i + 1) -
 							getDaysInMonth(date.getMonth(), date.getFullYear()) *
@@ -193,6 +216,10 @@ const Calendar = (props: IProps & typeof defaultProps) => {
 								0.5
 						}
 						yText={topDefaultHeight * 0.9}
+						// styles
+						rootStyle={calenderHeaderRootStyle}
+						lineStyle={calenderHeaderLineStyle}
+						textStyle={calenderHeaderTextStyle}
 					/>
 				);
 			}
@@ -230,9 +257,13 @@ const Calendar = (props: IProps & typeof defaultProps) => {
 						value={topValue}
 						x1Line={columnWidth * i + ticks * columnWidth}
 						y1Line={0}
-						y2Line={topDefaultHeight}
+						y2Line={headerHeight}
 						xText={columnWidth * i + ticks * columnWidth * 0.5}
 						yText={topDefaultHeight * 0.9}
+						// styles
+						rootStyle={calenderHeaderRootStyle}
+						lineStyle={calenderHeaderLineStyle}
+						textStyle={calenderHeaderTextStyle}
 					/>
 				);
 			}
