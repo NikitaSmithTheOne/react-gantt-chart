@@ -11,7 +11,10 @@ import {
 } from "../../types/public-types";
 import { IProps as GridProps } from "../../containers/Grid/Grid";
 import { ganttDateRange, seedDates } from "../../helpers/date-helper";
-import { IProps as CalendarProps } from "../../containers/Calendar/Calendar";
+import {
+	IProps as CalendarProps,
+	defaultProps as calendarDefaultProps,
+} from "../../containers/Calendar/Calendar";
 import { IProps as ITaskGanttContentNationalResourcesProps } from "./components/GanttTaskContentNationalResources";
 import TaskListHeaderDefault, {
 	defaultProps as taskListHeaderDefaultProps,
@@ -362,9 +365,35 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		headerHeight,
 		columnWidth,
 		rtl,
+		// styles
 		rootStyle: {
 			fontFamily,
 			fontSize,
+		},
+		headerStyle: {
+			...calendarDefaultProps.headerStyle,
+			stroke: "transparent",
+		},
+		bottomTextStyle: {
+			fill: "#A6A9AD",
+			fontFamily: fontFamily,
+			fontSize: "14px",
+			fontWeight: 400,
+			lineHeight: "20px",
+		},
+		// calendar header props
+		calenderHeaderLineStyle: {
+			...calendarDefaultProps.calenderHeaderLineStyle,
+			stroke: "#338BFF1A",
+			strokeWidth: 2,
+		},
+		calenderHeaderTextStyle: {
+			stroke: "#6A6F77",
+			strokeWidth: 0.2,
+			fontFamily: fontFamily,
+			fontSize: "18px",
+			fontWeight: 500,
+			lineHeight: "24px",
 		},
 	};
 
