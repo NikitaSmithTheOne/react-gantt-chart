@@ -35,7 +35,7 @@ import HorizontalScroll, {
 	defaultProps as horizontalScrollDefaultProps,
 } from "../../components/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
-import { FONT_FAMILY, FONT_SIZE, HEADER_HEIGHT, ROW_WIDTH } from "./constants";
+import { FONT_FAMILY, FONT_SIZE, ROW_WIDTH } from "./constants";
 
 // *** TYPES ***
 export interface IProps extends EventOption, DisplayOption, StylingOption {
@@ -59,7 +59,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
 		tasks,
-		headerHeight = 50,
+		headerHeight = 88,
 		columnWidth = 60,
 		listCellWidth = "155px",
 		rowHeight = 60,
@@ -408,7 +408,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			},
 			headerStyle: {
 				...taskListHeaderDefaultProps.headerStyle,
-				height: HEADER_HEIGHT - 2,
+				height: headerHeight - 2,
 			},
 			columnStyle: {
 				...taskListHeaderDefaultProps.columnStyle,
@@ -417,8 +417,8 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			},
 			columnSeparatorStyle: {
 				...taskListHeaderDefaultProps.columnSeparatorStyle,
-				height: HEADER_HEIGHT * 0.5,
-				marginTop: HEADER_HEIGHT * 0.2,
+				height: headerHeight * 0.5,
+				marginTop: headerHeight * 0.2,
 			},
 		},
 		taskListTableProps: {
