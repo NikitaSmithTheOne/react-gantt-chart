@@ -399,6 +399,8 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		TaskListTable: TaskListTableDefault,
 		// components props
 		taskListHeaderProps: {
+			columns: ["Наименование"],
+			// styles
 			rootStyle: {
 				...taskListHeaderDefaultProps.rootStyle,
 				fontFamily: "sans-serif",
@@ -423,6 +425,9 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			tasks: barTasks,
 			locale: "en-GB",
 			onExpanderClick: handleExpanderClick,
+			// conditionals
+			showStartDateColumn: false,
+			showEndDateColumn: false,
 			// style
 			rootStyle: {
 				...taskListTableDefaultProps.rootStyle,
