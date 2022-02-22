@@ -1,20 +1,14 @@
 {
   "name": "react-gantt-chart",
-  "version": "0.2.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.4.0",
-    "@types/node": "^16.11.22",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
+  "version": "0.3.0-rc.0",
+  "files": [
+    "library/**/*"
+  ],
+  "main": "library/index.js",
+  "types": "library/index.d.ts",
+  "peerDependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "typescript": "^4.5.5",
-    "web-vitals": "^2.1.4"
+    "react-dom": "^17.0.2"
   },
   "scripts": {
     "//DEFAULT": "-----------------------------------------------------------------",
@@ -24,13 +18,19 @@
     "eject": "react-scripts eject",
     "commit": "git-cz",
     "lint": "eslint . --ext .ts,.tsx",
+    "//LIBRARY": "-----------------------------------------------------------------",
+    "lib:build": "npx tsc -p tsconfig.lib.json",
+    "lib:link": "npm link && npm link react-gantt-chart",
     "//RELEASE": "-----------------------------------------------------------------",
     "release": "standard-version",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
     "release:major": "standard-version --release-as major",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "//PUBLISH": "-----------------------------------------------------------------",
+    "publish:dry": "npm publish --dry-run",
+    "prepublishOnly": "npm test -- --watchAll=false && npm run lint && npm run lib:build"
   },
   "eslintConfig": {
     "extends": [
@@ -61,6 +61,13 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^16.11.22",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
     "@storybook/addon-actions": "^6.4.18",
     "@storybook/addon-essentials": "^6.4.18",
     "@storybook/addon-links": "^6.4.18",
@@ -69,8 +76,13 @@
     "@storybook/node-logger": "^6.4.18",
     "@storybook/preset-create-react-app": "^4.0.1",
     "@storybook/react": "^6.4.18",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "web-vitals": "^2.1.4",
     "git-cz": "^4.8.0",
     "standard-version": "^9.3.2",
+    "typescript": "^4.5.5",
     "webpack": "^5.68.0"
   },
   "volta": {
@@ -78,5 +90,10 @@
   },
   "engines": {
     "node": "14.17.3"
-  }
+  },
+  "keywords": [
+    "react",
+    "gantt",
+    "chart"
+  ]
 }

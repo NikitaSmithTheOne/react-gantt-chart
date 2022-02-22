@@ -11,5 +11,11 @@ jobs:
       - uses: volta-cli/action@v1
       - run: npm ci --no-audit
 
+      - name: Build Package
+        run: npm run lib:build
+
+      - name: Link Package
+        run: npm run lib:link
+
       - name: Storybook Build
         run: npm run build-storybook

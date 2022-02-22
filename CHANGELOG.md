@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.0](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.2.0...v0.3.0-rc.0) (2022-02-21)
+
+
+### Features
+
+* 🎸 +BarNationalResources component ([b1379a5](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/b1379a5a8f321d1ffd7d19b66c79bd2ebe65bcdf))
+* 🎸 storybook: +Bar component ([eb33b4b](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/eb33b4bec7c008b1ca4cc6996acf59cdcc05fcdc))
+
+
+### Bug Fixes
+
+* 🐛 bar component import fix (probably...) ([c752511](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/c752511f7bfb54419225a6115b93dc705fe40e94))
+* 🐛 TaskList horizontal scroll fix ([1ff2a6e](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/1ff2a6eb600687f77b724217a7710cd67026827c))
+
 ## 0.2.0 (2022-02-10)
 
 

@@ -1,5 +1,5 @@
 // *** OTHER ***
-import { Task } from "../../lib/types/public-types";
+import { Task } from "react-gantt-chart/library/types/public-types";
 
 export const initTasks = (): Task[] => {
 	const tasks: Task[] = [

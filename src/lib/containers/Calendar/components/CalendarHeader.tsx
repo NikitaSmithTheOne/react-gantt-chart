@@ -5,7 +5,7 @@ import React from "react";
 import { OptionalKeys } from "../../../types/custom";
 
 // *** TYPES ***
-type IProps = {
+export type IProps = {
 	value: string;
 	x1Line: number;
 	y1Line: number;
@@ -19,7 +19,7 @@ type IProps = {
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const defaultProps: TOptionalProps = {
+export const defaultProps: TOptionalProps = {
 	rootStyle: {
 		stroke: "#e6e4e4",
 	},

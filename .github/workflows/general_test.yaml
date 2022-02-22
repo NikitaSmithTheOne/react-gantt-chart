@@ -11,11 +11,20 @@ jobs:
       - uses: volta-cli/action@v1
       - run: npm ci --no-audit
 
+      - name: Build Package
+        run: npm run lib:build
+
+      - name: Link Package
+        run: npm run lib:link
+
       - name: Lint
         run: npm run lint
 
       - name: Test Coverage
         run: npm run test -- --coverage --watchAll=false
+
+      - name: Library Build
+        run: CI=false npm run lib:build
 
       - name: Build
         run: CI=false npm run build

@@ -29,7 +29,7 @@ export type IProps = {
 type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
-const defaultProps: TOptionalProps = {
+export const defaultProps: TOptionalProps = {
 	rootStyle: {},
 	headerStyle: {
 		fill: "#ffffff",
