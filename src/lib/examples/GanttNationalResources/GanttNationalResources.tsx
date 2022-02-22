@@ -404,7 +404,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			rootStyle: {
 				...taskListHeaderDefaultProps.rootStyle,
 				fontFamily: "sans-serif",
-				fontSize: "20px",
+				border: "none",
 			},
 			headerStyle: {
 				...taskListHeaderDefaultProps.headerStyle,
@@ -413,7 +413,12 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			columnStyle: {
 				...taskListHeaderDefaultProps.columnStyle,
 				minWidth: ROW_WIDTH,
-				textAlign: "center",
+				textAlign: "left",
+				paddingLeft: "12px",
+				color: "#6A6F77",
+				fontSize: "18px",
+				fontWeight: "500",
+				lineHeight: "24px",
 			},
 			columnSeparatorStyle: {
 				...taskListHeaderDefaultProps.columnSeparatorStyle,
