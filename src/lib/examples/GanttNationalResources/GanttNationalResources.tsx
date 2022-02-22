@@ -65,7 +65,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		rowHeight = 60,
 		ganttHeight = 300,
 		viewMode = ViewMode.Day,
-		locale = "en-GB",
+		locale = "ru",
 		barFill = 80,
 		barCornerRadius = 3,
 		barProgressColor = "#a3a3ff",

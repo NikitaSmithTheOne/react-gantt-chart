@@ -55,13 +55,13 @@ const TaskListHeader = (props: IProps & typeof defaultProps) => {
 	const headerBody: JSX.Element[] = [];
 	columns.forEach((column, index) => {
 		const columnElement = (
-			<>
+			<React.Fragment key={index}>
 				{/* COLUMN */}
 				<div style={columnStyle}>{column}</div>
 
 				{/* SEPARATOR */}
 				{index !== columns.length - 1 && <div style={columnSeparatorStyle} />}
-			</>
+			</React.Fragment>
 		);
 
 		headerBody.push(columnElement);
