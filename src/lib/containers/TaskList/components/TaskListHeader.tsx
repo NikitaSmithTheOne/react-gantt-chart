@@ -6,6 +6,8 @@ import { OptionalKeys } from "../../../types/custom";
 
 // *** TYPES ***
 export interface IProps {
+	columns?: (JSX.Element | string)[];
+	// style
 	rootStyle?: React.CSSProperties;
 	headerStyle?: React.CSSProperties;
 	columnStyle?: React.CSSProperties;
@@ -15,6 +17,8 @@ type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
 export const defaultProps: TOptionalProps = {
+	columns: ["Name", "From", "To"],
+	// style
 	rootStyle: {
 		display: "table",
 		borderBottom: "#e6e4e4 1px solid",
@@ -38,26 +42,38 @@ export const defaultProps: TOptionalProps = {
 
 const TaskListHeader = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
-	const { rootStyle, headerStyle, columnStyle, columnSeparatorStyle } = props;
+	const {
+		columns,
+		// style
+		rootStyle,
+		headerStyle,
+		columnStyle,
+		columnSeparatorStyle,
+	} = props;
+
+	// *** CONDITIONALS ***
+	const headerBody: JSX.Element[] = [];
+	columns.forEach((column) => {
+		const columnElement = (
+			<>
+				{/* COLUMN */}
+				<div style={columnStyle}>{column}</div>
+
+				{/* SEPARATOR */}
+				<div style={columnSeparatorStyle} />
+			</>
+		);
+
+		headerBody.push(columnElement);
+	});
 
 	return (
+		// ROOT
 		<div style={rootStyle}>
 			{/* HEADER */}
 			<div style={headerStyle}>
-				{/* COLUMN */}
-				<div style={columnStyle}>&nbsp;Name</div>
-
-				{/* SEPARATOR */}
-				<div style={columnSeparatorStyle} />
-
-				{/* COLUMN */}
-				<div style={columnStyle}>&nbsp;From</div>
-
-				{/* SEPARATOR */}
-				<div style={columnSeparatorStyle} />
-
-				{/* COLUMN */}
-				<div style={columnStyle}>&nbsp;To</div>
+				{/* BODY */}
+				{headerBody}
 			</div>
 		</div>
 	);
