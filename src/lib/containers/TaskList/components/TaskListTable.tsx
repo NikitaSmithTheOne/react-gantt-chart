@@ -39,7 +39,11 @@ export interface IProps {
 	// styles
 	rootStyle?: React.CSSProperties;
 	tableRowStyle?: React.CSSProperties;
+	tableRowStyleProject?: React.CSSProperties;
 	tableCellStyle?: React.CSSProperties;
+	tableCellStyleProject?: React.CSSProperties;
+	tableCellStyleTask?: React.CSSProperties;
+	tableCellStyleMileStone?: React.CSSProperties;
 	tableCellWrapperStyle?: React.CSSProperties;
 	expanderStyle?: React.CSSProperties;
 	expanderEmptyStyle?: React.CSSProperties;
@@ -61,6 +65,7 @@ export const defaultProps: TOptionalProps = {
 		display: "table-row",
 		textOverflow: "ellipsis",
 	},
+	tableRowStyleProject: {},
 	tableCellStyle: {
 		display: "table-cell",
 		verticalAlign: "middle",
@@ -68,6 +73,9 @@ export const defaultProps: TOptionalProps = {
 		overflow: "hidden",
 		textOverflow: "ellipsis",
 	},
+	tableCellStyleProject: {},
+	tableCellStyleTask: {},
+	tableCellStyleMileStone: {},
 	tableCellWrapperStyle: {
 		display: "flex",
 	},
@@ -97,7 +105,11 @@ const TaskListTable = (props: IProps & typeof defaultProps) => {
 		// styles
 		rootStyle,
 		tableRowStyle,
+		tableRowStyleProject,
 		tableCellStyle,
+		tableCellStyleProject,
+		tableCellStyleTask,
+		tableCellStyleMileStone,
 		tableCellWrapperStyle,
 		expanderStyle,
 		expanderEmptyStyle,
@@ -122,11 +134,24 @@ const TaskListTable = (props: IProps & typeof defaultProps) => {
 					expanderSymbol = "▼";
 				}
 
+				// styles
+				const rowStyle: React.CSSProperties = {
+					...tableRowStyle,
+					...(t.type === "project" ? tableRowStyleProject : {}),
+				};
+
+				const cellStyle: React.CSSProperties = {
+					...tableCellStyle,
+					...(t.type === "project" ? tableCellStyleProject : {}),
+					...(t.type === "task" ? tableCellStyleTask : {}),
+					...(t.type === "milestone" ? tableCellStyleMileStone : {}),
+				};
+
 				return (
 					// TABLE ROW
-					<div style={tableRowStyle} key={`${t.id}row`}>
+					<div style={rowStyle} key={`${t.id}row`}>
 						{/* PRIMARY CELL */}
-						<div style={tableCellStyle} title={t.name}>
+						<div style={cellStyle} title={t.name}>
 							{/* TABLE CELL WRAPPER */}
 							<div style={tableCellWrapperStyle}>
 								{/* EXPANDER */}
@@ -144,14 +169,14 @@ const TaskListTable = (props: IProps & typeof defaultProps) => {
 
 						{/* START DATE CELL */}
 						{showStartDateColumn === true && (
-							<div style={tableCellStyle}>
+							<div style={cellStyle}>
 								&nbsp;{toLocaleDateString(t.start, dateTimeOptions)}
 							</div>
 						)}
 
 						{/* END DATE CELL */}
 						{showEndDateColumn === true && (
-							<div style={tableCellStyle}>
+							<div style={cellStyle}>
 								&nbsp;{toLocaleDateString(t.end, dateTimeOptions)}
 							</div>
 						)}
