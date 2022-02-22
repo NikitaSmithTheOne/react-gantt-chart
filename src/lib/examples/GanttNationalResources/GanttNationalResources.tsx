@@ -399,7 +399,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		TaskListTable: TaskListTableDefault,
 		// components props
 		taskListHeaderProps: {
-			columns: ["Наименование"],
+			columns: ["Наименования"],
 			// styles
 			rootStyle: {
 				...taskListHeaderDefaultProps.rootStyle,
