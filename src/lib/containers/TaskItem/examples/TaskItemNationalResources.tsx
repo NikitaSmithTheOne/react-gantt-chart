@@ -109,7 +109,14 @@ const TaskItemNationalResources = (props: IProps & typeof defaultProps) => {
 	useEffect(() => {
 		switch (task.typeInternal) {
 			case "milestone":
-				setTaskItem(<MileStone {...props} />);
+				setTaskItem(() => (
+					<BarNationalResources
+						task={props.task}
+						rtl={props.rtl}
+						onEventStart={props.onEventStart}
+						isDateChangeable={props.isDateChangeable}
+					/>
+				));
 				break;
 			case "project":
 				setTaskItem(
