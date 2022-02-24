@@ -146,10 +146,10 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 
 		setDateSetup({ dates: newDates, viewMode });
 
-		setBarTasks(
-			convertToBarTasks(
-				filteredTasks,
-				newDates,
+		setBarTasks(() =>
+			convertToBarTasks({
+				tasks: filteredTasks,
+				dates: newDates,
 				columnWidth,
 				rowHeight,
 				taskHeight,
@@ -165,8 +165,8 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 				projectBackgroundColor,
 				projectBackgroundSelectedColor,
 				milestoneBackgroundColor,
-				milestoneBackgroundSelectedColor
-			)
+				milestoneBackgroundSelectedColor,
+			})
 		);
 	}, [
 		tasks,

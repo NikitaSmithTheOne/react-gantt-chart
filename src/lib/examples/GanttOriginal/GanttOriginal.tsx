@@ -150,9 +150,9 @@ const GanttOriginal = (props: IProps & typeof defaultProps) => {
 		setDateSetup({ dates: newDates, viewMode });
 
 		setBarTasks(
-			convertToBarTasks(
-				filteredTasks,
-				newDates,
+			convertToBarTasks({
+				tasks: filteredTasks,
+				dates: newDates,
 				columnWidth,
 				rowHeight,
 				taskHeight,
@@ -168,8 +168,8 @@ const GanttOriginal = (props: IProps & typeof defaultProps) => {
 				projectBackgroundColor,
 				projectBackgroundSelectedColor,
 				milestoneBackgroundColor,
-				milestoneBackgroundSelectedColor
-			)
+				milestoneBackgroundSelectedColor,
+			})
 		);
 	}, [
 		tasks,
