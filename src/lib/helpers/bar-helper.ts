@@ -74,7 +74,7 @@ export const convertToBarTasks = (
 	return barTasks;
 };
 
-const convertToBarTask = (args: IConvertToBarTaskArgs): BarTask => {
+export const convertToBarTask = (args: IConvertToBarTaskArgs): BarTask => {
 	const map: { [key in TaskType]: BarTask } = {
 		task: convertToBar({ ...args }),
 		milestone: convertToMilestone({ ...args }),
@@ -84,7 +84,17 @@ const convertToBarTask = (args: IConvertToBarTaskArgs): BarTask => {
 	return map[args.task.type];
 };
 
-const convertToBar = (args: IConvertToBarTaskArgs): BarTask => {
+export const convertToBarTaskNR = (args: IConvertToBarTaskArgs): BarTask => {
+	const map: { [key in TaskType]: BarTask } = {
+		task: convertToBar({ ...args }),
+		milestone: convertToBar({ ...args }),
+		project: convertToProject({ ...args }),
+	};
+
+	return map[args.task.type];
+};
+
+export const convertToBar = (args: IConvertToBarTaskArgs): BarTask => {
 	const {
 		task,
 		taskIndex,
@@ -156,7 +166,7 @@ const convertToBar = (args: IConvertToBarTaskArgs): BarTask => {
 	};
 };
 
-const convertToProject = (args: IConvertToBarTaskArgs): BarTask => {
+export const convertToProject = (args: IConvertToBarTaskArgs): BarTask => {
 	const {
 		task,
 		taskIndex,
@@ -229,7 +239,7 @@ const convertToProject = (args: IConvertToBarTaskArgs): BarTask => {
 	};
 };
 
-const convertToMilestone = (args: IConvertToBarTaskArgs): BarTask => {
+export const convertToMilestone = (args: IConvertToBarTaskArgs): BarTask => {
 	const {
 		task,
 		taskIndex,

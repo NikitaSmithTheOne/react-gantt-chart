@@ -31,7 +31,10 @@ import TaskList, {
 } from "../../containers/TaskList/TaskList";
 import GanttTaskNationalResources from "./components/GanttTaskNationalResources";
 import { BarTask } from "../../types/bar-task";
-import { convertToBarTasks } from "../../helpers/bar-helper";
+import {
+	convertToBarTasks,
+	convertToBarTaskNR,
+} from "../../helpers/bar-helper";
 import { GanttEvent } from "../../types/gantt-task-actions";
 import { DateSetup } from "../../types/date-setup";
 import HorizontalScroll, {
@@ -147,26 +150,29 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		setDateSetup({ dates: newDates, viewMode });
 
 		setBarTasks(() =>
-			convertToBarTasks({
-				tasks: filteredTasks,
-				dates: newDates,
-				columnWidth,
-				rowHeight,
-				taskHeight,
-				barCornerRadius,
-				handleWidth,
-				rtl,
-				barProgressColor,
-				barProgressSelectedColor,
-				barBackgroundColor,
-				barBackgroundSelectedColor,
-				projectProgressColor,
-				projectProgressSelectedColor,
-				projectBackgroundColor,
-				projectBackgroundSelectedColor,
-				milestoneBackgroundColor,
-				milestoneBackgroundSelectedColor,
-			})
+			convertToBarTasks(
+				{
+					tasks: filteredTasks,
+					dates: newDates,
+					columnWidth,
+					rowHeight,
+					taskHeight,
+					barCornerRadius,
+					handleWidth,
+					rtl,
+					barProgressColor,
+					barProgressSelectedColor,
+					barBackgroundColor,
+					barBackgroundSelectedColor,
+					projectProgressColor,
+					projectProgressSelectedColor,
+					projectBackgroundColor,
+					projectBackgroundSelectedColor,
+					milestoneBackgroundColor,
+					milestoneBackgroundSelectedColor,
+				},
+				convertToBarTaskNR
+			)
 		);
 	}, [
 		tasks,
