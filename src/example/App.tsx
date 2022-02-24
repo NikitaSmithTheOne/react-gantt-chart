@@ -97,13 +97,13 @@ const App = () => {
 			<GanttNationalResources
 				tasks={tasks}
 				viewMode={view}
-				onDateChange={handleTaskChange}
-				onDelete={handleTaskDelete}
+				onDateChange={() => console.log("onDateChange is not implemented")}
+				onDelete={() => console.log("onDelete in not implemented")}
 				onProgressChange={handleProgressChange}
-				onDoubleClick={handleDblClick}
-				onSelect={handleSelect}
-				ganttHeight={550}
+				onDoubleClick={() => console.log("onDoubleClick is not implemented")}
+				onSelect={() => console.log("onSelect is not implemented")}
 				onExpanderClick={handleExpanderClick}
+				ganttHeight={550}
 				listCellWidth={isChecked ? "155px" : ""}
 				columnWidth={220}
 			/>
