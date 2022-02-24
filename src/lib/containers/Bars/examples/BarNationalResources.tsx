@@ -42,7 +42,8 @@ const BarNationalResources = (props: IProps) => {
 			progressWidth={task.progressWidth}
 			barCornerRadius={BAR_DATE_HEIGHT / 2}
 			onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
-				isDateChangeable === true && onEventStart("move", task, e);
+				// isDateChangeable === true && onEventStart("move", task, e);
+				console.log("BarDisplay: onMouseDown is not implemented");
 			}}
 			// style
 			rootStyle={{
@@ -73,7 +74,10 @@ const BarNationalResources = (props: IProps) => {
 			height={task.handleWidth}
 			width={task.handleWidth}
 			barCornerRadius={BAR_DATE_HEIGHT / 2}
-			onMouseDown={(e) => onEventStart("start", task, e)}
+			onMouseDown={(e) => {
+				// onEventStart("start", task, e);
+				console.log("BarDateHandle (start): onMouseDown is not implemented");
+			}}
 			// style
 			rootStyle={{
 				fill: "#A9ADB2",
@@ -94,7 +98,10 @@ const BarNationalResources = (props: IProps) => {
 			height={task.handleWidth}
 			width={task.handleWidth}
 			barCornerRadius={BAR_DATE_HEIGHT / 2}
-			onMouseDown={(e) => onEventStart("end", task, e)}
+			onMouseDown={(e) => {
+				// onEventStart("end", task, e);
+				console.log("BarDateHandle (end): onMouseDown is not implemented");
+			}}
 			// style
 			rootStyle={{
 				fill: "#A9ADB2",
