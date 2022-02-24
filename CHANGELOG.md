@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.2](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.1...v0.3.0-rc.2) (2022-02-24)
+
+
+### Features
+
+* 🎸 Gantt: +multi bar row ([074bcf2](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/074bcf20baba6cd7ac65f650a758902d901193ff))
+
 ## [0.3.0-rc.1](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.0...v0.3.0-rc.1) (2022-02-22)
 
 ## [0.3.0-rc.0](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.2.0...v0.3.0-rc.0) (2022-02-21)
