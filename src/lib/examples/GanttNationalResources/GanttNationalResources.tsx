@@ -183,7 +183,9 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		);
 
 		// OUTPUT TASKS
-		let filteredOutputTasks = tasks;
+		let filteredOutputTasks = onExpanderClick
+			? removeHiddenTasks(tasks)
+			: tasks;
 
 		if (multiBarRowMode === true) {
 			filteredOutputTasks = filteredOutputTasks.filter(
