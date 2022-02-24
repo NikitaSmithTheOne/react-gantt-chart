@@ -1,5 +1,5 @@
 // *** OTHER ***
-import { Task } from "../types/public-types";
+import { Task, TaskType } from "../types/public-types";
 import { BarTask, TaskTypeInternal } from "../types/bar-task";
 import { BarMoveAction } from "../types/gantt-task-actions";
 
@@ -35,7 +35,10 @@ export type IConvertToBarTaskArgs = {
 	dateDelta: number;
 } & Exclude<IConvertToBarTasksArgs, "tasks">;
 
-export const convertToBarTasks = (args: IConvertToBarTasksArgs) => {
+export const convertToBarTasks = (
+	args: IConvertToBarTasksArgs,
+	conversion: (args: IConvertToBarTaskArgs) => BarTask = convertToBarTask
+) => {
 	const { tasks, dates } = args;
 
 	const dateDelta =
@@ -45,7 +48,7 @@ export const convertToBarTasks = (args: IConvertToBarTasksArgs) => {
 		dates[0].getTimezoneOffset() * 60 * 1000;
 
 	let barTasks = tasks.map((task, index) => {
-		return convertToBarTask({
+		return conversion({
 			...args,
 			task: task,
 			taskIndex: index,
@@ -72,23 +75,13 @@ export const convertToBarTasks = (args: IConvertToBarTasksArgs) => {
 };
 
 const convertToBarTask = (args: IConvertToBarTaskArgs): BarTask => {
-	const { task } = args;
+	const map: { [key in TaskType]: BarTask } = {
+		task: convertToBar({ ...args }),
+		milestone: convertToMilestone({ ...args }),
+		project: convertToProject({ ...args }),
+	};
 
-	let barTask: BarTask;
-
-	switch (task.type) {
-		case "milestone":
-			barTask = convertToMilestone({ ...args });
-			break;
-		case "project":
-			barTask = convertToProject({ ...args });
-			break;
-		default:
-			barTask = convertToBar({ ...args });
-			break;
-	}
-
-	return barTask;
+	return map[args.task.type];
 };
 
 const convertToBar = (args: IConvertToBarTaskArgs): BarTask => {
