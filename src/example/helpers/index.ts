@@ -5,6 +5,7 @@ export const initTasks = (): Task[] => {
 	const tasks: Task[] = [
 		// Project 1
 		{
+			line: 0,
 			type: "project",
 			id: "ProjectSample",
 			name: "1.Project",
@@ -14,6 +15,7 @@ export const initTasks = (): Task[] => {
 			hideChildren: false,
 		},
 		{
+			line: 1,
 			type: "task",
 			id: "Task 0",
 			name: "1.1 Task",
@@ -23,6 +25,7 @@ export const initTasks = (): Task[] => {
 			project: "ProjectSample",
 		},
 		{
+			line: 2,
 			type: "task",
 			id: "Task 1",
 			name: "1.2 Task",
@@ -33,6 +36,7 @@ export const initTasks = (): Task[] => {
 			project: "ProjectSample",
 		},
 		{
+			line: 3,
 			type: "task",
 			id: "Task 2",
 			name: "1.3 Task",
@@ -43,6 +47,7 @@ export const initTasks = (): Task[] => {
 			project: "ProjectSample",
 		},
 		{
+			line: 4,
 			type: "milestone",
 			id: "Task 6",
 			name: "1.3.1 MileStone (KT)",
@@ -53,6 +58,7 @@ export const initTasks = (): Task[] => {
 			project: "ProjectSample",
 		},
 		{
+			line: 4,
 			type: "milestone",
 			id: "Task 7",
 			name: "1.3.2 MileStone (KT)",
@@ -64,6 +70,7 @@ export const initTasks = (): Task[] => {
 		},
 
 		{
+			line: 5,
 			type: "task",
 			id: "Task 3",
 			name: "1.4 Task",
@@ -74,6 +81,7 @@ export const initTasks = (): Task[] => {
 			project: "ProjectSample",
 		},
 		{
+			line: 6,
 			type: "task",
 			id: "Task 4",
 			name: "1.5 Task",
@@ -84,6 +92,7 @@ export const initTasks = (): Task[] => {
 			project: "ProjectSample",
 		},
 		{
+			line: 7,
 			type: "milestone",
 			id: "Task 5",
 			name: "1.5.1 MileStone (KT)",

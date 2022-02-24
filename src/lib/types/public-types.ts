@@ -8,6 +8,12 @@ export enum ViewMode {
 }
 export type TaskType = "task" | "milestone" | "project";
 export interface Task {
+	/**
+	 * By default all tasks shown by list index sequentially
+	 * So if you are going to use some other order or output multiple bars per row 
+	 * You can define line number exactly and sequentially like so (0, 1, 2, 3, 3, 4, 5) 
+	 */
+	line?: number,
 	id: string;
 	type: TaskType;
 	name: string;

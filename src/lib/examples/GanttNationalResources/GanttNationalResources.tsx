@@ -46,6 +46,7 @@ import { ROW_WIDTH } from "./constants";
 // *** TYPES ***
 export interface IProps extends EventOption, DisplayOption, StylingOption {
 	tasks: Task[];
+	multiBarRowMode?: boolean;
 	// style
 	bodyStyle?: React.CSSProperties;
 }
@@ -65,6 +66,8 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
 		tasks,
+		multiBarRowMode = true,
+		// styles
 		headerHeight = 88,
 		columnWidth = 60,
 		listCellWidth = "155px",
@@ -95,6 +98,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		TooltipContent = StandardTooltipContent,
 		// TaskListHeader = TaskListHeaderDefault,
 		// TaskListTable = TaskListTableDefault,
+		// handlers
 		onDateChange,
 		onProgressChange,
 		onDoubleClick,
@@ -106,6 +110,8 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	} = props;
 
 	// *** USE STATE ***
+	const [barTasks, setBarTasks] = useState<BarTask[]>([]);
+	const [outputTasks, setOutputTasks] = useState<Task[]>([]);
 	const [dateSetup, setDateSetup] = useState<DateSetup>(() => {
 		const [startDate, endDate] = ganttDateRange(tasks, viewMode);
 		return { viewMode, dates: seedDates(startDate, endDate, viewMode) };
@@ -114,7 +120,6 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	const [taskListWidth, setTaskListWidth] = useState(0);
 	const [svgContainerWidth, setSvgContainerWidth] = useState(0);
 	const [svgContainerHeight, setSvgContainerHeight] = useState(ganttHeight);
-	const [barTasks, setBarTasks] = useState<BarTask[]>([]);
 	const [ganttEvent, setGanttEvent] = useState<GanttEvent>({
 		action: "",
 	});
@@ -133,11 +138,12 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 
 	// *** USE EFFECT ***
 	useEffect(() => {
-		const filteredTasks: Task[] = onExpanderClick
+		// *** BAR TASKS ***
+		let filteredBarTasks: Task[] = onExpanderClick
 			? removeHiddenTasks(tasks)
 			: tasks;
 
-		const [startDate, endDate] = ganttDateRange(filteredTasks, viewMode);
+		const [startDate, endDate] = ganttDateRange(filteredBarTasks, viewMode);
 		let newDates = seedDates(startDate, endDate, viewMode);
 
 		if (rtl) {
@@ -152,14 +158,15 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		setBarTasks(() =>
 			convertToBarTasks(
 				{
-					tasks: filteredTasks,
+					tasks: filteredBarTasks,
 					dates: newDates,
+					rtl,
+					multiBarRowMode,
 					columnWidth,
 					rowHeight,
 					taskHeight,
 					barCornerRadius,
 					handleWidth,
-					rtl,
 					barProgressColor,
 					barProgressSelectedColor,
 					barBackgroundColor,
@@ -174,6 +181,18 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 				convertToBarTaskNR
 			)
 		);
+
+		// OUTPUT TASKS
+		let filteredOutputTasks = tasks;
+
+		if (multiBarRowMode === true) {
+			filteredOutputTasks = filteredOutputTasks.filter(
+				(e, i) =>
+					filteredOutputTasks.findIndex((e2) => e.line === e2.line) === i
+			);
+		}
+
+		setOutputTasks(() => filteredOutputTasks);
 	}, [
 		tasks,
 		viewMode,
@@ -195,6 +214,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		rtl,
 		scrollX,
 		onExpanderClick,
+		multiBarRowMode,
 	]);
 
 	useEffect(() => {
@@ -307,9 +327,9 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		if (ganttHeight) {
 			setSvgContainerHeight(ganttHeight + headerHeight);
 		} else {
-			setSvgContainerHeight(tasks.length * rowHeight + headerHeight);
+			setSvgContainerHeight(outputTasks.length * rowHeight + headerHeight);
 		}
-	}, [ganttHeight, headerHeight, rowHeight, tasks]);
+	}, [ganttHeight, headerHeight, rowHeight, outputTasks]);
 
 	// *** HANDLERS ***
 	const handleScrollY = (event: SyntheticEvent<HTMLDivElement>) => {
@@ -352,9 +372,9 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 
 	// *** CONDITIONALS ***
 	const gridProps: GridProps = {
+		tasks: outputTasks,
 		columnWidth,
 		svgWidth,
-		tasks: tasks,
 		rowHeight,
 		dates: dateSetup.dates,
 		todayColor,
@@ -463,7 +483,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			},
 		},
 		taskListTableProps: {
-			tasks: barTasks,
+			tasks: outputTasks,
 			locale: "ru",
 			onExpanderClick: handleExpanderClick,
 			// conditionals

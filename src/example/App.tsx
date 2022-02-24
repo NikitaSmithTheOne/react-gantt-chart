@@ -99,10 +99,28 @@ const App = () => {
 			/>
 
 			{/* NATIONAL RESOURCES */}
+			<h3>Gantt - National Resources - Multi Bar Row</h3>
+			<GanttNationalResources
+				tasks={tasks}
+				viewMode={view}
+				// handlers
+				onDateChange={() => console.log("onDateChange is not implemented")}
+				onDelete={() => console.log("onDelete in not implemented")}
+				onProgressChange={handleProgressChange}
+				onDoubleClick={() => console.log("onDoubleClick is not implemented")}
+				onSelect={() => console.log("onSelect is not implemented")}
+				onExpanderClick={handleExpanderClick}
+				// styles
+				ganttHeight={480}
+				listCellWidth={isChecked ? "155px" : ""}
+				columnWidth={220}
+			/>
+
 			<h3>Gantt - National Resources</h3>
 			<GanttNationalResources
 				tasks={tasks}
 				viewMode={view}
+				multiBarRowMode={false}
 				// handlers
 				onDateChange={() => console.log("onDateChange is not implemented")}
 				onDelete={() => console.log("onDelete in not implemented")}

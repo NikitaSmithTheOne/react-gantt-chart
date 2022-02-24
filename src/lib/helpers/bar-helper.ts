@@ -8,6 +8,7 @@ export interface IConvertToBarTasksArgs {
 	tasks: Task[];
 	dates: Date[];
 	rtl: boolean;
+	multiBarRowMode?: boolean;
 	// styles
 	columnWidth: number;
 	rowHeight: number;
@@ -101,6 +102,7 @@ export const convertToBar = (args: IConvertToBarTaskArgs): BarTask => {
 		dates,
 		dateDelta,
 		rtl,
+		multiBarRowMode,
 		// style
 		columnWidth,
 		rowHeight,
@@ -137,7 +139,11 @@ export const convertToBar = (args: IConvertToBarTaskArgs): BarTask => {
 		task.progress,
 		rtl
 	);
-	const y = taskYCoordinate(taskIndex, rowHeight, taskHeight);
+	const customIndex: number =
+		multiBarRowMode === true && typeof task.line !== "undefined"
+			? task.line
+			: taskIndex;
+	const y = taskYCoordinate(customIndex, rowHeight, taskHeight);
 	const hideChildren = task.type === "project" ? task.hideChildren : undefined;
 
 	const styles = {
@@ -173,6 +179,7 @@ export const convertToProject = (args: IConvertToBarTaskArgs): BarTask => {
 		dates,
 		dateDelta,
 		rtl,
+		multiBarRowMode,
 		// style
 		columnWidth,
 		rowHeight,
@@ -210,7 +217,11 @@ export const convertToProject = (args: IConvertToBarTaskArgs): BarTask => {
 		task.progress,
 		rtl
 	);
-	const y = taskYCoordinate(taskIndex, rowHeight, taskHeight);
+	const customIndex: number =
+		multiBarRowMode === true && typeof task.line !== "undefined"
+			? task.line
+			: taskIndex;
+	const y = taskYCoordinate(customIndex, rowHeight, taskHeight);
 	const hideChildren = task.type === "project" ? task.hideChildren : undefined;
 
 	const styles = {
@@ -245,6 +256,7 @@ export const convertToMilestone = (args: IConvertToBarTaskArgs): BarTask => {
 		taskIndex,
 		dates,
 		dateDelta,
+		multiBarRowMode,
 		// styles
 		columnWidth,
 		rowHeight,
@@ -257,7 +269,11 @@ export const convertToMilestone = (args: IConvertToBarTaskArgs): BarTask => {
 	} = args;
 
 	const x = taskXCoordinate(task.start, dates, dateDelta, columnWidth);
-	const y = taskYCoordinate(taskIndex, rowHeight, taskHeight);
+	const customIndex: number =
+		multiBarRowMode === true && typeof task.line !== "undefined"
+			? task.line
+			: taskIndex;
+	const y = taskYCoordinate(customIndex, rowHeight, taskHeight);
 
 	const x1 = x - taskHeight * 0.5;
 	const x2 = x + taskHeight * 0.5;
