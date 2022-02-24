@@ -25,11 +25,14 @@ const App = () => {
 	// *** HANDLERS ***
 	const handleTaskChange = (task: Task) => {
 		console.log("On date change Id:" + task.id);
+
 		let newTasks = tasks.map((t) => (t.id === task.id ? task : t));
+
 		if (task.project) {
 			const [start, end] = getStartEndDateForProject(newTasks, task.project);
 			const project =
 				newTasks[newTasks.findIndex((t) => t.id === task.project)];
+
 			if (
 				project.start.getTime() !== start.getTime() ||
 				project.end.getTime() !== end.getTime()
@@ -40,24 +43,25 @@ const App = () => {
 				);
 			}
 		}
-		setTasks(newTasks);
+
+		setTasks(() => newTasks);
 	};
 
 	const handleTaskDelete = (task: Task) => {
 		const conf = window.confirm("Are you sure about " + task.name + " ?");
 		if (conf) {
-			setTasks(tasks.filter((t) => t.id !== task.id));
+			setTasks(() => tasks.filter((t) => t.id !== task.id));
 		}
 		return conf;
 	};
 
 	const handleProgressChange = async (task: Task) => {
-		setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
 		console.log("On progress change Id:" + task.id);
+		setTasks(() => tasks.map((t) => (t.id === task.id ? task : t)));
 	};
 
 	const handleDblClick = (task: Task) => {
-		alert("On Double Click event Id:" + task.id);
+		console.log("On Double Click event Id:" + task.id);
 	};
 
 	const handleSelect = (task: Task, isSelected: boolean) => {
@@ -65,14 +69,14 @@ const App = () => {
 	};
 
 	const handleExpanderClick = (task: Task) => {
-		setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
 		console.log("On expander click Id:" + task.id);
+		setTasks(() => tasks.map((t) => (t.id === task.id ? task : t)));
 	};
 
 	return (
 		<div>
 			<ViewSwitcher
-				onViewModeChange={(viewMode) => setView(viewMode)}
+				onViewModeChange={(viewMode) => setView(() => viewMode)}
 				onViewListChange={setIsChecked}
 				isChecked={isChecked}
 			/>
@@ -82,12 +86,14 @@ const App = () => {
 			<GanttOriginal
 				tasks={tasks}
 				viewMode={view}
+				// handlers
 				onDateChange={handleTaskChange}
 				onDelete={handleTaskDelete}
 				onProgressChange={handleProgressChange}
 				onDoubleClick={handleDblClick}
 				onSelect={handleSelect}
 				onExpanderClick={handleExpanderClick}
+				// styles
 				listCellWidth={isChecked ? "155px" : ""}
 				columnWidth={columnWidth}
 			/>
@@ -97,12 +103,14 @@ const App = () => {
 			<GanttNationalResources
 				tasks={tasks}
 				viewMode={view}
+				// handlers
 				onDateChange={() => console.log("onDateChange is not implemented")}
 				onDelete={() => console.log("onDelete in not implemented")}
 				onProgressChange={handleProgressChange}
 				onDoubleClick={() => console.log("onDoubleClick is not implemented")}
 				onSelect={() => console.log("onSelect is not implemented")}
 				onExpanderClick={handleExpanderClick}
+				// styles
 				ganttHeight={550}
 				listCellWidth={isChecked ? "155px" : ""}
 				columnWidth={220}
