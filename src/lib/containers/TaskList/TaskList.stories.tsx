@@ -19,7 +19,7 @@ import {
 } from "../../examples/GanttOriginal/constants";
 
 export default {
-	title: "TaskList/TaskList",
+	title: "lib/containers/TaskList/TaskList",
 	component: TaskList,
 };
 

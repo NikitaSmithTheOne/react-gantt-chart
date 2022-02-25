@@ -7,7 +7,7 @@ import TaskListHeader, {
 } from "./TaskListHeader";
 
 export default {
-	title: "TaskList/TaskListHeader",
+	title: "lib/containers/TaskList/components/TaskListHeader",
 	component: TaskListHeader,
 };
 

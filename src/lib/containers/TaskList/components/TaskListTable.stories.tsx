@@ -8,7 +8,7 @@ import TaskListTable, {
 } from "./TaskListTable";
 
 export default {
-	title: "TaskList/TaskListTable",
+	title: "lib/containers/TaskList/components/TaskListTable",
 	component: TaskListTable,
 };
 
