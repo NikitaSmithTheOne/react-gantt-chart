@@ -5,7 +5,7 @@ import React from "react";
 import GridBody, { IProps as IGridBodyProps } from "./GridBody";
 
 export default {
-	title: "Grid/GridBody",
+	title: "lib/containers/Grid/components/GridBody",
 	component: GridBody,
 };
 
