@@ -5,7 +5,7 @@ import React from "react";
 import Project, { IProps as IProjectProps } from "./Project";
 
 export default {
-	title: "TaskItem/Project",
+	title: "lib/containers/TaskItem/components/Project",
 	component: Project,
 };
 
