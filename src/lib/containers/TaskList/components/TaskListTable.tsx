@@ -31,6 +31,9 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 export interface IProps {
 	tasks: Task[];
 	locale: string;
+	expanderSymbolOpen?: JSX.Element | string;
+	expanderSymbolClose?: JSX.Element | string;
+	expanderSymbolEmpty?: JSX.Element | string;
 	onExpanderClick: (task: Task) => void;
 	// conditionals
 	// TODO: MAKE MORE FLEXIBLE RENDERING (TILL NOW LEAVE IT LIKE SO)
@@ -52,6 +55,9 @@ type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
 export const defaultProps: TOptionalProps = {
+	expanderSymbolOpen: "▼",
+	expanderSymbolClose: "▶",
+	expanderSymbolEmpty: "",
 	// conditionals
 	showStartDateColumn: true,
 	showEndDateColumn: true,
@@ -98,6 +104,9 @@ const TaskListTable = (props: IProps & typeof defaultProps) => {
 	const {
 		tasks,
 		locale,
+		expanderSymbolOpen,
+		expanderSymbolClose,
+		expanderSymbolEmpty,
 		onExpanderClick,
 		// conditionals
 		showStartDateColumn,
@@ -127,11 +136,11 @@ const TaskListTable = (props: IProps & typeof defaultProps) => {
 			{/* TABLE ROWS */}
 			{tasks.map((t) => {
 				// expander
-				let expanderSymbol = "";
+				let expanderSymbol: JSX.Element | string = expanderSymbolEmpty;
 				if (t.hideChildren === true) {
-					expanderSymbol = "▶";
+					expanderSymbol = expanderSymbolClose;
 				} else if (t.hideChildren === false) {
-					expanderSymbol = "▼";
+					expanderSymbol = expanderSymbolOpen;
 				}
 
 				// styles
