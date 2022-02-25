@@ -6,7 +6,7 @@ import Arrow, { IProps as IArrowProps } from "./Arrow";
 import Bar from "../containers/Bars/Bar";
 
 export default {
-	title: "Arrow",
+	title: "lib/components/Arrow",
 	component: Arrow,
 };
 

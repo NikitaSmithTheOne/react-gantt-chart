@@ -8,7 +8,7 @@ import Tooltip, {
 } from "./Tooltip";
 
 export default {
-	title: "Tooltip",
+	title: "lib/components/Tooltip",
 	component: Tooltip,
 };
 

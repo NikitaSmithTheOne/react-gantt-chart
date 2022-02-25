@@ -7,7 +7,7 @@ import VerticalScroll, {
 } from "./VerticalScroll";
 
 export default {
-	title: "VerticalScroll",
+	title: "lib/components/VerticalScroll",
 	component: VerticalScroll,
 };
 

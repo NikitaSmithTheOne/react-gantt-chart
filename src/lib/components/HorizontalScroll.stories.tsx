@@ -7,7 +7,7 @@ import HorizontalScroll, {
 } from "./HorizontalScroll";
 
 export default {
-	title: "HorizontalScroll",
+	title: "lib/components/HorizontalScroll",
 	component: HorizontalScroll,
 };
 
