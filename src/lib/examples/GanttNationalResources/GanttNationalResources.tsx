@@ -491,6 +491,8 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			tasks: outputTasks,
 			locale: "ru",
 			onExpanderClick: handleExpanderClick,
+			// TODO: BETTER TO OUTSOURCE TO SEPARATE FILE
+			// BUT THERE IS NOT BUILDER FOR CUSTOM FILES TILL NOW
 			expanderSymbolOpen: (
 				<svg
 					width="14"
@@ -507,6 +509,8 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 					/>
 				</svg>
 			),
+			// TODO: BETTER TO OUTSOURCE TO SEPARATE FILE
+			// BUT THERE IS NOT BUILDER FOR CUSTOM FILES TILL NOW
 			expanderSymbolClose: (
 				<svg
 					width="8"
