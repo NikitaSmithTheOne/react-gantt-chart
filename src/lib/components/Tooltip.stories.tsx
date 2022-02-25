@@ -51,7 +51,6 @@ export const Original = () => {
 			rtl={false}
 			svgContainerHeight={110}
 			svgContainerWidth={250}
-			svgWidth={100}
 			headerHeight={0}
 			taskListWidth={0}
 			scrollX={0}

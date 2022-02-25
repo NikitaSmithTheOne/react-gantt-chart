@@ -568,7 +568,6 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 						rowHeight={rowHeight}
 						headerHeight={headerHeight}
 						taskListWidth={taskListWidth}
-						svgWidth={svgWidth}
 					>
 						<TooltipContent
 							task={ganttEvent.changedTask}

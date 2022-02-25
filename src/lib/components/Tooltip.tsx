@@ -22,7 +22,6 @@ export type IProps = {
 	scrollY: number;
 	svgContainerHeight: number;
 	svgContainerWidth: number;
-	svgWidth: number;
 	headerHeight: number;
 	rowHeight: number;
 	taskListWidth: number;
@@ -140,6 +139,7 @@ const Tooltip = (props: IProps & typeof defaultProps) => {
 		svgContainerHeight,
 		svgContainerWidth,
 		rtl,
+		multiBarRowMode,
 	]);
 
 	return (

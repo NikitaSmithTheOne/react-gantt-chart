@@ -482,7 +482,6 @@ const GanttOriginal = (props: IProps & typeof defaultProps) => {
 						headerHeight={headerHeight}
 						taskListWidth={taskListWidth}
 						rtl={rtl}
-						svgWidth={svgWidth}
 					>
 						<TooltipContent
 							task={ganttEvent.changedTask}
