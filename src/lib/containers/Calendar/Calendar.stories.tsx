@@ -6,7 +6,7 @@ import { ViewMode } from "../../types/public-types";
 import Calendar from "./Calendar";
 
 export default {
-	title: "Calendar/Calendar",
+	title: "lib/containers/Calendar/Calendar",
 	component: Calendar,
 };
 
@@ -56,7 +56,7 @@ export const Monthly = () => {
 			viewMode={ViewMode.Month}
 			rtl
 			headerHeight={50}
-			columnWidth={300}
+			columnWidth={100}
 		></Calendar>
 	);
 };

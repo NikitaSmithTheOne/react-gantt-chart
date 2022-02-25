@@ -5,7 +5,7 @@ import React from "react";
 import CalendarHeader from "./CalendarHeader";
 
 export default {
-	title: "Calendar/CalendarHeader",
+	title: "lib/containers/Calendar/components/CalendarHeader",
 	component: CalendarHeader,
 };
 
