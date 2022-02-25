@@ -136,7 +136,8 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	const taskListRef = useRef<HTMLDivElement>(null);
 
 	const svgWidth = dateSetup.dates.length * columnWidth;
-	const ganttFullHeight = outputTasks.length * rowHeight;
+	const ganttFullHeight =
+		Math.min(outputTasks.length, barTasks.length) * rowHeight;
 
 	// *** USE EFFECT ***
 	useEffect(() => {
