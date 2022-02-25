@@ -22,7 +22,9 @@ import TaskListHeaderDefault, {
 import TaskListTableDefault, {
 	defaultProps as taskListTableDefaultProps,
 } from "../../containers/TaskList/components/TaskListTable";
-import Tooltip, { StandardTooltipContent } from "../../components/Tooltip";
+import Tooltip, {
+	NationalResourcesTooltipContent,
+} from "../../components/Tooltip";
 import VerticalScroll, {
 	defaultProps as verticalScrollDefaultProps,
 } from "../../components/VerticalScroll";
@@ -95,7 +97,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		fontSize = "14px",
 		arrowIndent = 20,
 		todayColor = "rgba(252, 248, 227, 0.5)",
-		TooltipContent = StandardTooltipContent,
+		TooltipContent = NationalResourcesTooltipContent,
 		// TaskListHeader = TaskListHeaderDefault,
 		// TaskListTable = TaskListTableDefault,
 		// handlers
@@ -567,8 +569,8 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 					>
 						<TooltipContent
 							task={ganttEvent.changedTask}
-							fontSize={"15px"}
-							fontFamily={"Arial"}
+							fontSize={"16px"}
+							fontFamily={fontFamily}
 						/>
 					</Tooltip>
 				)}

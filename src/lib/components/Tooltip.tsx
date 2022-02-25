@@ -204,3 +204,32 @@ export const StandardTooltipContent = (props: ITooltipContentProps) => {
 		</div>
 	);
 };
+
+export const NationalResourcesTooltipContent = (
+	props: ITooltipContentProps
+) => {
+	// *** PROPS ***
+	const { task, fontFamily, fontSize } = props;
+
+	return (
+		<div
+			style={{
+				background: "#fff",
+				padding: "12px",
+				boxShadow:
+					"0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)",
+				fontFamily,
+				fontSize,
+			}}
+		>
+			{/* DATES RANGE */}
+			<b style={{ fontSize: fontSize + 6 }}>{`${
+				task.name
+			}: ${task.start.getDate()}-${
+				task.start.getMonth() + 1
+			}-${task.start.getFullYear()} - ${task.end.getDate()}-${
+				task.end.getMonth() + 1
+			}-${task.end.getFullYear()}`}</b>
+		</div>
+	);
+};
