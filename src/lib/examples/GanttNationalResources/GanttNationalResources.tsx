@@ -491,6 +491,36 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			tasks: outputTasks,
 			locale: "ru",
 			onExpanderClick: handleExpanderClick,
+			expanderSymbolOpen: (
+				<svg
+					width="14"
+					height="8"
+					viewBox="0 0 14 8"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M13.7071 0.292893C13.3166 -0.097631 12.6834 -0.097631 12.2929 0.292893L7 5.58578L1.70711 0.292893C1.31658 -0.0976311 0.683418 -0.0976311 0.292894 0.292893C-0.0976306 0.683417 -0.0976306 1.31658 0.292894 1.70711L6.29289 7.7071C6.68342 8.09763 7.31658 8.09763 7.70711 7.70711L13.7071 1.70711C14.0976 1.31658 14.0976 0.683417 13.7071 0.292893Z"
+						fill="#A9ADB3"
+					/>
+				</svg>
+			),
+			expanderSymbolClose: (
+				<svg
+					width="8"
+					height="14"
+					viewBox="0 0 8 14"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M0.355353 11.8546L5.0691 6.99374L0.355353 2.13289C-0.118451 1.6443 -0.118451 0.855034 0.355353 0.366443C0.829157 -0.122148 1.59453 -0.122148 2.06834 0.366443L7.64465 6.11678C8.11845 6.60537 8.11845 7.39463 7.64465 7.88322L2.06834 13.6336C1.59453 14.1221 0.829157 14.1221 0.355353 13.6336C-0.106302 13.145 -0.118451 12.3432 0.355353 11.8546Z"
+						fill="#A9ADB3"
+					/>
+				</svg>
+			),
 			// conditionals
 			showStartDateColumn: false,
 			showEndDateColumn: false,
@@ -524,6 +554,12 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 			},
 			tableCellStyleMileStone: {
 				paddingLeft: "76px",
+			},
+			expanderStyle: {
+				cursor: "pointer",
+				position: "relative",
+				right: "10px",
+				top: "2px",
 			},
 		},
 		// styles
