@@ -7,7 +7,7 @@ import BarProgressHandle, {
 } from "./BarProgressHandle";
 
 export default {
-	title: "Bars/BarProgressHandle",
+	title: "lib/containers/Bars/components/BarProgressHandle",
 	component: BarProgressHandle,
 };
 

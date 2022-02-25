@@ -7,7 +7,7 @@ import BarDisplay, {
 } from "./BarDisplay";
 
 export default {
-	title: "Bars/BarDisplay",
+	title: "lib/containers/Bars/components/BarDisplay",
 	component: BarDisplay,
 };
 

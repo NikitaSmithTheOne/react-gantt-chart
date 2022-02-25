@@ -6,7 +6,7 @@ import BarSmall from "./BarSmall";
 import { BarTask } from "../../types/bar-task";
 
 export default {
-	title: "Bars/BarSmall",
+	title: "lib/containers/Bars/BarSmall",
 	component: BarSmall,
 };
 

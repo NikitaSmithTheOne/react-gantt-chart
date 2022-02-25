@@ -5,7 +5,7 @@ import React from "react";
 import BarDateHandle from "./BarDateHandle";
 
 export default {
-	title: "Bars/BarDateHandle",
+	title: "lib/containers/Bars/components/BarDateHandle",
 	component: BarDateHandle,
 };
 

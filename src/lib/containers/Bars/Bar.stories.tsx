@@ -6,7 +6,7 @@ import Bar from "./Bar";
 import BarDisplay from "./components/BarDisplay";
 
 export default {
-	title: "Bars/Bar",
+	title: "lib/containers/Bars/Bar",
 	component: Bar,
 };
 
