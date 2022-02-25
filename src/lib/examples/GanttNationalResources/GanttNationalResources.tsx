@@ -556,16 +556,18 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 				{/* TOOLTIP */}
 				{ganttEvent.changedTask && (
 					<Tooltip
+						task={ganttEvent.changedTask}
+						rtl={rtl}
+						multiBarRowMode={multiBarRowMode}
+						// styles
 						arrowIndent={arrowIndent}
-						rowHeight={rowHeight}
-						svgContainerHeight={svgContainerHeight}
-						svgContainerWidth={svgContainerWidth}
 						scrollX={scrollX}
 						scrollY={scrollY}
-						task={ganttEvent.changedTask}
+						svgContainerHeight={svgContainerHeight}
+						svgContainerWidth={svgContainerWidth}
+						rowHeight={rowHeight}
 						headerHeight={headerHeight}
 						taskListWidth={taskListWidth}
-						rtl={rtl}
 						svgWidth={svgWidth}
 					>
 						<TooltipContent

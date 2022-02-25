@@ -15,17 +15,18 @@ export interface ITooltipContentProps {
 
 export type IProps = {
 	task: BarTask;
-	arrowIndent: number;
 	rtl: boolean;
+	children: JSX.Element | string;
+	arrowIndent: number;
+	scrollX: number;
+	scrollY: number;
 	svgContainerHeight: number;
 	svgContainerWidth: number;
 	svgWidth: number;
 	headerHeight: number;
-	taskListWidth: number;
-	scrollX: number;
-	scrollY: number;
 	rowHeight: number;
-	children: JSX.Element | string;
+	taskListWidth: number;
+	multiBarRowMode?: boolean;
 	// style
 	rootStyle?: React.CSSProperties;
 };
@@ -33,6 +34,8 @@ type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
 type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
 
 export const defaultProps: TOptionalProps = {
+	multiBarRowMode: false,
+	// style
 	rootStyle: {
 		position: "absolute",
 		display: "flex",
@@ -45,17 +48,18 @@ export const defaultProps: TOptionalProps = {
 const Tooltip = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
+		task,
+		rtl,
 		children,
 		arrowIndent,
-		headerHeight,
-		rowHeight,
-		rtl,
 		scrollX,
 		scrollY,
 		svgContainerHeight,
 		svgContainerWidth,
-		task,
+		headerHeight,
+		rowHeight,
 		taskListWidth,
+		multiBarRowMode,
 		// style
 		rootStyle,
 	} = props;
@@ -75,7 +79,12 @@ const Tooltip = (props: IProps & typeof defaultProps) => {
 		if (tooltipRef.current) {
 			const tooltipHeight = tooltipRef.current.offsetHeight * 1.1;
 			const tooltipWidth = tooltipRef.current.offsetWidth * 1.1;
-			let newRelatedY = task.index * rowHeight - scrollY + headerHeight;
+			const rowNumber =
+				multiBarRowMode === true && typeof task.line !== "undefined"
+					? task.line
+					: task.index;
+
+			let newRelatedY = rowNumber * rowHeight - scrollY + headerHeight;
 			let newRelatedX: number;
 
 			if (rtl) {
