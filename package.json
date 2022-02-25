@@ -91,6 +91,14 @@
   "engines": {
     "node": "14.17.3"
   },
+  "author": {
+    "name": "Nikita Galkin",
+    "url": "https://github.com/NikitaSmithTheOne"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NikitaSmithTheOne/react-gantt-chart.git"
+  },
   "keywords": [
     "react",
     "gantt",
