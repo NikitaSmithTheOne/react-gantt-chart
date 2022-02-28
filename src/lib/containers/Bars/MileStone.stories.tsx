@@ -5,7 +5,7 @@ import React from "react";
 import MileStone, { IProps as IMileStoneProps } from "./MileStone";
 
 export default {
-	title: "lib/containers/TaskItem/components/MileStone",
+	title: "lib/containers/Bars/MileStone",
 	component: MileStone,
 };
 
