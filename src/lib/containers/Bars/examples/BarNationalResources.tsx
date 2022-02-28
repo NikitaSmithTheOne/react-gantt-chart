@@ -30,7 +30,7 @@ export interface IProps {
 
 const BarNationalResources = (props: IProps) => {
 	// *** PROPS ***
-	const { task, onEventStart, isDateChangeable } = props;
+	const { task /* onEventStart, isDateChangeable */ } = props;
 
 	// *** CONDITIONALS ***
 	// bar display
