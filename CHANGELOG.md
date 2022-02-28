@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.4](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.3...v0.3.0-rc.4) (2022-02-28)
+
+
+### Documentation
+
+* ✏️ storybook: bar containers title change ([7c171b8](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/7c171b8fa4a1b2c97bd6504c9bbd5118d1c69c26))
+* ✏️ storybook: calendar containers title change ([4f5acc1](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/4f5acc14805082daf1c7b0320746dd2f114209c7))
+* ✏️ storybook: change lib components titles ([ff7a0fe](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/ff7a0feac270f75ad6797e88888bdc28addb13ba))
+* ✏️ storybook: grid containers title change ([2f25501](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/2f255015b607f1b4f83d3db51934e3c694375072))
+* ✏️ storybook: task item containers title change ([ea3b104](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/ea3b1044e3fba4ef7d9fbfb1f23d0b1a5c6cddd8))
+* ✏️ storybook: task list table containers title change ([438b014](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/438b01496e4aab3edefff9989df4189793ea3f58))
+
+
+### Performance
+
+* ⚡️ decrease bundle size: -source and declaration maps ([826a890](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/826a89059ba87751320edff9dca0755d4ffd72df))
+
 ## [0.3.0-rc.3](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.2...v0.3.0-rc.3) (2022-02-25)
 
 ## [0.3.0-rc.2](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.1...v0.3.0-rc.2) (2022-02-24)
