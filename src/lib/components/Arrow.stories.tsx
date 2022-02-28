@@ -113,7 +113,7 @@ export const Original = Template.bind({});
 Original.args = {
 	taskFrom: TASK_FROM,
 	taskTo: TASK_TO,
-	rowHeight: 50,
+	rowHeight: 100,
 	taskHeight: 50,
 	arrowIndent: 20,
 	rtl: false,
@@ -135,4 +135,10 @@ OrangeColor.args = {
 		fill: "orange",
 		stroke: "orange",
 	},
+};
+
+export const TruthyRTL = Template.bind({});
+TruthyRTL.args = {
+	...Original.args,
+	rtl: true,
 };
