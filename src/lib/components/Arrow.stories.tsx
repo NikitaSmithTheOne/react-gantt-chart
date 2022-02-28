@@ -1,14 +1,11 @@
 // *** NPM ***
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
 import Arrow, { IProps as IArrowProps } from "./Arrow";
 import Bar from "../containers/Bars/Bar";
-
-export default {
-	title: "lib/components/Arrow",
-	component: Arrow,
-};
+import { BarDisplay } from "../containers";
 
 // *** CONSTANTS ***
 const TASK_FROM: IArrowProps["taskFrom"] = {
@@ -71,7 +68,12 @@ const TASK_TO: IArrowProps["taskTo"] = {
 	project: undefined,
 };
 
-export const Original = () => {
+export default {
+	title: "lib/components/Arrow",
+	component: Arrow,
+} as ComponentMeta<typeof Arrow>;
+
+const Template: ComponentStory<typeof Arrow> = (args) => {
 	return (
 		<svg style={{ overflow: "visible" }}>
 			{/* FIRST TASK BAR */}
@@ -79,59 +81,58 @@ export const Original = () => {
 				rtl={false}
 				isDateChangeable={true}
 				isProgressChangeable={true}
-			></Bar>
+				barDisplay={
+					<BarDisplay
+						x={args.taskFrom.x1}
+						y={args.taskFrom.y}
+						progressX={args.taskFrom.x1}
+					/>
+				}
+			/>
 
 			{/* SECOND TASK BAR */}
 			<Bar
 				rtl={false}
 				isDateChangeable={true}
 				isProgressChangeable={true}
-			></Bar>
-
-			{/* ARROW */}
-			<Arrow
-				taskFrom={TASK_FROM}
-				taskTo={TASK_TO}
-				rowHeight={50}
-				taskHeight={50}
-				arrowIndent={20}
-				rtl={false}
+				barDisplay={
+					<BarDisplay
+						x={args.taskTo.x1}
+						y={args.taskTo.y}
+						progressX={args.taskTo.x1}
+					/>
+				}
 			/>
+
+			<Arrow {...args}></Arrow>
 		</svg>
 	);
 };
 
-export const CustomColor = () => {
-	return (
-		<svg style={{ overflow: "visible" }}>
-			{/* FIRST TASK BAR */}
-			<Bar
-				rtl={false}
-				isDateChangeable={true}
-				isProgressChangeable={true}
-			></Bar>
+export const Original = Template.bind({});
+Original.args = {
+	taskFrom: TASK_FROM,
+	taskTo: TASK_TO,
+	rowHeight: 50,
+	taskHeight: 50,
+	arrowIndent: 20,
+	rtl: false,
+};
 
-			{/* SECOND TASK BAR */}
-			<Bar
-				rtl={false}
-				isDateChangeable={true}
-				isProgressChangeable={true}
-			></Bar>
+export const RedColor = Template.bind({});
+RedColor.args = {
+	...Original.args,
+	rootStyle: {
+		fill: "red",
+		stroke: "red",
+	},
+};
 
-			{/* ARROW */}
-			<Arrow
-				taskFrom={TASK_FROM}
-				taskTo={TASK_TO}
-				rowHeight={50}
-				taskHeight={50}
-				arrowIndent={20}
-				rtl={false}
-				// style
-				rootStyle={{
-					fill: "red",
-					stroke: "red",
-				}}
-			/>
-		</svg>
-	);
+export const OrangeColor = Template.bind({});
+OrangeColor.args = {
+	...Original.args,
+	rootStyle: {
+		fill: "orange",
+		stroke: "orange",
+	},
 };
