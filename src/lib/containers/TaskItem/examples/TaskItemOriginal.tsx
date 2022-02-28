@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 // *** OTHER ***
 import BarSmall from "../../Bars/BarSmall";
 import { BarTask } from "../../../types/bar-task";
-import MileStone from "../components/MileStone";
+import MileStone from "../../Bars/MileStone";
 import Project, {
 	defaultProps as projectDefaultProps,
 } from "../components/Project";

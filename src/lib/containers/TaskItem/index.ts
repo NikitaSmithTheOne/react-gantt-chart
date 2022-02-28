@@ -3,7 +3,7 @@ export {
 	default as MileStone,
     defaultProps as mileStoneDefaultProps,
 	type IProps as IMileStoneProps,
-} from "./components/MileStone";
+} from "../Bars/MileStone";
 
 export {
 	default as Project,
