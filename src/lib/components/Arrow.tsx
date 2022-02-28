@@ -67,6 +67,7 @@ const drownPathAndTriangleRTL = (
 };
 
 // *** TYPES ***
+// TODO: SIMPLIFY INPUT PROPS
 export interface IProps {
 	taskFrom: BarTask;
 	taskTo: BarTask;
