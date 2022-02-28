@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.5](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.4...v0.3.0-rc.5) (2022-02-28)
+
+
+### Refactoring
+
+* 💡 Grid refactor ([d498277](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/d498277e23eaf20109c09bc50314d5c06eafee96))
+* 💡 MileStone cmp is moved into Bars ([f46124d](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/f46124d86a3a73c81e0da3462500d4727238d59f))
+* 💡 Project cmp is moved into Bars ([ca04b2e](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/ca04b2ee9fd986ae05138ea10e1985244eb9d900))
+
+
+### Documentation
+
+* ✏️ storybook: Arrow --> +truthy rtl example ([bf84689](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/bf84689e1cdcd9c77b55681646c9930e688b549f))
+* ✏️ storybook: Arrow stories improvement ([0b504a7](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/0b504a7cc07b6714e2fe8e5fbd57ea3e4e8b2343))
+* ✏️ storybook: HorizontalScroll stories improvement ([0db91fd](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/0db91fd068e27398581f36ad7e822697476b974e))
+* ✏️ storybook: MileStone + Project titles update ([261b4f6](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/261b4f6d32a1b8b6a1134dfe20f4b3758463648f))
+* ✏️ storybook: VerticalScroll stories improvement ([cdedb51](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/cdedb51d7334806b60bfb314b7854601fa969726))
+
 ## [0.3.0-rc.4](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.3...v0.3.0-rc.4) (2022-02-28)
 
 
