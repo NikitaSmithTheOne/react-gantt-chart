@@ -2,8 +2,8 @@
 import React from "react";
 
 // *** OTHER ***
-import { IProps as TaskItemProps } from "../examples/TaskItemOriginal";
-import { OptionalKeys } from "../../../types/custom";
+import { IProps as TaskItemProps } from "../TaskItem/examples/TaskItemOriginal";
+import { OptionalKeys } from "../../types/custom";
 
 // *** TYPES ***
 export type IProps = Pick<TaskItemProps, "task"> & {

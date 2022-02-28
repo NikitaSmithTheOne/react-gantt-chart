@@ -7,7 +7,7 @@ import { BarTask } from "../../../types/bar-task";
 import MileStone from "../../Bars/MileStone";
 import Project, {
 	defaultProps as projectDefaultProps,
-} from "../components/Project";
+} from "../../Bars/Project";
 import { GanttContentMoveAction } from "../../../types/gantt-task-actions";
 import { OptionalKeys } from "../../../types/custom";
 import BarOriginal from "../../Bars/examples/BarOriginal";

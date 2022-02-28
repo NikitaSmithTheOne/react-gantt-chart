@@ -10,6 +10,18 @@ export {
 	type IProps as IBarSmallProps,
 } from "./BarSmall";
 
+export {
+	default as MileStone,
+    defaultProps as mileStoneDefaultProps,
+	type IProps as IMileStoneProps,
+} from "./MileStone";
+
+export {
+	default as Project,
+    defaultProps as projectDefaultProps,
+	type IProps as IProjectProps,
+} from "./Project";
+
 // components
 export {
 	default as BarDateHandle,
