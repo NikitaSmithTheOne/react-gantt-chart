@@ -20,9 +20,9 @@
         "noEmit": false,
         "jsx": "react-jsx",
         "composite": false,
-        "sourceMap": true,
+        "sourceMap": false,
         "declaration": true,
-        "declarationMap": true,
+        "declarationMap": false,
         "rootDir": "src/lib",
         "outDir": "library"
     },
