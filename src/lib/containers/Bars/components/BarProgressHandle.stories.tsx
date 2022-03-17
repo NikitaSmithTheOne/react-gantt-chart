@@ -1,5 +1,6 @@
 // *** NPM ***
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
 import BarProgressHandle, {
@@ -9,28 +10,25 @@ import BarProgressHandle, {
 export default {
 	title: "lib/containers/Bars/components/BarProgressHandle",
 	component: BarProgressHandle,
-};
+} as ComponentMeta<typeof BarProgressHandle>;
 
-export const Original = () => {
+const Template: ComponentStory<typeof BarProgressHandle> = (args) => {
 	return (
 		<svg style={{ overflow: "visible" }}>
-			<BarProgressHandle />
+			<BarProgressHandle {...args} />
 		</svg>
 	);
 };
-Original.storyName = "Original";
 
-export const OriginalHidden = () => {
-	return (
-		<svg style={{ overflow: "visible" }}>
-			<BarProgressHandle
-				rootStyle={{
-					...barProgressHandleDefaultProps,
-					visibility: "hidden",
-					opacity: 0,
-				}}
-			/>
-		</svg>
-	);
+export const Original = Template.bind({});
+Original.args = barProgressHandleDefaultProps;
+
+export const Hidden = Template.bind({});
+Hidden.args = {
+	...Original.args,
+	rootStyle: {
+		...Original.args.rootStyle,
+		visibility: "hidden",
+		opacity: 0,
+	},
 };
-OriginalHidden.storyName = "Original Hidden";
