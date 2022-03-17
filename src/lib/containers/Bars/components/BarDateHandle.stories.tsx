@@ -1,28 +1,33 @@
 // *** NPM ***
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
-import BarDateHandle from "./BarDateHandle";
+import BarDateHandle, {
+	defaultProps as barDateHandleDefaultProps,
+} from "./BarDateHandle";
 
 export default {
 	title: "lib/containers/Bars/components/BarDateHandle",
 	component: BarDateHandle,
-};
+	args: barDateHandleDefaultProps,
+} as ComponentMeta<typeof BarDateHandle>;
 
-export const Original = () => {
+const Template: ComponentStory<typeof BarDateHandle> = (args) => {
 	return (
 		<svg style={{ overflow: "visible" }}>
-			<BarDateHandle />
+			<BarDateHandle {...args} />
 		</svg>
 	);
 };
-Original.storyName = "Original";
 
-export const OriginalHidden = () => {
-	return (
-		<svg style={{ overflow: "visible" }}>
-			<BarDateHandle rootStyle={{ visibility: "hidden", opacity: 0 }} />
-		</svg>
-	);
+export const Original = Template.bind({});
+Original.args = {};
+
+export const Hidden = Template.bind({});
+Hidden.args = {
+	rootStyle: {
+		visibility: "hidden",
+		opacity: 0,
+	},
 };
-OriginalHidden.storyName = "Original Hidden";
