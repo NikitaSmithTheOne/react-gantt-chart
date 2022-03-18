@@ -123,8 +123,9 @@ const TaskItemOriginal = (props: IProps & typeof defaultProps) => {
 					<BarOriginal
 						task={props.task}
 						rtl={props.rtl}
-						onEventStart={props.onEventStart}
 						isDateChangeable={props.isDateChangeable}
+						isProgressChangeable={props.isProgressChangeable}
+						onEventStart={props.onEventStart}
 					/>
 				));
 				break;

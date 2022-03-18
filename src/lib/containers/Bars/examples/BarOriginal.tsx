@@ -16,17 +16,19 @@ import BarDisplay, {
 export interface IProps {
 	task: BarTask;
 	rtl: boolean;
+	isDateChangeable: boolean;
+	isProgressChangeable: boolean;
 	onEventStart: (
 		action: GanttContentMoveAction,
 		selectedTask: BarTask,
 		event?: React.MouseEvent | React.KeyboardEvent
 	) => any;
-	isDateChangeable: boolean;
 }
 
 const BarOriginal = (props: IProps) => {
 	// *** PROPS ***
-	const { task, rtl, onEventStart, isDateChangeable } = props;
+	const { task, rtl, isDateChangeable, isProgressChangeable, onEventStart } =
+		props;
 
 	// *** USE STATE ***
 	const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -122,9 +124,9 @@ const BarOriginal = (props: IProps) => {
 	return (
 		<svg style={{ overflow: "visible" }}>
 			<Bar
-				rtl={false}
-				isDateChangeable={true}
-				isProgressChangeable={true}
+				rtl={rtl}
+				isDateChangeable={isDateChangeable}
+				isProgressChangeable={isProgressChangeable}
 				// components
 				barDisplay={barDisplay}
 				leftBarDateHandle={leftBarDateHandle}
