@@ -1,17 +1,11 @@
 // *** NPM ***
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
-import Bar from "../Bar";
-import BarOriginal, {
+import BarNationalResources, {
 	IProps as IBarOriginalProps,
-} from "../examples/BarOriginal";
-import BarNationalResources from "../examples/BarNationalResources";
-
-export default {
-	title: "Examples/Bar",
-	component: Bar,
-};
+} from "../examples/BarNationalResources";
 
 // *** CONSTANTS ***
 const TASK: IBarOriginalProps["task"] = {
@@ -44,26 +38,20 @@ const TASK: IBarOriginalProps["task"] = {
 	project: undefined,
 };
 
-export const Original = () => {
-	return (
-		<BarOriginal
-			task={TASK}
-			rtl={false}
-			onEventStart={() => console.warn("not implemented")}
-			isDateChangeable={true}
-			isProgressChangeable={true}
-		/>
-	);
+export default {
+	title: "Examples/Bar/BarNationalResources",
+	component: BarNationalResources,
+} as ComponentMeta<typeof BarNationalResources>;
+
+const Template: ComponentStory<typeof BarNationalResources> = (args) => {
+	return <BarNationalResources {...args} />;
 };
 
-export const NationalResources = () => {
-	return (
-		<BarNationalResources
-			task={TASK}
-			rtl={false}
-			isDateChangeable={true}
-			isProgressChangeable={true}
-			onEventStart={() => console.warn("not implemented")}
-		/>
-	);
+export const Original = Template.bind({});
+Original.args = {
+	task: TASK,
+	rtl: false,
+	isDateChangeable: true,
+	isProgressChangeable: true,
+	onEventStart: (...args) => console.log(args),
 };

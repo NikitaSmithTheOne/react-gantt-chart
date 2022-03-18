@@ -20,17 +20,19 @@ const BAR_DATE_STROKE_WIDTH = 1;
 export interface IProps {
 	task: BarTask;
 	rtl: boolean;
+	isDateChangeable: boolean;
+	isProgressChangeable: boolean;
 	onEventStart: (
 		action: GanttContentMoveAction,
 		selectedTask: BarTask,
 		event?: React.MouseEvent | React.KeyboardEvent
 	) => any;
-	isDateChangeable: boolean;
 }
 
 const BarNationalResources = (props: IProps) => {
 	// *** PROPS ***
-	const { task /* onEventStart, isDateChangeable */ } = props;
+	const { task, rtl, isDateChangeable, isProgressChangeable, onEventStart } =
+		props;
 
 	// *** CONDITIONALS ***
 	// bar display
@@ -43,7 +45,7 @@ const BarNationalResources = (props: IProps) => {
 			barCornerRadius={BAR_DATE_HEIGHT / 2}
 			onMouseDown={(e: React.MouseEvent<Element, MouseEvent>) => {
 				// isDateChangeable === true && onEventStart("move", task, e);
-				console.log("BarDisplay: onMouseDown is not implemented");
+				console.log("BarDisplay (move): onMouseDown is not implemented");
 			}}
 			// style
 			rootStyle={{
@@ -117,9 +119,9 @@ const BarNationalResources = (props: IProps) => {
 	return (
 		<svg style={{ overflow: "visible" }}>
 			<Bar
-				rtl={false}
-				isDateChangeable={true}
-				isProgressChangeable={true}
+				rtl={rtl}
+				isDateChangeable={isDateChangeable}
+				isProgressChangeable={isProgressChangeable}
 				// components
 				barDisplay={barDisplay}
 				leftBarDateHandle={leftBarDateHandle}

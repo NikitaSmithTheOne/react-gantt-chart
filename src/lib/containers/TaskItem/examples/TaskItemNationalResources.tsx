@@ -112,8 +112,9 @@ const TaskItemNationalResources = (props: IProps & typeof defaultProps) => {
 					<BarNationalResources
 						task={props.task}
 						rtl={props.rtl}
-						onEventStart={props.onEventStart}
 						isDateChangeable={props.isDateChangeable}
+						isProgressChangeable={props.isProgressChangeable}
+						onEventStart={props.onEventStart}
 					/>
 				));
 				break;
@@ -142,8 +143,9 @@ const TaskItemNationalResources = (props: IProps & typeof defaultProps) => {
 					<BarNationalResources
 						task={props.task}
 						rtl={props.rtl}
-						onEventStart={props.onEventStart}
 						isDateChangeable={props.isDateChangeable}
+						isProgressChangeable={props.isProgressChangeable}
+						onEventStart={props.onEventStart}
 					/>
 				));
 				break;
