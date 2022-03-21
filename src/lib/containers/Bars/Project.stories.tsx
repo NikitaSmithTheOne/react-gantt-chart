@@ -1,13 +1,12 @@
 // *** NPM ***
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
-import Project, { IProps as IProjectProps } from "./Project";
-
-export default {
-	title: "lib/containers/Bars/Project",
-	component: Project,
-};
+import Project, {
+	IProps as IProjectProps,
+	defaultProps as projectDefaultProps,
+} from "./Project";
 
 // *** CONSTANTS ***
 const TASK: IProjectProps["task"] = {
@@ -40,6 +39,17 @@ const TASK: IProjectProps["task"] = {
 	project: undefined,
 };
 
-export const Simple = () => {
-	return <Project task={TASK} />;
+export default {
+	title: "lib/containers/Bars/Project",
+	component: Project,
+} as ComponentMeta<typeof Project>;
+
+const Template: ComponentStory<typeof Project> = (args) => {
+	return <Project {...args} />;
+};
+
+export const Original = Template.bind({});
+Original.args = {
+	...projectDefaultProps,
+	task: TASK,
 };
