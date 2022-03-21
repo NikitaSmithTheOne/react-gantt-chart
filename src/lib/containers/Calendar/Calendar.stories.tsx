@@ -52,4 +52,11 @@ Monthly.args = {
 		],
 		viewMode: ViewMode.Month,
 	},
+	columnWidth: 150,
+};
+
+export const MonthlyCustomLocale = Template.bind({});
+MonthlyCustomLocale.args = {
+	...Monthly.args,
+	locale: "us",
 };
