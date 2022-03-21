@@ -29,7 +29,10 @@ export const defaultProps: TOptionalProps = {
 		userSelect: "none",
 		pointerEvents: "none",
 	},
-	textStyle: {},
+	textStyle: {
+		strokeWidth: 0.2,
+		stroke: "#e6e4e4",
+	},
 };
 
 const CalendarHeader = (props: IProps & typeof defaultProps): JSX.Element => {
@@ -48,24 +51,22 @@ const CalendarHeader = (props: IProps & typeof defaultProps): JSX.Element => {
 	} = props;
 
 	return (
-		<svg>
-			<g style={rootStyle}>
-				{/* LINE */}
-				<line
-					style={lineStyle}
-					key={value + "line"}
-					x1={x1Line}
-					y1={y1Line}
-					x2={x1Line}
-					y2={y2Line}
-				/>
+		<g style={rootStyle}>
+			{/* LINE */}
+			<line
+				style={lineStyle}
+				key={value + "line"}
+				x1={x1Line}
+				y1={y1Line}
+				x2={x1Line}
+				y2={y2Line}
+			/>
 
-				{/* TEXT */}
-				<text style={textStyle} key={value + "text"} y={yText} x={xText}>
-					{value}
-				</text>
-			</g>
-		</svg>
+			{/* TEXT */}
+			<text style={textStyle} key={value + "text"} y={yText} x={xText}>
+				{value}
+			</text>
+		</g>
 	);
 };
 CalendarHeader.defaultProps = defaultProps;
