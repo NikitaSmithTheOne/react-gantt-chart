@@ -392,7 +392,6 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	const calendarProps: CalendarProps = {
 		dateSetup,
 		locale,
-		viewMode,
 		headerHeight,
 		columnWidth,
 		rtl,

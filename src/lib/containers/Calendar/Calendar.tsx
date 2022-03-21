@@ -19,7 +19,6 @@ import { OptionalKeys } from "../../types/custom";
 export type IProps = {
 	dateSetup: DateSetup;
 	locale: string;
-	viewMode: ViewMode;
 	rtl: boolean;
 	headerHeight: number;
 	columnWidth: number;
@@ -63,7 +62,6 @@ const Calendar = (props: IProps & typeof defaultProps) => {
 		headerHeight,
 		locale,
 		rtl,
-		viewMode,
 		// styles
 		rootStyle,
 		headerStyle,
@@ -230,7 +228,7 @@ const Calendar = (props: IProps & typeof defaultProps) => {
 	const getCalendarValuesForOther = () => {
 		const topValues: ReactChild[] = [];
 		const bottomValues: ReactChild[] = [];
-		const ticks = viewMode === ViewMode.HalfDay ? 2 : 4;
+		const ticks = dateSetup.viewMode === ViewMode.HalfDay ? 2 : 4;
 		const topDefaultHeight = headerHeight * 0.5;
 		const dates = dateSetup.dates;
 		for (let i = 0; i < dates.length; i++) {
