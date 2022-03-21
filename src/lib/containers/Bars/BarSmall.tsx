@@ -27,6 +27,7 @@ export const defaultProps: TOptionalProps = {
 	},
 };
 
+// TODO: Move BarDisplay and BarProgressHandle to props. I believe it'd be better for customization.
 const BarSmall = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
