@@ -1,15 +1,13 @@
 // *** NPM ***
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
-import Grid, { IProps as IGridBodyProps } from "./Grid";
+import Grid, {
+	IProps as IGridBodyProps,
+	defaultProps as gridDefaultProps,
+} from "./Grid";
 
-export default {
-	title: "lib/containers/Grid/Grid",
-	component: Grid,
-};
-
-// *** CONSTANTS ***
 const TASKS: IGridBodyProps["tasks"] = [
 	{
 		start: new Date(2022, 10, 10),
@@ -46,27 +44,34 @@ const TASKS: IGridBodyProps["tasks"] = [
 	},
 ];
 
-export const Original = () => {
-	return (
-		<Grid
-			tasks={TASKS}
-			dates={[
-				new Date(2022, 10, 10),
-				new Date(2022, 10, 11),
-				new Date(2022, 10, 12),
-				new Date(2022, 10, 13),
-				new Date(2022, 10, 15),
-				new Date(2022, 10, 16),
-				new Date(2022, 10, 17),
-				new Date(2022, 10, 18),
-				new Date(2022, 10, 19),
-				new Date(2022, 10, 20),
-			]}
-			svgWidth={1000}
-			rowHeight={50}
-			columnWidth={50}
-			todayColor={""}
-			rtl={false}
-		></Grid>
-	);
+export default {
+	title: "lib/containers/Grid/Grid",
+	component: Grid,
+} as ComponentMeta<typeof Grid>;
+
+const Template: ComponentStory<typeof Grid> = (args) => {
+	return <Grid {...args} />;
+};
+
+export const Original = Template.bind({});
+Original.args = {
+	...gridDefaultProps,
+	tasks: TASKS,
+	dates: [
+		new Date(2022, 10, 10),
+		new Date(2022, 10, 11),
+		new Date(2022, 10, 12),
+		new Date(2022, 10, 13),
+		new Date(2022, 10, 15),
+		new Date(2022, 10, 16),
+		new Date(2022, 10, 17),
+		new Date(2022, 10, 18),
+		new Date(2022, 10, 19),
+		new Date(2022, 10, 20),
+	],
+	svgWidth: 1000,
+	rtl: false,
+	rowHeight: 50,
+	columnWidth: 50,
+	todayColor: "",
 };
