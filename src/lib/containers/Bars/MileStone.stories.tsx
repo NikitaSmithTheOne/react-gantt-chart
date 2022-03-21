@@ -1,13 +1,12 @@
 // *** NPM ***
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
-import MileStone, { IProps as IMileStoneProps } from "./MileStone";
-
-export default {
-	title: "lib/containers/Bars/MileStone",
-	component: MileStone,
-};
+import MileStone, {
+	IProps as IMileStoneProps,
+	defaultProps as mileStoneDefaultProps,
+} from "./MileStone";
 
 // *** CONSTANTS ***
 const TASK: IMileStoneProps["task"] = {
@@ -40,13 +39,32 @@ const TASK: IMileStoneProps["task"] = {
 	project: undefined,
 };
 
-export const Simple = () => {
-	return (
-		<MileStone
-			task={TASK}
-			isDateChangeable={true}
-			isSelected={true}
-			onEventStart={(...args) => console.log(args)}
-		/>
-	);
+export default {
+	title: "lib/containers/Bars/MileStone",
+	component: MileStone,
+} as ComponentMeta<typeof MileStone>;
+
+const Template: ComponentStory<typeof MileStone> = (args) => {
+	return <MileStone {...args} />;
+};
+
+export const Original = Template.bind({});
+Original.args = {
+	...mileStoneDefaultProps,
+	task: TASK,
+	isDateChangeable: true,
+	isSelected: false,
+	onEventStart: (...args) => console.log(args),
+};
+
+export const Selected = Template.bind({});
+Selected.args = {
+	...Original.args,
+	isSelected: true,
+};
+
+export const DisableDateChange = Template.bind({});
+DisableDateChange.args = {
+	...Original.args,
+	isDateChangeable: false,
 };
