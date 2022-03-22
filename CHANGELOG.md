@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.6](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.5...v0.3.0-rc.6) (2022-03-22)
+
+
+### Refactoring
+
+* 💡 GanttOriginal optional props refactor ([de98fda](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/de98fdabd3b6fefa4067a5defac1943f305f2766))
+
+
+### Documentation
+
+* ✏️ storybook: +GanttNR multi bar row story ([d30266d](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/d30266d4ecf60d0c553f7188371ca3e79609a359))
+* ✏️ storybook: +GanttNR stories ([2bd631c](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/2bd631cdd5d3fb3009dd5fd984b6dab22ae256a1))
+* ✏️ storybook: +GanttOriginal stories ([000c08c](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/000c08cb4da137e6b0f151a79ddcc259b903ed37))
+* ✏️ storybook: Bar stories improvement ([b6d3f38](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/b6d3f38ceaf6eb2267a1c553b78cc7dfecc68ebe))
+* ✏️ storybook: BarDateHandle stories improvement ([614c34c](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/614c34ceac170c45bfcaa6e74513d82b3496621a))
+* ✏️ storybook: BarDisplay stories improvement ([60e01b2](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/60e01b2acbd18a200114753ce2ed43d27277410d))
+* ✏️ storybook: BarNR stories improvement ([e005287](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/e0052875b7ce179289cc7fb08039b65c78466d4e))
+* ✏️ storybook: BarOriginal stories improvement ([1b071b2](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/1b071b2395c7826a9d8f20a09fcc34be9128dabd))
+* ✏️ storybook: BarProgressHandle stories improvement ([448ca36](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/448ca36c7139ef59fcdb52fb87b5c4f054c34cfe))
+* ✏️ storybook: BarSmall stories improvement ([a2d73cd](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/a2d73cd3536563d2a6524a8ed28136c183b13f59))
+* ✏️ storybook: Calendar stories improvement ([25ee741](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/25ee741f24b36e790d91a0a43d6093bac2ff96db))
+* ✏️ storybook: Calendar stories improvement ([f1e2c83](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/f1e2c8367ffa6ca509bdfe21111db6bbf5554726))
+* ✏️ storybook: CalendarHeader stories improvement ([9dd09ce](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/9dd09ce0758611102cbacf1cc6ea910711115641))
+* ✏️ storybook: delete useless stories ([c7a5a66](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/c7a5a66f8b91087f7e301d2979d562139c3c75f6))
+* ✏️ storybook: Grid stories improvement ([521cb15](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/521cb15dfdbb3f3b8f7daea9ecd5245d3a9aba97))
+* ✏️ storybook: MileStone stories improvement ([7750489](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/77504895ef159fabda094123ae4dbf4fe49af8c2))
+* ✏️ storybook: Project stories improvement ([99a4e9d](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/99a4e9da4d23d6a7eaa210375b761524598f036e))
+* ✏️ storybook: remove useless stories ([43a8d00](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/43a8d00ec7fe022f71cd5030edba8bb4accbe47c))
+* ✏️ storybook: TaskItemNR stories improvement ([2e44e1a](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/2e44e1a8f23077b799f0273c20d991b60368115f))
+* ✏️ storybook: TaskItemOriginal add default props to args ([c52cc61](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/c52cc61142ee72c5194537bcd53e4fee75823cd1))
+* ✏️ storybook: TaskItemOriginal stories improvement ([3c1f267](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/3c1f267d2456b242808cd825f702be65d4334aba))
+* ✏️ storybook: TaskList stories improvement ([2c51ce0](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/2c51ce05af4b1185af0136805899de20e1255af0))
+* ✏️ storybook: TaskListHeader stories improvement ([8c37847](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/8c378470021138056876a1492da5ffef0d0dd1d9))
+* ✏️ storybook: TaskListTable stories improvement ([9b0febc](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/9b0febccc98dce1ea7dcae1f0e1db7837b93c028))
+
+
+### Styling
+
+* 💄 GanttOriginal: taskListHeader fint size update ([90ae9ba](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/90ae9ba1f46d0fd62494458d4c08b9b2262c50b5))
+
 ## [0.3.0-rc.5](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.4...v0.3.0-rc.5) (2022-02-28)
 
 
