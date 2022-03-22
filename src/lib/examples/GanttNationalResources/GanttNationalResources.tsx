@@ -43,7 +43,9 @@ import HorizontalScroll, {
 	defaultProps as horizontalScrollDefaultProps,
 } from "../../components/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
-import { ROW_WIDTH } from "./constants";
+
+// *** CONSTANTS ***
+export const ROW_WIDTH = 320;
 
 // *** TYPES ***
 export interface IProps extends EventOption, DisplayOption, StylingOption {
