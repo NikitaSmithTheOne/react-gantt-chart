@@ -1,5 +1,6 @@
 // *** NPM ***
 import React, { useRef } from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
 import TaskList, { IProps as ITaskListProps } from "./TaskList";
@@ -17,11 +18,6 @@ import {
 	ROW_HEIGHT,
 	ROW_WIDTH,
 } from "../../examples/GanttOriginal/constants";
-
-export default {
-	title: "lib/containers/TaskList/TaskList",
-	component: TaskList,
-};
 
 // *** CONSTANTS ***
 const TASKS: ITaskListTableProps["tasks"] = [
@@ -52,64 +48,69 @@ const TASKS: ITaskListTableProps["tasks"] = [
 	},
 ];
 
-// Default
-export const Simple = () => {
+export default {
+	title: "lib/containers/TaskList/TaskList",
+	component: TaskList,
+} as ComponentMeta<typeof TaskList>;
+
+const Template: ComponentStory<typeof TaskList> = (args) => {
 	// *** USE REF ***
 	const taskListRef = useRef(null);
 
-	const props: ITaskListProps = {
-		scrollY: 0,
-		// components
-		TaskListHeader: TaskListHeader,
-		TaskListTable: TaskListTable,
-		// components props
-		taskListHeaderProps: {
-			rootStyle: {
-				...taskListHeaderDefaultProps.rootStyle,
-				fontFamily: "sans-serif",
-				fontSize: "20px",
-			},
-			headerStyle: {
-				...taskListHeaderDefaultProps.headerStyle,
-				height: HEADER_HEIGHT - 2,
-			},
-			columnStyle: {
-				...taskListHeaderDefaultProps.columnStyle,
-				minWidth: ROW_WIDTH,
-				textAlign: "center",
-			},
-			columnSeparatorStyle: {
-				...taskListHeaderDefaultProps.columnSeparatorStyle,
-				height: HEADER_HEIGHT * 0.5,
-				marginTop: HEADER_HEIGHT * 0.2,
-			},
-		},
-		taskListTableProps: {
-			tasks: TASKS,
-			locale: "en-GB",
-			onExpanderClick: (e) => console.log(e),
+	return <TaskList {...args} taskListRef={taskListRef} />;
+};
 
-			// style
-			rootStyle: {
-				...taskListTableDefaultProps.rootStyle,
-				fontFamily: FONT_FAMILY,
-				fontSize: FONT_SIZE,
-			},
-			tableRowStyle: {
-				...taskListTableDefaultProps.tableRowStyle,
-				height: ROW_HEIGHT,
-			},
-			tableCellStyle: {
-				...taskListTableDefaultProps.tableCellStyle,
-				minWidth: ROW_WIDTH,
-				maxWidth: ROW_WIDTH,
-			},
+export const Original = Template.bind({});
+Original.args = {
+	scrollY: 0,
+	// components
+	TaskListHeader: TaskListHeader,
+	TaskListTable: TaskListTable,
+	// components props
+	taskListHeaderProps: {
+		rootStyle: {
+			...taskListHeaderDefaultProps.rootStyle,
+			fontFamily: "sans-serif",
+			fontSize: "20px",
 		},
-		// styles
-		taskListTableWrapperStyles: {},
-		// refs
-		taskListRef: taskListRef,
-	};
+		headerStyle: {
+			...taskListHeaderDefaultProps.headerStyle,
+			height: HEADER_HEIGHT - 2,
+		},
+		columnStyle: {
+			...taskListHeaderDefaultProps.columnStyle,
+			minWidth: ROW_WIDTH,
+			textAlign: "center",
+		},
+		columnSeparatorStyle: {
+			...taskListHeaderDefaultProps.columnSeparatorStyle,
+			height: HEADER_HEIGHT * 0.5,
+			marginTop: HEADER_HEIGHT * 0.2,
+		},
+	},
+	taskListTableProps: {
+		tasks: TASKS,
+		locale: "en-GB",
+		onExpanderClick: (e) => console.log(e),
 
-	return <TaskList {...props} />;
+		// style
+		rootStyle: {
+			...taskListTableDefaultProps.rootStyle,
+			fontFamily: FONT_FAMILY,
+			fontSize: FONT_SIZE,
+		},
+		tableRowStyle: {
+			...taskListTableDefaultProps.tableRowStyle,
+			height: ROW_HEIGHT,
+		},
+		tableCellStyle: {
+			...taskListTableDefaultProps.tableCellStyle,
+			minWidth: ROW_WIDTH,
+			maxWidth: ROW_WIDTH,
+		},
+	},
+	// styles
+	taskListTableWrapperStyles: {},
+	// refs
+	// taskListRef: taskListRef,
 };
