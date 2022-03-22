@@ -449,7 +449,7 @@ const GanttOriginal = (props: IProps & typeof defaultProps) => {
 			rootStyle: {
 				...taskListHeaderDefaultProps.rootStyle,
 				fontFamily: "sans-serif",
-				fontSize: "20px",
+				fontSize: FONT_SIZE,
 			},
 			headerStyle: {
 				...taskListHeaderDefaultProps.headerStyle,

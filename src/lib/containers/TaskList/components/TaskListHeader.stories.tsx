@@ -29,7 +29,7 @@ Custom.args = {
 	rootStyle: {
 		...taskListHeaderDefaultProps.rootStyle,
 		fontFamily: "sans-serif",
-		fontSize: "20px",
+		fontSize: "15px",
 	},
 	headerStyle: {
 		...taskListHeaderDefaultProps.headerStyle,
