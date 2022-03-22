@@ -1,16 +1,12 @@
 // *** NPM ***
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
 import TaskListTable, {
 	IProps as ITaskListTableProps,
 	defaultProps as taskListTableDefaultProps,
 } from "./TaskListTable";
-
-export default {
-	title: "lib/containers/TaskList/components/TaskListTable",
-	component: TaskListTable,
-};
 
 // *** CONSTANTS ***
 const TASKS: ITaskListTableProps["tasks"] = [
@@ -29,7 +25,7 @@ const TASKS: ITaskListTableProps["tasks"] = [
 		name: "Some Project 2",
 		id: "ProjectSample 2",
 		progress: 25,
-		type: "project",
+		type: "task",
 	},
 	{
 		start: new Date(2022, 10, 12),
@@ -37,49 +33,42 @@ const TASKS: ITaskListTableProps["tasks"] = [
 		name: "Some Project 3",
 		id: "ProjectSample 3",
 		progress: 25,
-		type: "project",
+		type: "task",
 	},
 ];
 
-// Default Styles
-export const DefaultStyles = () => {
-	const props: ITaskListTableProps = {
-		tasks: TASKS,
-		locale: "en-GB",
-		onExpanderClick: (e) => console.log(e),
-	};
+export default {
+	title: "lib/containers/TaskList/components/TaskListTable",
+	component: TaskListTable,
+} as ComponentMeta<typeof TaskListTable>;
 
-	return <TaskListTable {...props} />;
+const Template: ComponentStory<typeof TaskListTable> = (args) => {
+	return <TaskListTable {...args} />;
 };
 
-// Custom Styles
-export const CustomStyles = () => {
-	const fontFamily: React.CSSProperties["fontFamily"] = "sans-serif";
-	const fontSize: React.CSSProperties["fontSize"] = "15px";
-	const rowWidth = 200;
-	const rowHeight = 50;
+export const Original = Template.bind({});
+Original.args = {
+	...taskListTableDefaultProps,
+	tasks: TASKS,
+	locale: "en-GB",
+	onExpanderClick: (...args) => console.log(args),
+};
 
-	const props: ITaskListTableProps = {
-		tasks: TASKS,
-		locale: "en-GB",
-		onExpanderClick: (e) => console.log(e),
-
-		// style
-		rootStyle: {
-			...taskListTableDefaultProps.rootStyle,
-			fontFamily,
-			fontSize,
-		},
-		tableRowStyle: {
-			...taskListTableDefaultProps.tableRowStyle,
-			height: rowHeight,
-		},
-		tableCellStyle: {
-			...taskListTableDefaultProps.tableCellStyle,
-			minWidth: rowWidth,
-			maxWidth: rowWidth,
-		},
-	};
-
-	return <TaskListTable {...props} />;
+export const Custom = Template.bind({});
+Custom.args = {
+	...Original.args,
+	rootStyle: {
+		...taskListTableDefaultProps.rootStyle,
+		fontFamily: "sans-serif",
+		fontSize: "15px",
+	},
+	tableRowStyle: {
+		...taskListTableDefaultProps.tableRowStyle,
+		height: "50px",
+	},
+	tableCellStyle: {
+		...taskListTableDefaultProps.tableCellStyle,
+		minWidth: "200px",
+		maxWidth: "200px",
+	},
 };
