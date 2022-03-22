@@ -103,6 +103,7 @@ const App = () => {
 			<GanttNationalResources
 				tasks={tasks}
 				viewMode={view}
+				multiBarRowMode={true}
 				// handlers
 				onDateChange={() => console.log("onDateChange is not implemented")}
 				onDelete={() => console.log("onDelete in not implemented")}
@@ -120,7 +121,6 @@ const App = () => {
 			<GanttNationalResources
 				tasks={tasks}
 				viewMode={view}
-				multiBarRowMode={false}
 				// handlers
 				onDateChange={() => console.log("onDateChange is not implemented")}
 				onDelete={() => console.log("onDelete in not implemented")}
