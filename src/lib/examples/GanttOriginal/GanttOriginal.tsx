@@ -42,15 +42,21 @@ import {
 	ROW_HEIGHT,
 	ROW_WIDTH,
 } from "./constants";
+import { OptionalKeys } from "../../types/custom";
 
 // *** TYPES ***
-export interface IProps extends EventOption, DisplayOption, StylingOption {
-	tasks: Task[];
-	// style
-	bodyStyle?: React.CSSProperties;
-}
-export const defaultProps = {
-	// style
+export type IProps = Partial<EventOption> &
+	Partial<DisplayOption> &
+	Partial<StylingOption> & {
+		tasks: Task[];
+		bodyStyle?: React.CSSProperties;
+	};
+
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
+
+export const defaultProps: TOptionalProps = {
+	// general
 	bodyStyle: {
 		display: "flex",
 		padding: "0",
@@ -59,50 +65,89 @@ export const defaultProps = {
 		outline: "none",
 		position: "relative",
 	},
+	// event options
+	timeStep: 300000,
+	onDateChange: (...args) => console.log(`onDateChange: ${args}`),
+	onProgressChange: (...args) => console.log(`onProgressChange: ${args}`),
+	onDoubleClick: (...args) => console.log(`onDoubleClick: ${args}`),
+	onDelete: (...args) => console.log(`onDelete: ${args}`),
+	onSelect: (...args) => console.log(`onSelect: ${args}`),
+	onExpanderClick: (...args) => console.log(`onExpanderClick: ${args}`),
+	// display options
+	viewMode: ViewMode.Day,
+	locale: "en-GB",
+	rtl: false,
+	// styling options
+	headerHeight: 50,
+	columnWidth: 60,
+	listCellWidth: "155px",
+	rowHeight: 50,
+	ganttHeight: 300,
+	barFill: 60,
+	barCornerRadius: 3,
+	barProgressColor: "#a3a3ff",
+	barProgressSelectedColor: "#8282f5",
+	barBackgroundColor: "#b8c2cc",
+	barBackgroundSelectedColor: "#aeb8c2",
+	projectProgressColor: "#7db59a",
+	projectProgressSelectedColor: "#59a985",
+	projectBackgroundColor: "#fac465",
+	projectBackgroundSelectedColor: "#f7bb53",
+	milestoneBackgroundColor: "#f1c453",
+	milestoneBackgroundSelectedColor: "#f29e4c",
+	handleWidth: 8,
+	arrowColor: "grey",
+	fontFamily:
+		"Arial, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue",
+	fontSize: "14px",
+	arrowIndent: 20,
+	todayColor: "rgba(252, 248, 227, 0.5)",
+	TooltipContent: StandardTooltipContent,
 };
 
 const GanttOriginal = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
+		// general
 		tasks,
-		headerHeight = 50,
-		columnWidth = 60,
-		listCellWidth = "155px",
-		rowHeight = 50,
-		ganttHeight = 300,
-		viewMode = ViewMode.Day,
-		locale = "en-GB",
-		barFill = 60,
-		barCornerRadius = 3,
-		barProgressColor = "#a3a3ff",
-		barProgressSelectedColor = "#8282f5",
-		barBackgroundColor = "#b8c2cc",
-		barBackgroundSelectedColor = "#aeb8c2",
-		projectProgressColor = "#7db59a",
-		projectProgressSelectedColor = "#59a985",
-		projectBackgroundColor = "#fac465",
-		projectBackgroundSelectedColor = "#f7bb53",
-		milestoneBackgroundColor = "#f1c453",
-		milestoneBackgroundSelectedColor = "#f29e4c",
-		rtl = false,
-		handleWidth = 8,
-		timeStep = 300000,
-		arrowColor = "grey",
-		fontFamily = "Arial, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue",
-		fontSize = "14px",
-		arrowIndent = 20,
-		todayColor = "rgba(252, 248, 227, 0.5)",
-		TooltipContent = StandardTooltipContent,
-		// TaskListHeader = TaskListHeaderDefault,
-		// TaskListTable = TaskListTableDefault,
+		bodyStyle,
+		// event options
+		timeStep,
 		onDateChange,
 		onProgressChange,
 		onDoubleClick,
 		onDelete,
 		onSelect,
 		onExpanderClick,
-		// style
-		bodyStyle,
+		// display options
+		viewMode,
+		locale,
+		rtl,
+		// styling options
+		headerHeight,
+		columnWidth,
+		listCellWidth,
+		rowHeight,
+		ganttHeight,
+		barFill,
+		barCornerRadius,
+		barProgressColor,
+		barProgressSelectedColor,
+		barBackgroundColor,
+		barBackgroundSelectedColor,
+		projectProgressColor,
+		projectProgressSelectedColor,
+		projectBackgroundColor,
+		projectBackgroundSelectedColor,
+		milestoneBackgroundColor,
+		milestoneBackgroundSelectedColor,
+		handleWidth,
+		arrowColor,
+		fontFamily,
+		fontSize,
+		arrowIndent,
+		todayColor,
+		TooltipContent,
 	} = props;
 
 	// *** USE STATE ***
@@ -133,7 +178,7 @@ const GanttOriginal = (props: IProps & typeof defaultProps) => {
 
 	// *** USE EFFECT ***
 	useEffect(() => {
-		const filteredTasks: Task[] = onExpanderClick
+		const filteredTasks: Task[] = onExpanderClick!!
 			? removeHiddenTasks(tasks)
 			: tasks;
 
