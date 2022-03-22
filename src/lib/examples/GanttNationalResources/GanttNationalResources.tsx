@@ -115,7 +115,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	const {
 		// general
 		tasks,
-		multiBarRowMode = true,
+		multiBarRowMode,
 		bodyStyle,
 		// event options
 		timeStep,
