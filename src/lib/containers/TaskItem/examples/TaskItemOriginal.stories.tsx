@@ -5,6 +5,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 // *** OTHER ***
 import TaskItemOriginal, {
 	IProps as ITaskItemOriginalProps,
+	defaultProps as taskItemOriginalDefaultProps,
 } from "./TaskItemOriginal";
 
 // *** CONSTANTS ***
@@ -49,6 +50,7 @@ const Template: ComponentStory<typeof TaskItemOriginal> = (args) => {
 
 export const Original = Template.bind({});
 Original.args = {
+	...taskItemOriginalDefaultProps,
 	task: TASK,
 	rtl: false,
 	isDateChangeable: true,
