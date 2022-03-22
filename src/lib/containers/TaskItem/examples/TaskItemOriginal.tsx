@@ -15,10 +15,10 @@ import BarOriginal from "../../Bars/examples/BarOriginal";
 // *** TYPES ***
 export type IProps = {
 	task: BarTask;
-	arrowIndent: number;
 	taskHeight: number;
-	isProgressChangeable: boolean;
 	isDateChangeable: boolean;
+	isProgressChangeable: boolean;
+	arrowIndent: number;
 	isDelete: boolean;
 	isSelected: boolean;
 	rtl: boolean;
@@ -55,11 +55,13 @@ const TaskItemOriginal = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
 		task,
-		arrowIndent,
-		isDelete,
-		taskHeight,
-		isSelected,
 		rtl,
+		isDateChangeable,
+		isProgressChangeable,
+		isDelete,
+		isSelected,
+		taskHeight,
+		arrowIndent,
 		onEventStart,
 		// styles
 		taskItemTextStyle,
@@ -101,7 +103,7 @@ const TaskItemOriginal = (props: IProps & typeof defaultProps) => {
 			case "project":
 				setTaskItem(
 					<Project
-						task={props.task}
+						task={task}
 						// style
 						backgroundStyle={{
 							...projectDefaultProps.backgroundStyle,
@@ -121,11 +123,11 @@ const TaskItemOriginal = (props: IProps & typeof defaultProps) => {
 			default:
 				setTaskItem(() => (
 					<BarOriginal
-						task={props.task}
-						rtl={props.rtl}
-						isDateChangeable={props.isDateChangeable}
-						isProgressChangeable={props.isProgressChangeable}
-						onEventStart={props.onEventStart}
+						task={task}
+						rtl={rtl}
+						isDateChangeable={isDateChangeable}
+						isProgressChangeable={isProgressChangeable}
+						onEventStart={onEventStart}
 					/>
 				));
 				break;
