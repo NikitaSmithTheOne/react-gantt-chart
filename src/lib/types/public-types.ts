@@ -114,24 +114,24 @@ export interface StylingOption {
 		fontSize: string;
 		fontFamily: string;
 	}>;
-	TaskListHeader?: React.FC<{
-		headerHeight: number;
-		rowWidth: string;
-		fontFamily: string;
-		fontSize: string;
-	}>;
-	TaskListTable?: React.FC<{
-		rowHeight: number;
-		rowWidth: string;
-		fontFamily: string;
-		fontSize: string;
-		locale: string;
-		tasks: Task[];
-		selectedTaskId: string;
-		/**
-		 * Sets selected task by id
-		 */
-		setSelectedTask: (taskId: string) => void;
-		onExpanderClick: (task: Task) => void;
-	}>;
+	// TaskListHeader?: React.FC<{
+	// 	headerHeight: number;
+	// 	rowWidth: string;
+	// 	fontFamily: string;
+	// 	fontSize: string;
+	// }>;
+	// TaskListTable?: React.FC<{
+	// 	rowHeight: number;
+	// 	rowWidth: string;
+	// 	fontFamily: string;
+	// 	fontSize: string;
+	// 	locale: string;
+	// 	tasks: Task[];
+	// 	selectedTaskId: string;
+	// 	/**
+	// 	 * Sets selected task by id
+	// 	 */
+	// 	setSelectedTask: (taskId: string) => void;
+	// 	onExpanderClick: (task: Task) => void;
+	// }>;
 }

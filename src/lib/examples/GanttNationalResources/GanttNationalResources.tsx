@@ -43,72 +43,117 @@ import HorizontalScroll, {
 	defaultProps as horizontalScrollDefaultProps,
 } from "../../components/HorizontalScroll";
 import { removeHiddenTasks } from "../../helpers/other-helper";
+import { OptionalKeys } from "../../types/custom";
 
 // *** CONSTANTS ***
 export const ROW_WIDTH = 320;
 
 // *** TYPES ***
-export interface IProps extends EventOption, DisplayOption, StylingOption {
-	tasks: Task[];
-	multiBarRowMode?: boolean;
-	// style
-	bodyStyle?: React.CSSProperties;
-}
-export const defaultProps = {
-	// style
+export type IProps = Partial<EventOption> &
+	Partial<DisplayOption> &
+	Partial<StylingOption> & {
+		tasks: Task[];
+		multiBarRowMode?: boolean;
+		bodyStyle?: React.CSSProperties;
+	};
+
+type TOptionalPropsKeys = Exclude<OptionalKeys<IProps>, undefined>;
+type TOptionalProps = Required<Pick<IProps, TOptionalPropsKeys>>;
+
+export const defaultProps: TOptionalProps = {
+	// general
+	multiBarRowMode: false,
 	bodyStyle: {
-		display: "flex",
-		padding: "0",
-		margin: "0",
-		listStyle: "none",
-		outline: "none",
 		position: "relative",
+		display: "flex",
+		margin: "0",
+		padding: "0",
+		outline: "none",
+		listStyle: "none",
 	},
+	// event options
+	timeStep: 300000,
+	onDateChange: (...args) => console.log(`onDateChange: ${args}`),
+	onProgressChange: (...args) => console.log(`onProgressChange: ${args}`),
+	onDoubleClick: (...args) => console.log(`onDoubleClick: ${args}`),
+	onDelete: (...args) => console.log(`onDelete: ${args}`),
+	onSelect: (...args) => console.log(`onSelect: ${args}`),
+	onExpanderClick: (...args) => console.log(`onExpanderClick: ${args}`),
+	// display options
+	viewMode: ViewMode.Day,
+	locale: "ru",
+	rtl: false,
+	// styling options
+	headerHeight: 88,
+	columnWidth: 60,
+	listCellWidth: "155px",
+	rowHeight: 60,
+	ganttHeight: 300,
+	barFill: 80,
+	barCornerRadius: 3,
+	barProgressColor: "#a3a3ff",
+	barProgressSelectedColor: "#8282f5",
+	barBackgroundColor: "#b8c2cc",
+	barBackgroundSelectedColor: "#aeb8c2",
+	projectProgressColor: "transparent",
+	projectProgressSelectedColor: "transparent",
+	projectBackgroundColor: "#338BFF",
+	projectBackgroundSelectedColor: "##338BFF",
+	milestoneBackgroundColor: "#f1c453",
+	milestoneBackgroundSelectedColor: "#f29e4c",
+	handleWidth: 10,
+	arrowColor: "grey",
+	fontFamily: "'Abhaya Libre', Helvetica Neue, serif",
+	fontSize: "14px",
+	arrowIndent: 20,
+	todayColor: "rgba(252, 248, 227, 0.5)",
+	TooltipContent: NationalResourcesTooltipContent,
 };
 
 const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
+		// general
 		tasks,
 		multiBarRowMode = true,
-		// styles
-		headerHeight = 88,
-		columnWidth = 60,
-		listCellWidth = "155px",
-		rowHeight = 60,
-		ganttHeight = 300,
-		viewMode = ViewMode.Day,
-		locale = "ru",
-		barFill = 80,
-		barCornerRadius = 3,
-		barProgressColor = "#a3a3ff",
-		barProgressSelectedColor = "#8282f5",
-		barBackgroundColor = "#b8c2cc",
-		barBackgroundSelectedColor = "#aeb8c2",
-		projectProgressColor = "transparent",
-		projectProgressSelectedColor = "transparent",
-		projectBackgroundColor = "#338BFF",
-		projectBackgroundSelectedColor = "##338BFF",
-		milestoneBackgroundColor = "#f1c453",
-		milestoneBackgroundSelectedColor = "#f29e4c",
-		rtl = false,
-		handleWidth = 10,
-		timeStep = 300000,
-		arrowColor = "grey",
-		fontFamily = "'Abhaya Libre', Helvetica Neue, serif",
-		fontSize = "14px",
-		arrowIndent = 20,
-		todayColor = "rgba(252, 248, 227, 0.5)",
-		TooltipContent = NationalResourcesTooltipContent,
-		// handlers
+		bodyStyle,
+		// event options
+		timeStep,
 		onDateChange,
 		onProgressChange,
 		onDoubleClick,
 		onDelete,
 		onSelect,
 		onExpanderClick,
-		// style
-		bodyStyle,
+		// display options
+		viewMode,
+		locale,
+		rtl,
+		// styling options
+		headerHeight,
+		columnWidth,
+		listCellWidth,
+		rowHeight,
+		ganttHeight,
+		barFill,
+		barCornerRadius,
+		barProgressColor,
+		barProgressSelectedColor,
+		barBackgroundColor,
+		barBackgroundSelectedColor,
+		projectProgressColor,
+		projectProgressSelectedColor,
+		projectBackgroundColor,
+		projectBackgroundSelectedColor,
+		milestoneBackgroundColor,
+		milestoneBackgroundSelectedColor,
+		handleWidth,
+		arrowColor,
+		fontFamily,
+		fontSize,
+		arrowIndent,
+		todayColor,
+		TooltipContent,
 	} = props;
 
 	// *** USE STATE ***
@@ -142,7 +187,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 	// *** USE EFFECT ***
 	useEffect(() => {
 		// *** BAR TASKS ***
-		let filteredBarTasks: Task[] = onExpanderClick
+		let filteredBarTasks: Task[] = !!onExpanderClick
 			? removeHiddenTasks(tasks)
 			: tasks;
 
@@ -186,7 +231,7 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		);
 
 		// OUTPUT TASKS
-		let filteredOutputTasks = onExpanderClick
+		let filteredOutputTasks = !!onExpanderClick
 			? removeHiddenTasks(tasks)
 			: tasks;
 
