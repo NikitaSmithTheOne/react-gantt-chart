@@ -100,8 +100,6 @@ const GanttNationalResources = (props: IProps & typeof defaultProps) => {
 		arrowIndent = 20,
 		todayColor = "rgba(252, 248, 227, 0.5)",
 		TooltipContent = NationalResourcesTooltipContent,
-		// TaskListHeader = TaskListHeaderDefault,
-		// TaskListTable = TaskListTableDefault,
 		// handlers
 		onDateChange,
 		onProgressChange,
