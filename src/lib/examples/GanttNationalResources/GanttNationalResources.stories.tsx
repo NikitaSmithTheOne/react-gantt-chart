@@ -16,7 +16,7 @@ export default {
 
 const Template: ComponentStory<typeof GanttNationalResources> = (args) => {
 	// *** USE STATE ***
-	const [tasks, setTasks] = React.useState<Task[]>(initTasks());
+	const [tasks, setTasks] = React.useState<Task[]>(args.tasks);
 
 	// *** HANDLERS ***
 	const handleProgressChange = async (task: Task) => {
@@ -40,7 +40,7 @@ const Template: ComponentStory<typeof GanttNationalResources> = (args) => {
 export const Original = Template.bind({});
 Original.args = {
 	...ganttNationalResourcesDefaultProps,
-	// tasks:initTasks(),
+	tasks: initTasks(),
 	viewMode: ViewMode.Month,
 	// handlers
 	onDateChange: () => console.log("onDateChange is not implemented"),
@@ -53,4 +53,10 @@ Original.args = {
 	ganttHeight: 480,
 	listCellWidth: "155px",
 	columnWidth: 220,
+};
+
+export const MultiBarRow = Template.bind({});
+MultiBarRow.args = {
+	...Original.args,
+	multiBarRowMode: true,
 };
