@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
-import TaskList, { IProps as ITaskListProps } from "./TaskList";
+import TaskList from "./TaskList";
 import TaskListHeader, {
 	defaultProps as taskListHeaderDefaultProps,
 } from "./components/TaskListHeader";
