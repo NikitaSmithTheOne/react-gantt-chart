@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.7](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.6...v0.3.0-rc.7) (2022-03-23)
+
+
+### Bug Fixes
+
+* 🐛 package.json: engines.node version update ([ca6eb4a](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/ca6eb4ab0ac0face050a369307bdec87ff593b3d))
+
+
+### Testing
+
+* 💍 +GanttNR render w/o errors test ([585f2b3](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/585f2b3ca88b21fd92196b34c7e7c73d89287631))
+* 💍 +GanttOriginal render w/o errors test ([6cd4825](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/6cd482511eedec0805363cb592fba83df8cf73b0))
+
 ## [0.3.0-rc.6](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.5...v0.3.0-rc.6) (2022-03-22)
 
 
