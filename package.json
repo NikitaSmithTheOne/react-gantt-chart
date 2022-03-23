@@ -30,7 +30,10 @@
     "build-storybook": "build-storybook -s public",
     "//PUBLISH": "-----------------------------------------------------------------",
     "publish:dry": "npm publish --dry-run",
-    "prepublishOnly": "npm test -- --watchAll=false && npm run lint && npm run lib:build"
+    "prepublishOnly": "npm test -- --watchAll=false && npm run lint && npm run lib:build",
+    "//LOCAL CI": "-----------------------------------------------------------------",
+    "act:general_test": "act -W ./.github/workflows/general_test.yaml",
+    "act:node_version_test": "act -W ./.github/workflows/node_versions_test.yaml"
   },
   "eslintConfig": {
     "extends": [
@@ -86,10 +89,10 @@
     "webpack": "^5.68.0"
   },
   "volta": {
-    "node": "14.17.3"
+    "node": "16.14.2"
   },
   "engines": {
-    "node": "14.17.3"
+    "node": ">=14.0.0"
   },
   "author": {
     "name": "Nikita Galkin",
