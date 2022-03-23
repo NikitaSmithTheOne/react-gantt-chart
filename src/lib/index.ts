@@ -9,3 +9,6 @@ export * as types from "./types";
 
 // helpers
 export * as helpers from "./helpers";
+
+// examples
+export * as examples from "./examples";
