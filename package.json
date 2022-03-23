@@ -32,6 +32,7 @@
     "publish:dry": "npm publish --dry-run",
     "prepublishOnly": "npm test -- --watchAll=false && npm run lint && npm run lib:build",
     "//LOCAL CI": "-----------------------------------------------------------------",
+    "act:general_test": "act -W ./.github/workflows/general_test.yaml",
     "act:node_version_test": "act -W ./.github/workflows/node_versions_test.yaml"
   },
   "eslintConfig": {
