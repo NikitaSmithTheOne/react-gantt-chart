@@ -17,14 +17,14 @@ jobs:
       - name: Link Package
         run: npm run lib:link
 
-      - name: Lint
+      - name: ESLinting
         run: npm run lint
 
-      - name: Test Coverage
+      - name: Testing
         run: npm run test -- --coverage --watchAll=false
 
-      - name: Library Build
-        run: CI=false npm run lib:build
+      - name: General Build
+        run: npm run build
 
-      - name: Build
-        run: CI=false npm run build
+      - name: Storybook Build
+        run: npm run build-storybook
