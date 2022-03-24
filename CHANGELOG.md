@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.8](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.7...v0.3.0-rc.8) (2022-03-24)
+
+
+### Features
+
+* 🎸 +rollup setup ([5dcb5c9](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/5dcb5c93e40f20fdfff6818a78f97d4d94db238f))
+
+
+### Refactoring
+
+* 💡 date helper typings refactor ([5d1cdb8](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/5d1cdb8a578f5098a37170003c0d47c856df9eec))
+* 💡 improvement of library exports ([5507e27](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/5507e276539655170a03adb11a6385a22b3ab06a))
+* 💡 update examples exports ([1cdcbf5](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/1cdcbf5f4ef870db6ba2a8113f5723c2034aaf5f))
+
 ## [0.3.0-rc.7](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.6...v0.3.0-rc.7) (2022-03-23)
 
 
