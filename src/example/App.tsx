@@ -1,8 +1,11 @@
 // *** NPM ***
 import React from "react";
-import GanttOriginal from "react-gantt-chart/library/examples/GanttOriginal/GanttOriginal";
-import GanttNationalResources from "react-gantt-chart/library/examples/GanttNationalResources/GanttNationalResources";
-import { Task, ViewMode } from "react-gantt-chart/library/types/public-types";
+import {
+	GanttOriginal,
+	GanttNationalResources,
+	Task,
+	ViewMode,
+} from "react-gantt-chart";
 
 // *** OTHER ***
 import ViewSwitcher from "./components/ViewSwitcher";

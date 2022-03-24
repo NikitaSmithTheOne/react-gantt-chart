@@ -22,6 +22,7 @@
         "composite": false,
         "sourceMap": false,
         "declaration": true,
+        "declarationDir": "types",
         "declarationMap": false,
         "rootDir": "src/lib",
         "outDir": "library"

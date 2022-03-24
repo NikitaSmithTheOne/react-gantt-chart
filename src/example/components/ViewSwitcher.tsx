@@ -2,7 +2,7 @@
 import React from "react";
 
 // *** OTHER ***
-import { ViewMode } from "react-gantt-chart/library/types/public-types";
+import { ViewMode } from "react-gantt-chart";
 
 // *** TYPES ***
 interface IProps {
