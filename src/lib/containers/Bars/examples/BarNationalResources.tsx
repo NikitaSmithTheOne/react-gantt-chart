@@ -31,8 +31,7 @@ export interface IProps {
 
 const BarNationalResources = (props: IProps) => {
 	// *** PROPS ***
-	const { task, rtl, isDateChangeable, isProgressChangeable, onEventStart } =
-		props;
+	const { task, rtl, isDateChangeable, isProgressChangeable } = props;
 
 	// *** CONDITIONALS ***
 	// bar display

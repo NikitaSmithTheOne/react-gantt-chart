@@ -1,6 +1,9 @@
+// *** OTHER ***
 import { Task, ViewMode } from "../types/public-types";
-import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
-import DateTimeFormat = Intl.DateTimeFormat;
+
+// *** TYPES ***
+type DateTimeFormatOptions = Intl.DateTimeFormatOptions;
+type DateTimeFormat = Intl.DateTimeFormat;
 
 type DateHelperScales =
 	| "year"
