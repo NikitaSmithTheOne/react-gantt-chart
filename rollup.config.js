@@ -18,6 +18,11 @@ const rollupSetup = [
 				format: "esm",
 				name: "react-gantt-chart",
 			},
+			{
+				file: packageJson.main,
+				format: "cjs",
+				name: "react-gantt-chart",
+			},
 		],
 		plugins: [
 			external(),

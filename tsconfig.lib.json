@@ -25,7 +25,6 @@
         "declarationDir": "types",
         "declarationMap": false,
         "rootDir": "src/lib",
-        "outDir": "library"
     },
     "include": [
         "./src/lib/**/*",
