@@ -1,3 +1,5 @@
+![Logo](./media/logos/logo-1.png)
+
 # react-gantt-chart
 
 ![npm](https://img.shields.io/npm/dm/react-gantt-chart)
@@ -145,3 +147,7 @@ Licensed under [MIT](https://choosealicense.com/licenses/mit/)
 ## Authors
 
 - [@NikitaSmithTheOne](https://github.com/NikitaSmithTheOne)
+
+## Alternative Logo
+
+![Logo](./media/logos/logo-2.png)
