@@ -25,7 +25,12 @@ pnpm add react-gantt-chart
 - And much more!
 
 ## Demo
+
 [A demo is worth a thousand words](https://react-gantt-chart.vercel.app/)
+
+## Storybook
+
+Check the [storybook](https://623c0a4c2ac802003a3dc7f6-hzojeuzxnz.chromatic.com/) to see all components!
 
 ## Contributing
 
