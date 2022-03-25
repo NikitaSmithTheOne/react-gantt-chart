@@ -24,6 +24,9 @@ pnpm add react-gantt-chart
 - Zero dependencies
 - And much more!
 
+## Demo
+[A demo is worth a thousand words](https://react-gantt-chart.vercel.app/)
+
 ## Contributing
 
 Contributions are always welcome! Show your ❤️ and support by giving a ⭐.
