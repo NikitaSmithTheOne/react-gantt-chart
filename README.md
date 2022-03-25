@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# react-gantt-chart
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![npm](https://img.shields.io/npm/dm/react-gantt-chart)
+![NPM](https://img.shields.io/npm/l/react-gantt-chart)
 
-## Available Scripts
+React-Gantt-Chart allows you to create custom gantt charts with ease. No more nonsense!
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+```
+npm install --save react-gantt-chart
+yarn add react-gantt-chart
+pnpm add react-gantt-chart
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Easy to set up for real
+- Super easy to customize 🔥
+- RTL support
+- Easy to create your own templates
+- Small bundle size
+- Support ESM and CJS
+- Zero dependencies
+- And much more!
 
-### `npm test`
+## Contributing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Contributions are always welcome! Show your ❤️ and support by giving a ⭐.
 
-### `npm run build`
+Take a look at the contributing guide:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Fork](https://www.dataschool.io/how-to-contribute-on-github) the repository
+- Run scripts
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm i
+npm run lib:build -- -w
+npm run lib:link
+npm run start # check examples
+npm run storybook # check storybook
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+So now you are ready to make the world better place!
 
-### `npm run eject`
+## Roadmap
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Make more built-in gantt chart templates
+- Simplify some components props and make the ones memoized
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Release Notes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+You can browse them all [here](https://github.com/NikitaSmithTheOne/react-gantt-chart/releases)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## License
 
-## Learn More
+Licensed under [MIT](https://choosealicense.com/licenses/mit/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Authors
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [@NikitaSmithTheOne](https://github.com/NikitaSmithTheOne)
