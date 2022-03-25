@@ -29,7 +29,7 @@ pnpm add react-gantt-chart
 
 ## The gist
 
-```
+```ts
 import React from "react";
 import { GanttOriginal, Task, ViewMode } from "react-gantt-chart";
 
