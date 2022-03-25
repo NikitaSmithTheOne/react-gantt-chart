@@ -102,7 +102,7 @@ export default App;
 
 So easy! Is not it? ✨
 
-`❗❗❗ Important Note: The package is not production ready yet! I believe within close future it'll be ready so now you can try this out and share your feedback. Thank!`
+`❗❗❗ Important Note: The package is not production ready yet! I believe within close future it'll be ready so now you can try this out and share your feedback. Thanks!`
 
 ## Demo
 
