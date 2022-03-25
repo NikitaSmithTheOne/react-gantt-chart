@@ -1,5 +1,6 @@
 {
   "name": "react-gantt-chart",
+  "license": "MIT",
   "version": "0.3.0-rc.9",
   "files": [
     "library/**/*"
