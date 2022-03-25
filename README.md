@@ -2,6 +2,9 @@
 
 ![npm](https://img.shields.io/npm/dm/react-gantt-chart)
 ![NPM](https://img.shields.io/npm/l/react-gantt-chart)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/NikitaSmithTheOne/react-gantt-chart/general_test/master?label=general%20testing)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/NikitaSmithTheOne/react-gantt-chart/node_versions_test/master?label=node%20testing)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/NikitaSmithTheOne/react-gantt-chart/storybook_deploy/master?label=storybook%20deploy)
 
 React-Gantt-Chart allows you to create custom gantt charts with ease. No more nonsense!
 
