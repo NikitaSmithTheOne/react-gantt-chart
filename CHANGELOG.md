@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.10](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.9...v0.3.0-rc.10) (2022-03-25)
+
+
+### Documentation
+
+* ✏️ package.json: +MIT license ([a67b4cb](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/a67b4cb57e696ea23a56178963a0e75cbd2e3336))
+
 ## [0.3.0-rc.9](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.8...v0.3.0-rc.9) (2022-03-25)
 
 
