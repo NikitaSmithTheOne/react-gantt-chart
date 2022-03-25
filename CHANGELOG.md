@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.9](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.8...v0.3.0-rc.9) (2022-03-25)
+
+
+### Documentation
+
+* ✏️ +LICENSE.md ([4ec9eb3](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/4ec9eb32b9171553fa2bf928c71df0660733447c))
+* ✏️ package.json: +extra keywords ([b8a6704](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/b8a67049eb3e4ba9fdea7ea6e7f5588ae019ac81))
+* ✏️ readme init description ([1608695](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/16086959b7df6ce2806b6592dd69457feaa765dc))
+* ✏️ readme: +demo section ([66882ec](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/66882ecf7dbab4b3c61e8da7ac26e6187236abf5))
+* ✏️ readme: +gist ([366c778](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/366c778bdcbc40e62b06a0ba2d45e9edc37b0e03))
+* ✏️ readme: +logos ([fe54b62](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/fe54b62e0ac24f0417cf13af651ab3d981392e6b))
+* ✏️ readme: +not production ready note ([1947325](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/1947325c351512d47f04d3629ce7d574190ef24b))
+* ✏️ readme: +storybook section ([26088bd](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/26088bd1474c4b1ad94d7456cf0e5ce17a08f144))
+* ✏️ readme: +workflows badges ([278340e](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/278340ed39a067c164ad03e47dc72b26f12123f0))
+* ✏️ readme: show gist as typescript code ([73b1654](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/73b16541683a3a6187b70bf6cff3430c5882cfb2))
+
 ## [0.3.0-rc.8](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.7...v0.3.0-rc.8) (2022-03-24)
 
 
