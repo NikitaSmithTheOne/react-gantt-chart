@@ -6,33 +6,47 @@ import { BarTask } from "../types/bar-task";
 import { OptionalKeys } from "../types/custom";
 
 // *** HELPERS ***
-const drownPathAndTriangle = (
-	taskFrom: BarTask,
-	taskTo: BarTask,
-	rowHeight: number,
-	taskHeight: number,
-	arrowIndent: number
-) => {
-	const indexCompare = taskFrom.index > taskTo.index ? -1 : 1;
-	const taskToEndPosition = taskTo.y + taskHeight / 2;
-	const taskFromEndPosition = taskFrom.x2 + arrowIndent * 2;
+const drownPathAndTriangle = ({
+	taskFromIndex,
+	taskFromX2,
+	taskFromY,
+	taskToIndex,
+	taskToX1,
+	taskToY,
+	rowHeight,
+	taskHeight,
+	arrowIndent,
+}: {
+	taskFromIndex: number;
+	taskFromX2: number;
+	taskFromY: number;
+	taskToIndex: number;
+	taskToX1: number;
+	taskToY: number;
+	rowHeight: number;
+	taskHeight: number;
+	arrowIndent: number;
+}) => {
+	const indexCompare = taskFromIndex > taskToIndex ? -1 : 1;
+	const taskToEndPosition = taskToY + taskHeight / 2;
+	const taskFromEndPosition = taskFromX2 + arrowIndent * 2;
 	const taskFromHorizontalOffsetValue =
-		taskFromEndPosition < taskTo.x1 ? "" : `H ${taskTo.x1 - arrowIndent}`;
+		taskFromEndPosition < taskToX1 ? "" : `H ${taskToX1 - arrowIndent}`;
 	const taskToHorizontalOffsetValue =
-		taskFromEndPosition > taskTo.x1
+		taskFromEndPosition > taskToX1
 			? arrowIndent
-			: taskTo.x1 - taskFrom.x2 - arrowIndent;
+			: taskToX1 - taskFromX2 - arrowIndent;
 
-	const path = `M ${taskFrom.x2} ${taskFrom.y + taskHeight / 2} 
+	const path = `M ${taskFromX2} ${taskFromY + taskHeight / 2} 
   h ${arrowIndent} 
   v ${(indexCompare * rowHeight) / 2} 
   ${taskFromHorizontalOffsetValue}
   V ${taskToEndPosition} 
   h ${taskToHorizontalOffsetValue}`;
 
-	const trianglePoints = `${taskTo.x1},${taskToEndPosition} 
-  ${taskTo.x1 - 5},${taskToEndPosition - 5} 
-  ${taskTo.x1 - 5},${taskToEndPosition + 5}`;
+	const trianglePoints = `${taskToX1},${taskToEndPosition} 
+  ${taskToX1 - 5},${taskToEndPosition - 5} 
+  ${taskToX1 - 5},${taskToEndPosition + 5}`;
 	return [path, trianglePoints];
 };
 
@@ -111,13 +125,17 @@ const Arrow = (props: IProps & typeof defaultProps) => {
 					taskHeight,
 					arrowIndent
 			  )
-			: drownPathAndTriangle(
-					taskFrom,
-					taskTo,
+			: drownPathAndTriangle({
+					taskFromIndex: taskFrom.index,
+					taskFromX2: taskFrom.x2,
+					taskFromY: taskFrom.y,
+					taskToIndex: taskTo.index,
+					taskToX1: taskTo.x1,
+					taskToY: taskTo.y,
 					rowHeight,
 					taskHeight,
-					arrowIndent
-			  );
+					arrowIndent,
+			  });
 
 	return (
 		<g style={rootStyle}>
