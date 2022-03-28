@@ -50,33 +50,47 @@ const drownPathAndTriangle = ({
 	return [path, trianglePoints];
 };
 
-const drownPathAndTriangleRTL = (
-	taskFrom: BarTask,
-	taskTo: BarTask,
-	rowHeight: number,
-	taskHeight: number,
-	arrowIndent: number
-) => {
-	const indexCompare = taskFrom.index > taskTo.index ? -1 : 1;
-	const taskToEndPosition = taskTo.y + taskHeight / 2;
-	const taskFromEndPosition = taskFrom.x1 - arrowIndent * 2;
+const drownPathAndTriangleRTL = ({
+	taskFromIndex,
+	taskFromX1,
+	taskFromY,
+	taskToIndex,
+	taskToX2,
+	taskToY,
+	rowHeight,
+	taskHeight,
+	arrowIndent,
+}: {
+	taskFromIndex: number;
+	taskFromX1: number;
+	taskFromY: number;
+	taskToIndex: number;
+	taskToX2: number;
+	taskToY: number;
+	rowHeight: number;
+	taskHeight: number;
+	arrowIndent: number;
+}) => {
+	const indexCompare = taskFromIndex > taskToIndex ? -1 : 1;
+	const taskToEndPosition = taskToY + taskHeight / 2;
+	const taskFromEndPosition = taskFromX1 - arrowIndent * 2;
 	const taskFromHorizontalOffsetValue =
-		taskFromEndPosition > taskTo.x2 ? "" : `H ${taskTo.x2 + arrowIndent}`;
+		taskFromEndPosition > taskToX2 ? "" : `H ${taskToX2 + arrowIndent}`;
 	const taskToHorizontalOffsetValue =
-		taskFromEndPosition < taskTo.x2
+		taskFromEndPosition < taskToX2
 			? -arrowIndent
-			: taskTo.x2 - taskFrom.x1 + arrowIndent;
+			: taskToX2 - taskFromX1 + arrowIndent;
 
-	const path = `M ${taskFrom.x1} ${taskFrom.y + taskHeight / 2} 
+	const path = `M ${taskFromX1} ${taskFromY + taskHeight / 2} 
   h ${-arrowIndent} 
   v ${(indexCompare * rowHeight) / 2} 
   ${taskFromHorizontalOffsetValue}
   V ${taskToEndPosition} 
   h ${taskToHorizontalOffsetValue}`;
 
-	const trianglePoints = `${taskTo.x2},${taskToEndPosition} 
-  ${taskTo.x2 + 5},${taskToEndPosition + 5} 
-  ${taskTo.x2 + 5},${taskToEndPosition - 5}`;
+	const trianglePoints = `${taskToX2},${taskToEndPosition} 
+  ${taskToX2 + 5},${taskToEndPosition + 5} 
+  ${taskToX2 + 5},${taskToEndPosition - 5}`;
 	return [path, trianglePoints];
 };
 
@@ -118,13 +132,17 @@ const Arrow = (props: IProps & typeof defaultProps) => {
 	// *** CONDITIONALS ***
 	const [path, trianglePoints] =
 		rtl === true
-			? drownPathAndTriangleRTL(
-					taskFrom,
-					taskTo,
+			? drownPathAndTriangleRTL({
+					taskFromIndex: taskFrom.index,
+					taskFromX1: taskFrom.x1,
+					taskFromY: taskFrom.y,
+					taskToIndex: taskTo.index,
+					taskToX2: taskTo.x2,
+					taskToY: taskTo.y,
 					rowHeight,
 					taskHeight,
-					arrowIndent
-			  )
+					arrowIndent,
+			  })
 			: drownPathAndTriangle({
 					taskFromIndex: taskFrom.index,
 					taskFromX2: taskFrom.x2,
