@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0-rc.11](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.10...v0.3.0-rc.11) (2022-03-28)
+
+
+### Refactoring
+
+* 💡 Arrow: drownPathAndTriangle func refactor ([11e1e0e](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/11e1e0e0e1a1ed04d855f6bb7fba3e856ca873a6))
+* 💡 Arrow: drownPathAndTriangleRTL func refactor ([f727b65](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/f727b65cbe0e8516cf5a6ff9d1a64f6d148c16fc))
+
+
+### Performance
+
+* ⚡️ Arrow: all required props are primitive + memo ([c276555](https://github.com/NikitaSmithTheOne/react-gantt-chart/commit/c2765552c9eec76115b118ad28f745677f4fb4cd))
+
 ## [0.3.0-rc.10](https://github.com/NikitaSmithTheOne/react-gantt-chart/compare/v0.3.0-rc.9...v0.3.0-rc.10) (2022-03-25)
 
 
