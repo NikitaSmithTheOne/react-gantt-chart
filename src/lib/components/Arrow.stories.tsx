@@ -3,12 +3,13 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 
 // *** OTHER ***
-import Arrow, { IProps as IArrowProps } from "./Arrow";
+import Arrow from "./Arrow";
 import Bar from "../containers/Bars/Bar";
 import { BarDisplay } from "../containers";
+import { BarTask } from "../../../library";
 
 // *** CONSTANTS ***
-const TASK_FROM: IArrowProps["taskFrom"] = {
+const TASK_FROM: BarTask = {
 	index: 1,
 	typeInternal: "task",
 	x1: 0,
@@ -38,7 +39,7 @@ const TASK_FROM: IArrowProps["taskFrom"] = {
 	project: undefined,
 };
 
-const TASK_TO: IArrowProps["taskTo"] = {
+const TASK_TO: BarTask = {
 	index: 1,
 	typeInternal: "task",
 	x1: 300,
@@ -83,9 +84,9 @@ const Template: ComponentStory<typeof Arrow> = (args) => {
 				isProgressChangeable={true}
 				barDisplay={
 					<BarDisplay
-						x={args.taskFrom.x1}
-						y={args.taskFrom.y}
-						progressX={args.taskFrom.x1}
+						x={args.taskFromX1}
+						y={args.taskFromY}
+						progressX={args.taskFromX1}
 					/>
 				}
 			/>
@@ -97,9 +98,9 @@ const Template: ComponentStory<typeof Arrow> = (args) => {
 				isProgressChangeable={true}
 				barDisplay={
 					<BarDisplay
-						x={args.taskTo.x1}
-						y={args.taskTo.y}
-						progressX={args.taskTo.x1}
+						x={args.taskToX1}
+						y={args.taskToY}
+						progressX={args.taskToX1}
 					/>
 				}
 			/>
@@ -111,8 +112,14 @@ const Template: ComponentStory<typeof Arrow> = (args) => {
 
 export const Original = Template.bind({});
 Original.args = {
-	taskFrom: TASK_FROM,
-	taskTo: TASK_TO,
+	taskFromIndex: TASK_FROM.index,
+	taskFromX1: TASK_FROM.x1,
+	taskFromX2: TASK_FROM.x2,
+	taskFromY: TASK_FROM.y,
+	taskToIndex: TASK_TO.index,
+	taskToX1: TASK_TO.x1,
+	taskToX2: TASK_TO.x2,
+	taskToY: TASK_TO.y,
 	rowHeight: 100,
 	taskHeight: 50,
 	arrowIndent: 20,

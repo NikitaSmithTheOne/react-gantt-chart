@@ -1,8 +1,7 @@
 // *** NPM ***
-import React from "react";
+import React, { memo } from "react";
 
 // *** OTHER ***
-import { BarTask } from "../types/bar-task";
 import { OptionalKeys } from "../types/custom";
 
 // *** HELPERS ***
@@ -97,8 +96,14 @@ const drownPathAndTriangleRTL = ({
 // *** TYPES ***
 // TODO: SIMPLIFY INPUT PROPS
 export interface IProps {
-	taskFrom: BarTask;
-	taskTo: BarTask;
+	taskFromIndex: number;
+	taskFromX1: number;
+	taskFromX2: number;
+	taskFromY: number;
+	taskToIndex: number;
+	taskToX1: number;
+	taskToX2: number;
+	taskToY: number;
 	rowHeight: number;
 	taskHeight: number;
 	arrowIndent: number;
@@ -119,12 +124,18 @@ export const defaultProps: TOptionalProps = {
 const Arrow = (props: IProps & typeof defaultProps) => {
 	// *** PROPS ***
 	const {
-		arrowIndent,
+		taskFromIndex,
+		taskFromX1,
+		taskFromX2,
+		taskFromY,
+		taskToIndex,
+		taskToX1,
+		taskToX2,
+		taskToY,
 		rowHeight,
-		rtl,
-		taskFrom,
 		taskHeight,
-		taskTo,
+		arrowIndent,
+		rtl,
 		// style
 		rootStyle,
 	} = props;
@@ -133,23 +144,23 @@ const Arrow = (props: IProps & typeof defaultProps) => {
 	const [path, trianglePoints] =
 		rtl === true
 			? drownPathAndTriangleRTL({
-					taskFromIndex: taskFrom.index,
-					taskFromX1: taskFrom.x1,
-					taskFromY: taskFrom.y,
-					taskToIndex: taskTo.index,
-					taskToX2: taskTo.x2,
-					taskToY: taskTo.y,
+					taskFromIndex: taskFromIndex,
+					taskFromX1: taskFromX1,
+					taskFromY: taskFromY,
+					taskToIndex: taskToIndex,
+					taskToX2: taskToX2,
+					taskToY: taskToY,
 					rowHeight,
 					taskHeight,
 					arrowIndent,
 			  })
 			: drownPathAndTriangle({
-					taskFromIndex: taskFrom.index,
-					taskFromX2: taskFrom.x2,
-					taskFromY: taskFrom.y,
-					taskToIndex: taskTo.index,
-					taskToX1: taskTo.x1,
-					taskToY: taskTo.y,
+					taskFromIndex: taskFromIndex,
+					taskFromX2: taskFromX2,
+					taskFromY: taskFromY,
+					taskToIndex: taskToIndex,
+					taskToX1: taskToX1,
+					taskToY: taskToY,
 					rowHeight,
 					taskHeight,
 					arrowIndent,
@@ -167,4 +178,5 @@ const Arrow = (props: IProps & typeof defaultProps) => {
 };
 Arrow.defaultProps = defaultProps;
 
-export default Arrow;
+// TODO: HANDLE MEMO OF ROOT STYLE???
+export default memo(Arrow);
