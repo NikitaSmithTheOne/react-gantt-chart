@@ -268,11 +268,19 @@ const GanttTaskContentNationalResources = (props: IProps) => {
 			<g className="arrows" fill={arrowColor} stroke={arrowColor}>
 				{tasks.map((task) => {
 					return task.barChildren.map((child) => {
+						const taskTo = tasks[child.index];
+
 						return (
 							<Arrow
 								key={`Arrow from ${task.id} to ${tasks[child.index].id}`}
-								taskFrom={task}
-								taskTo={tasks[child.index]}
+								taskFromIndex={task.index}
+								taskFromX1={task.x1}
+								taskFromX2={task.x2}
+								taskFromY={task.y}
+								taskToIndex={taskTo.index}
+								taskToX1={taskTo.x1}
+								taskToX2={taskTo.x2}
+								taskToY={taskTo.y}
 								rowHeight={rowHeight}
 								taskHeight={taskHeight}
 								arrowIndent={arrowIndent}
