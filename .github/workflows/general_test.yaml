@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
-      - run: npm ci --no-audit
+      - run: npm ci
 
       - name: Build Package
         run: npm run lib:build
