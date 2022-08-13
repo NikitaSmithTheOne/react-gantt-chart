@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: npm ci --no-audit
+      - run: npm ci
 
       - name: Build Package
         run: npm run lib:build
