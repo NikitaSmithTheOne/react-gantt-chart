@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - uses: volta-cli/action@v1
       - run: npm ci
 
       - name: Build Package
